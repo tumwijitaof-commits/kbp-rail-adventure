@@ -1,786 +1,452 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#800000" />
-  <meta name="description" content="เกมความรู้รถไฟหลายด่าน พร้อมอันดับคะแนนกลางสำหรับผู้โดยสารสถานีคลองบางพระ" />
-  <style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#800000">
+<title>KBP Rail Quest — ภารกิจพิชิต 20 สถานี</title>
+<style>
 :root{
-  --maroon:#800000;
-  --maroon-2:#a52634;
-  --cream:#fff9ee;
-  --paper:#fffdf8;
-  --gold:#ffc95c;
-  --mint:#bdebd6;
-  --mint-dark:#2c8e68;
-  --sky:#bfe7ff;
-  --pink:#ffd4de;
-  --red:#dc4b58;
-  --ink:#302326;
-  --muted:#756166;
-  --line:#ead9d5;
-  --shadow:0 20px 55px rgba(83,18,29,.16);
+  --maroon:#800000;--maroon2:#a51b2a;--ink:#2d2430;--muted:#786b76;
+  --cream:#fffaf2;--paper:#fffefd;--gold:#ffc95c;--mint:#ccefdc;--mint2:#4fa978;
+  --blue:#cfeaff;--pink:#ffd7e2;--lav:#e8dcff;--line:#eadbd8;--danger:#d84d58;
+  --shadow:0 18px 45px rgba(86,30,42,.16);--soft:0 9px 24px rgba(86,30,42,.11)
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{min-height:100%;background:var(--cream)}
-body{margin:0;min-height:100vh;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Thai",Tahoma,sans-serif;background:linear-gradient(180deg,#dff4ff 0 27%,#fff5e6 54%,#f7dedf 100%);overflow-x:hidden}
-button,input{font:inherit}
-button{cursor:pointer}
-button:disabled{cursor:not-allowed;opacity:.56}
-.sky-decor{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.sky-decor span{position:absolute;font-size:45px;opacity:.62;animation:cloud 18s linear infinite}
-.sky-decor span:nth-child(1){top:7%;left:-20%;animation-duration:23s}
-.sky-decor span:nth-child(2){top:20%;left:-30%;font-size:32px;animation-delay:6s}
-.sky-decor span:nth-child(3){top:13%;right:8%;font-size:24px;animation:twinkle 2s ease-in-out infinite}
-@keyframes cloud{to{transform:translateX(140vw)}}
-@keyframes twinkle{50%{transform:scale(1.35);opacity:1}}
-.app-shell{position:relative;z-index:1;width:min(100%,820px);min-height:100vh;margin:0 auto;padding:14px 13px 35px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.brand-button{display:flex;align-items:center;gap:9px;border:0;background:rgba(255,255,255,.76);padding:7px 11px 7px 7px;border-radius:18px;color:var(--ink);box-shadow:0 8px 20px rgba(91,41,43,.1);text-align:left;backdrop-filter:blur(8px)}
-.brand-button b,.brand-button small{display:block}.brand-button b{font-size:.94rem;color:var(--maroon)}.brand-button small{font-size:.7rem;color:var(--muted);margin-top:2px}
-.mini-logo{width:41px;height:41px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,var(--maroon),var(--maroon-2));font-size:21px}
-.top-actions{display:flex;gap:7px}.round-button{width:43px;height:43px;border:0;border-radius:15px;background:#fff;box-shadow:0 8px 20px rgba(91,41,43,.12);font-weight:800;color:var(--ink)}
-.connection-banner{padding:9px 12px;margin-bottom:10px;border-radius:14px;background:#fff0cb;color:#654b08;border:1px solid #f3d378;font-size:.8rem;line-height:1.45}.connection-banner.error{background:#ffe6e8;color:#8e2632;border-color:#efadb5}.hidden{display:none!important}
-.screen{display:none}.screen.active{display:block;animation:screenIn .25s ease-out}@keyframes screenIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.card{background:rgba(255,253,248,.96);border:1px solid rgba(128,0,0,.08);box-shadow:var(--shadow);border-radius:28px}
-.welcome-card{padding:25px 21px;text-align:center;overflow:hidden;position:relative}
-.welcome-card:before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:linear-gradient(90deg,var(--maroon),var(--gold),var(--mint-dark),var(--maroon))}
-.mascot-wrap{height:154px;position:relative;display:flex;align-items:flex-end;justify-content:center;margin-bottom:3px}
-.mascot-bubble{position:absolute;top:4px;right:calc(50% - 160px);background:white;border:2px solid var(--maroon);padding:8px 12px;border-radius:18px 18px 18px 5px;color:var(--maroon);font-size:.78rem;font-weight:800;box-shadow:0 8px 18px rgba(75,20,25,.1);animation:bob 2.2s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-5px)}}
-.train-mascot{width:154px;height:108px;border-radius:43px 43px 26px 26px;background:linear-gradient(180deg,#bfe8ff 0 38%,#fff 38% 72%,var(--maroon-2) 72%);border:5px solid var(--maroon);position:relative;box-shadow:0 13px 0 #dcc1b2,0 22px 25px rgba(73,20,30,.18);animation:trainBounce 2.4s ease-in-out infinite}
-@keyframes trainBounce{50%{transform:translateY(-6px) rotate(-1deg)}}
-.train-face{position:absolute;top:49px;left:0;right:0;font-weight:950;font-size:24px;color:var(--maroon)}
-.train-window{position:absolute;top:14px;width:44px;height:29px;background:#eaf9ff;border:4px solid var(--maroon);border-radius:15px}.train-window.left{left:22px}.train-window.right{right:22px}
-.train-light{position:absolute;bottom:19px;left:50%;width:15px;height:15px;background:var(--gold);border:3px solid var(--maroon);border-radius:50%;transform:translateX(-50%)}
-.train-wheel{position:absolute;bottom:-17px;width:28px;height:28px;background:#47383c;border:5px solid #fff;border-radius:50%}.w1{left:25px}.w2{right:25px}
-.eyebrow{text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;font-weight:900;color:var(--maroon);margin:8px 0 4px}
-h1,h2,h3,p{margin-top:0}h1{font-size:clamp(1.85rem,7vw,2.8rem);margin-bottom:8px;color:var(--maroon);line-height:1.1}.lead{max-width:550px;margin:0 auto 18px;color:var(--muted);line-height:1.6}
-.player-form{max-width:530px;margin:0 auto;text-align:left;background:#fff6e9;padding:14px;border:1px solid #f0d9be;border-radius:20px}.player-form label{display:block;font-weight:850;color:var(--maroon);font-size:.85rem;margin-bottom:7px}.player-form small{display:block;color:var(--muted);font-size:.72rem;margin-top:7px}.input-row{display:flex;gap:8px}.input-row input{min-width:0;flex:1;border:1px solid #dbc6c4;background:#fff;border-radius:14px;padding:12px 13px;outline:none}.input-row input:focus{border-color:var(--maroon);box-shadow:0 0 0 3px rgba(128,0,0,.09)}
-.primary-button,.secondary-button,.small-button,.back-button{border-radius:14px;font-weight:900}.primary-button{border:0;color:#fff;background:linear-gradient(145deg,var(--maroon),var(--maroon-2));padding:12px 17px;box-shadow:0 10px 24px rgba(128,0,0,.23)}.secondary-button{border:1px solid #d9bdc0;color:var(--maroon);background:#fff;padding:11px 16px}.small-button{border:1px solid #dec5c8;color:var(--maroon);background:rgba(255,255,255,.8);padding:8px 11px;font-size:.76rem}.full{width:100%}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:17px}.feature-grid article{background:#fff;border:1px solid var(--line);padding:12px 7px;border-radius:18px}.feature-grid span{display:block;font-size:25px}.feature-grid b{display:block;color:var(--maroon);font-size:.84rem;margin-top:3px}.feature-grid small{display:block;color:var(--muted);font-size:.68rem;margin-top:2px}
-.profile-strip{display:grid;grid-template-columns:auto 1fr auto auto;gap:11px;align-items:center;padding:12px 14px;margin-bottom:14px}.avatar{width:48px;height:48px;display:grid;place-items:center;border-radius:17px;background:linear-gradient(145deg,var(--sky),#fff);font-size:25px;border:2px solid #fff;box-shadow:0 7px 16px rgba(51,95,111,.14)}.profile-copy small,.profile-stat small{display:block;color:var(--muted);font-size:.67rem}.profile-copy b{display:block;color:var(--maroon);font-size:.96rem}.profile-stat{text-align:center;background:#fff5df;padding:7px 9px;border-radius:13px;min-width:60px}.profile-stat b{font-size:.92rem;color:var(--maroon)}
-.map-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:0 4px 10px}.map-heading h2{margin:0;color:var(--maroon);font-size:1.35rem}.map-heading .eyebrow{margin:0 0 3px}
-.level-map{position:relative;display:grid;gap:14px;padding:4px 0}.rail-line{position:absolute;top:31px;bottom:31px;left:39px;width:8px;background:repeating-linear-gradient(180deg,#5a4b4d 0 13px,#d6bbb4 13px 22px);border-radius:8px;z-index:0}.level-card{position:relative;z-index:1;display:grid;grid-template-columns:63px 1fr auto;align-items:center;gap:12px;padding:13px 14px;border:1px solid rgba(128,0,0,.09);background:rgba(255,253,248,.97);border-radius:23px;box-shadow:0 12px 30px rgba(85,28,37,.12);text-align:left;color:var(--ink);width:100%}.level-card:disabled{filter:grayscale(.45);opacity:.65}.level-icon{width:58px;height:58px;display:grid;place-items:center;border-radius:20px;background:var(--level-bg,#ffe6b7);border:3px solid #fff;box-shadow:0 7px 16px rgba(70,30,30,.12);font-size:30px}.level-copy small{display:block;color:var(--muted);font-size:.68rem;font-weight:800}.level-copy b{display:block;color:var(--maroon);margin:2px 0;font-size:1rem}.level-copy p{margin:0;color:var(--muted);font-size:.75rem;line-height:1.4}.level-status{text-align:right}.level-status .lock{font-size:21px}.mini-stars{white-space:nowrap;font-size:15px}.mini-stars .off{filter:grayscale(1);opacity:.25}.play-pill{display:inline-block;background:var(--maroon);color:white;border-radius:99px;padding:5px 9px;font-size:.69rem;font-weight:850;margin-top:3px}
-.knowledge-card{display:flex;gap:11px;align-items:flex-start;padding:14px;margin-top:14px}.knowledge-icon{font-size:25px}.knowledge-card b{color:var(--maroon);font-size:.86rem}.knowledge-card p{margin:3px 0 0;color:var(--muted);font-size:.77rem;line-height:1.5}
-.level-header{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;margin-bottom:12px}.back-button{width:42px;height:42px;border:0;background:#f6e4e2;color:var(--maroon);font-size:30px;line-height:1}.level-header small{color:var(--maroon);font-weight:900;font-size:.67rem}.level-header h2{margin:1px 0 0;color:var(--maroon);font-size:1.15rem}.live-score{text-align:right;background:#fff3d8;padding:7px 10px;border-radius:13px}.live-score small{display:block;color:var(--muted);font-size:.63rem}.live-score b{color:var(--maroon)}
-.game-card{background:rgba(255,253,248,.97);border-radius:26px;border:1px solid rgba(128,0,0,.08);box-shadow:var(--shadow);overflow:hidden}.game-toolbar{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;background:linear-gradient(145deg,var(--maroon),#542028);color:#fff;padding:10px}.game-metric{text-align:center;background:rgba(255,255,255,.11);border-radius:14px;padding:7px}.game-metric small{display:block;font-size:.65rem;opacity:.78}.game-metric b{font-size:1.03rem}.time-track{height:7px;background:#ead7d3}.time-fill{height:100%;background:linear-gradient(90deg,var(--gold),#ff8a77,var(--maroon));transition:width .2s linear}
-.tap-arena{height:min(62vh,500px);min-height:410px;position:relative;overflow:hidden;background:linear-gradient(#cfeeff 0 48%,#f8e8c7 48% 72%,#b49481 72%);touch-action:manipulation}.tap-arena:after{content:"";position:absolute;left:0;right:0;bottom:45px;height:50px;background:repeating-linear-gradient(90deg,#514548 0 19px,#c2aea5 19px 32px);border-top:7px solid #3c3437;border-bottom:7px solid #3c3437}.station-board{position:absolute;top:17px;left:50%;transform:translateX(-50%);background:#fff;border:3px solid var(--maroon);border-radius:13px;color:var(--maroon);font-weight:950;padding:7px 15px;z-index:2;white-space:nowrap;box-shadow:0 7px 16px rgba(60,20,26,.13)}.tap-target{position:absolute;width:72px;height:72px;border-radius:23px;border:3px solid white;display:grid;place-items:center;font-size:38px;box-shadow:0 11px 23px rgba(55,20,26,.22);z-index:4;animation:targetPop .14s ease-out}.tap-target.good{background:#fff6c8}.tap-target.bonus{background:#d7f4e7}.tap-target.bad{background:#ffd9dd}@keyframes targetPop{from{transform:scale(.3) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}.score-float{position:absolute;z-index:8;font-weight:950;animation:floatUp .75s ease-out forwards;pointer-events:none}@keyframes floatUp{to{transform:translateY(-55px);opacity:0}}
-.game-instructions{padding:11px 14px;color:var(--muted);font-size:.78rem;line-height:1.5;text-align:center}
-.scenario-wrap,.quiz-wrap,.final-wrap{padding:17px}.progress-dots{display:flex;gap:6px;margin-bottom:13px}.progress-dot{height:8px;flex:1;background:#ead9d6;border-radius:99px}.progress-dot.done{background:var(--mint-dark)}.progress-dot.current{background:var(--gold)}.scenario-card{min-height:245px;border-radius:23px;padding:18px;background:linear-gradient(145deg,#e4f5ff,#fff8e8);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid #d8e7e8}.scenario-emoji{font-size:70px;margin-bottom:8px;filter:drop-shadow(0 8px 8px rgba(50,50,50,.13))}.scenario-card h3{margin:0;color:var(--maroon);font-size:1.15rem;line-height:1.5}.scenario-card p{margin:7px 0 0;color:var(--muted);font-size:.82rem}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.choice-button{border:0;border-radius:18px;padding:14px 9px;font-weight:950;font-size:.93rem;box-shadow:0 8px 18px rgba(60,28,30,.11)}.choice-button.safe{background:#d9f5e7;color:#176745}.choice-button.danger{background:#ffe0e3;color:#a02936}.feedback-box{margin-top:11px;border-radius:17px;padding:12px 14px;font-size:.82rem;line-height:1.55}.feedback-box.ok{background:#e1f7eb;color:#165d3d}.feedback-box.no{background:#fff0dc;color:#78520c}
-.hazard-scene{position:relative;height:min(63vh,510px);min-height:430px;overflow:hidden;border-radius:24px;background:linear-gradient(#cdefff 0 47%,#f8e7bf 47% 72%,#aa8f7f 72%);border:1px solid #d9c8c4}.hazard-scene:after{content:"";position:absolute;left:0;right:0;bottom:48px;height:48px;background:repeating-linear-gradient(90deg,#584b4c 0 19px,#c4afa6 19px 32px);border-top:7px solid #3f3738;border-bottom:7px solid #3f3738}.yellow-line{position:absolute;left:0;right:0;bottom:151px;height:9px;background:#ffd52d;box-shadow:0 2px 0 #a98200}.scene-object{position:absolute;z-index:4;border:0;background:transparent;font-size:42px;filter:drop-shadow(0 5px 5px rgba(0,0,0,.14));transition:.15s}.scene-object:before{content:"";position:absolute;inset:-7px;border:2px dashed rgba(128,0,0,.3);border-radius:18px;animation:pulseRing 1.4s ease-in-out infinite}.scene-object.found:before{border-color:var(--mint-dark);background:rgba(189,235,214,.38);animation:none}.scene-object.wrong{animation:shake .25s linear}@keyframes pulseRing{50%{transform:scale(1.08);opacity:.5}}@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}.hazard-counter{padding:10px 13px;background:#fff6e8;color:var(--maroon);font-weight:850;font-size:.8rem;text-align:center}.hazard-note{position:absolute;z-index:7;left:10px;right:10px;bottom:9px;background:rgba(255,255,255,.94);border-radius:14px;padding:9px 11px;text-align:center;color:var(--maroon);font-size:.76rem;font-weight:800;box-shadow:0 7px 17px rgba(50,20,25,.13)}
-.quiz-question{background:linear-gradient(145deg,#fff5dc,#fff);border:1px solid #eddcc2;border-radius:22px;padding:17px;margin-bottom:11px}.quiz-question .quiz-icon{font-size:43px}.quiz-question h3{color:var(--maroon);line-height:1.55;margin:7px 0 0;font-size:1.06rem}.answer-list{display:grid;gap:8px}.answer-button{border:1px solid #dfccca;background:#fff;border-radius:16px;padding:12px 13px;text-align:left;color:var(--ink);font-weight:750;line-height:1.45}.answer-button.correct{background:#ddf6e9;border-color:#61bb91;color:#176345}.answer-button.wrong{background:#ffe3e6;border-color:#dc7b84;color:#9c2633}.answer-button:disabled{opacity:1}.next-question{margin-top:11px;width:100%}
-.rapid-card{text-align:center;background:linear-gradient(145deg,#eee6ff,#fff7df);border:1px solid #dfd2ea;border-radius:24px;padding:20px;min-height:265px;display:flex;flex-direction:column;justify-content:center}.rapid-card .scenario-emoji{font-size:62px}.rapid-card h3{color:var(--maroon);line-height:1.5;margin:5px 0}.rapid-timer{display:inline-block;margin:0 auto 8px;background:var(--maroon);color:#fff;border-radius:99px;padding:5px 11px;font-weight:900;font-size:.78rem}.streak-box{text-align:center;color:var(--maroon);font-weight:900;margin-top:10px}.rapid-answers{display:grid;gap:8px;margin-top:12px}
-.final-card{text-align:center;padding:25px 19px}.final-medal{font-size:72px;animation:bob 1.8s ease-in-out infinite}.final-card h2{font-size:1.55rem;color:var(--maroon);margin:4px 0}.final-card>p:not(.eyebrow){color:var(--muted)}.final-score{display:flex;align-items:baseline;justify-content:center;gap:7px;color:var(--maroon);margin:10px 0}.final-score span{font-size:3rem;font-weight:950}.final-score small{font-weight:850}.stars-display{font-size:28px;letter-spacing:2px}.stars-display .off{filter:grayscale(1);opacity:.2}.save-status{margin:12px auto;background:#fff4d9;color:#6d520c;padding:9px 12px;border-radius:14px;max-width:440px;font-size:.8rem}.save-status.success{background:#e0f6e9;color:#176341}.save-status.error{background:#ffe3e6;color:#982533}.final-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}.learning-summary{padding:16px;margin-top:12px}.learning-summary h3{color:var(--maroon);font-size:1rem}.learning-item{display:flex;gap:9px;padding:9px 0;border-top:1px dashed var(--line);font-size:.82rem;line-height:1.5;color:var(--muted)}.learning-item:first-of-type{border-top:0}.learning-item span{font-size:18px}
-.dialog-card{width:min(calc(100% - 22px),590px);max-height:86vh;border:0;border-radius:27px;padding:18px;background:var(--paper);box-shadow:0 28px 80px rgba(47,13,20,.35);color:var(--ink)}.dialog-card::backdrop{background:rgba(45,20,26,.54);backdrop-filter:blur(4px)}.dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.dialog-head h2{margin:0;color:var(--maroon)}.dialog-head .eyebrow{margin-top:0}.tab-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;background:#f0dfdd;padding:5px;border-radius:16px;margin:14px 0}.tab{border:0;background:transparent;border-radius:12px;padding:9px;font-weight:850;color:var(--muted)}.tab.active{background:#fff;color:var(--maroon);box-shadow:0 5px 13px rgba(75,29,36,.1)}.loading-state{text-align:center;color:var(--muted);padding:25px}.leaderboard-list{max-height:55vh;overflow:auto}.leader-row{display:grid;grid-template-columns:38px 1fr auto;gap:9px;align-items:center;padding:10px 6px;border-top:1px dashed var(--line)}.leader-row:first-child{border-top:0}.rank-medal{font-size:22px;text-align:center}.leader-name b{display:block;color:var(--maroon);font-size:.88rem}.leader-name small{color:var(--muted);font-size:.66rem}.leader-score{text-align:right}.leader-score b{display:block;color:var(--maroon)}.leader-score small{font-size:.65rem;color:var(--muted)}.dialog-note{text-align:center;color:var(--muted);font-size:.7rem;margin:11px 0 0}.result-dialog{text-align:center}.result-icon{font-size:62px}.result-dialog h2{color:var(--maroon);margin:4px 0}.result-dialog>p:not(.eyebrow){color:var(--muted);line-height:1.5}.score-chip{display:inline-block;background:#fff0c9;color:#74530a;padding:7px 12px;border-radius:99px;font-weight:900;margin:9px 0}.lesson-box{text-align:left;background:#edf8f3;color:#276047;border-radius:16px;padding:11px 13px;font-size:.78rem;line-height:1.5;margin:9px 0 13px}
-.toast{position:fixed;z-index:50;left:50%;bottom:22px;transform:translate(-50%,20px);background:#352a2d;color:#fff;border-radius:99px;padding:10px 15px;box-shadow:0 12px 28px rgba(0,0,0,.23);font-size:.8rem;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}.confetti-layer{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}.confetti{position:absolute;top:-20px;width:10px;height:16px;border-radius:3px;animation:confettiFall 1.8s linear forwards}@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:.7}}
-@media(max-width:520px){.app-shell{padding:9px 9px 25px}.welcome-card{padding:22px 13px}.mascot-bubble{right:4px}.input-row{flex-direction:column}.feature-grid{grid-template-columns:1fr}.feature-grid article{display:grid;grid-template-columns:38px auto 1fr;align-items:center;text-align:left;gap:6px}.feature-grid span{grid-row:1/3}.feature-grid b,.feature-grid small{margin:0}.profile-strip{grid-template-columns:auto 1fr auto}.profile-stat:last-child{display:none}.level-card{grid-template-columns:58px 1fr auto;padding:11px 10px}.level-icon{width:53px;height:53px}.level-copy p{font-size:.7rem}.level-status{max-width:68px}.tap-target{width:64px;height:64px;font-size:34px}.choice-grid{grid-template-columns:1fr}.final-actions{display:grid}.final-actions button{width:100%}}
-
-  </style>
-<!-- KBP build: 2026-07-11-fix1 -->
-  <title>KBP Rail Adventure — เกมรถไฟสถานีคลองบางพระ</title>
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Thai",Tahoma,sans-serif;color:var(--ink);background:#f9efe7}
+body{overflow-x:hidden;background:
+ radial-gradient(circle at 15% 8%,rgba(255,201,92,.34),transparent 25%),
+ radial-gradient(circle at 86% 14%,rgba(207,234,255,.8),transparent 30%),
+ linear-gradient(165deg,#fff9ef 0%,#fbe7e5 50%,#e8f4ee 100%)}
+button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.65}
+.hidden{display:none!important}.app{width:min(100%,920px);margin:auto;min-height:100vh;padding:12px 12px 90px;position:relative}
+.cloud{position:fixed;z-index:-1;width:120px;height:42px;border-radius:999px;background:rgba(255,255,255,.55);filter:blur(.2px)}
+.cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:inherit}.cloud:before{width:55px;height:55px;left:18px;bottom:8px}.cloud:after{width:70px;height:70px;right:12px;bottom:4px}.c1{left:-28px;top:130px}.c2{right:-30px;top:320px;transform:scale(.8)}
+.header{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:8px;z-index:20;background:rgba(255,254,253,.85);backdrop-filter:blur(12px);border:1px solid rgba(128,0,0,.08);border-radius:22px;padding:9px 11px;box-shadow:var(--soft)}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}.brand-mark{width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,var(--maroon),var(--maroon2));display:grid;place-items:center;box-shadow:0 8px 18px rgba(128,0,0,.25);flex:0 0 auto}.brand-mark svg{width:39px;height:39px}
+.brand h1{margin:0;color:var(--maroon);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand p{margin:2px 0 0;font-size:.69rem;color:var(--muted)}
+.header-actions{display:flex;gap:7px}.round-btn{width:42px;height:42px;border:0;border-radius:14px;background:#fff;box-shadow:0 6px 16px rgba(70,25,35,.1);font-size:20px}
+.banner{margin:10px 2px 0;border-radius:14px;padding:9px 12px;font-size:.76rem;line-height:1.45;background:#fff4cf;color:#6c5209;border:1px solid #f0d985}.banner.success{background:#e3f7ec;color:#1e6544;border-color:#bce8d0}.banner.error{background:#fff0ec;color:#8a3434;border-color:#f0c5c0}
+.screen{display:none}.screen.active{display:block}
+.hero-card{margin-top:12px;border-radius:30px;overflow:hidden;background:linear-gradient(145deg,#fffefd,#fff2df);border:1px solid rgba(128,0,0,.08);box-shadow:var(--shadow);position:relative;padding:26px 20px 22px;text-align:center}.hero-card:before{content:"";position:absolute;inset:0 0 auto;height:9px;background:linear-gradient(90deg,var(--maroon),var(--gold),var(--mint2),var(--maroon))}.spark{position:absolute;font-size:20px;animation:float 2.3s ease-in-out infinite}.s1{left:8%;top:18%;animation-delay:.2s}.s2{right:8%;top:12%;animation-delay:.8s}.s3{right:15%;bottom:20%;animation-delay:1.2s}@keyframes float{50%{transform:translateY(-8px) rotate(8deg)}}
+.mascot-wrap{display:grid;place-items:center;margin:2px auto 4px;width:190px;height:150px}.mascot-wrap svg{width:185px;filter:drop-shadow(0 16px 14px rgba(75,30,36,.17));animation:bob 2.5s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-6px)}}
+.eyebrow{font-weight:900;color:var(--maroon);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;margin:0 0 4px}.hero-card h2{margin:0;color:var(--maroon);font-size:clamp(1.6rem,6vw,2.35rem);line-height:1.15}.hero-card .lead{max-width:610px;margin:10px auto 16px;color:var(--muted);line-height:1.65;font-size:.92rem}
+.name-form{display:flex;gap:8px;max-width:520px;margin:auto}.name-form input{flex:1;min-width:0;border:1px solid #dfcccc;background:#fff;border-radius:16px;padding:13px 15px;outline:none}.name-form input:focus{border-color:var(--maroon);box-shadow:0 0 0 4px rgba(128,0,0,.08)}
+.primary,.secondary{border-radius:16px;padding:12px 17px;font-weight:900}.primary{border:0;color:#fff;background:linear-gradient(145deg,var(--maroon),#a51b2a);box-shadow:0 9px 20px rgba(128,0,0,.24)}.secondary{border:1px solid #dac4c4;background:#fff;color:var(--maroon)}.primary:active,.secondary:active{transform:translateY(1px)}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.feature{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:17px;padding:11px 6px;font-size:.72rem;color:var(--muted)}.feature b{display:block;font-size:1.38rem;margin-bottom:4px}.feature strong{color:var(--maroon);display:block;font-size:.76rem}
+.info-note{margin-top:13px;border-radius:16px;background:#eaf7f1;color:#34644f;padding:10px 12px;font-size:.74rem;line-height:1.55}
+.profile-bar{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:8px;margin:12px 0}.profile-chip{background:rgba(255,255,255,.9);border:1px solid rgba(128,0,0,.07);box-shadow:var(--soft);border-radius:18px;padding:10px 11px;min-width:0}.profile-chip small{display:block;color:var(--muted);font-size:.64rem}.profile-chip b{display:block;color:var(--maroon);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.profile-chip.center{text-align:center}
+.map-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:16px 3px 10px}.map-head h2{margin:0;color:var(--maroon);font-size:1.35rem}.map-head p{margin:3px 0 0;color:var(--muted);font-size:.76rem}.map-tip{font-size:.69rem;color:#6f5a29;background:#fff0c7;border-radius:12px;padding:8px 10px;max-width:300px}
+.zone{border-radius:26px;padding:14px;margin-bottom:13px;box-shadow:var(--soft);border:1px solid rgba(128,0,0,.06);position:relative;overflow:hidden}.zone:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-40px;top:-40px;background:rgba(255,255,255,.34)}.zone1{background:linear-gradient(145deg,#fff3d5,#ffe5dc)}.zone2{background:linear-gradient(145deg,#e7f7ef,#dcf1ff)}.zone3{background:linear-gradient(145deg,#e7e1ff,#fce5f0)}.zone4{background:linear-gradient(145deg,#ffe7e7,#fff2ce)}
+.zone-title{display:flex;align-items:center;gap:10px;position:relative;z-index:1}.zone-icon{width:47px;height:47px;border-radius:16px;background:rgba(255,255,255,.78);display:grid;place-items:center;font-size:25px;box-shadow:0 6px 15px rgba(80,30,40,.1)}.zone-title h3{margin:0;color:var(--maroon);font-size:1rem}.zone-title p{margin:2px 0 0;color:var(--muted);font-size:.7rem}
+.level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:12px;position:relative;z-index:1}.level-card{border:0;background:rgba(255,255,255,.88);border-radius:20px;padding:10px 7px;min-height:126px;box-shadow:0 7px 16px rgba(70,25,35,.1);position:relative;text-align:center;color:var(--ink);transition:.18s}.level-card:hover:not(:disabled){transform:translateY(-3px)}.level-card.boss{background:linear-gradient(145deg,#fff8d7,#ffd7dd);border:2px solid rgba(128,0,0,.12)}.level-card.locked{filter:grayscale(.45)}.level-no{position:absolute;left:7px;top:6px;font-size:.62rem;font-weight:900;color:var(--maroon);background:#f5e5e5;border-radius:99px;padding:3px 6px}.level-icon{font-size:33px;margin-top:11px}.level-card strong{display:block;font-size:.73rem;color:var(--maroon);margin-top:4px;line-height:1.25}.level-card small{display:block;font-size:.58rem;color:var(--muted);margin-top:3px;line-height:1.25}.mini-stars{letter-spacing:-2px;margin-top:5px;font-size:.82rem}.lock{position:absolute;right:7px;top:6px;font-size:14px}
+.game-shell{margin-top:12px;border-radius:28px;background:rgba(255,254,253,.96);border:1px solid rgba(128,0,0,.08);box-shadow:var(--shadow);overflow:hidden}.game-head{background:linear-gradient(145deg,var(--maroon),#5a0010);color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}.game-title{display:flex;align-items:center;gap:9px;min-width:0}.game-title .big-icon{font-size:27px}.game-title b{display:block;font-size:.93rem}.game-title small{display:block;opacity:.76;font-size:.65rem}.back-btn{border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:12px;padding:8px 10px;font-weight:800}
+.metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:9px;background:#fff7f3}.metric{background:#fff;border:1px solid #f0dfdc;border-radius:13px;padding:7px 4px;text-align:center}.metric small{display:block;color:var(--muted);font-size:.58rem}.metric b{display:block;color:var(--maroon);font-size:.95rem}.timer-track{height:8px;background:#eadbd8}.timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--mint2),var(--gold),var(--danger));transition:width .25s linear}
+.game-body{padding:15px;min-height:420px}.prompt-card{border-radius:22px;padding:18px;background:linear-gradient(145deg,#f0f8ff,#fff8e8);border:1px solid #dfe9e5;text-align:center}.prompt-emoji{font-size:58px;margin-bottom:6px}.prompt-card h3{margin:0;color:var(--maroon);line-height:1.45;font-size:1.05rem}.prompt-card p{margin:6px 0 0;color:var(--muted);font-size:.78rem;line-height:1.5}.answers{display:grid;gap:9px;margin-top:12px}.answer{border:1px solid #dfcdcd;background:#fff;border-radius:16px;padding:12px 13px;text-align:left;font-weight:750;color:var(--ink);line-height:1.45}.answer:hover:not(:disabled){border-color:var(--maroon);transform:translateY(-1px)}.answer.correct{background:#e2f7eb;border-color:#5fb68a;color:#17603e}.answer.wrong{background:#ffe7e7;border-color:#db7474;color:#9d2b35}.answer.selected{border:2px solid var(--maroon);background:#fff4f4}
+.feedback{margin-top:10px;border-radius:15px;padding:10px 12px;font-size:.78rem;line-height:1.5}.feedback.ok{background:#e3f7ec;color:#1b6241}.feedback.no{background:#fff0dc;color:#7a520c}.next-btn{margin-top:9px;width:100%}
+.progress-dots{display:flex;gap:5px;margin-bottom:11px}.dot{height:7px;flex:1;background:#eadbd8;border-radius:99px}.dot.done{background:var(--mint2)}.dot.now{background:var(--gold)}
+.tap-area{height:390px;border-radius:23px;position:relative;overflow:hidden;background:linear-gradient(#dff2ff 0 57%,#f6dcb9 57% 72%,#746b65 72%);border:1px solid #cfe0e5}.tap-area:before{content:"สถานีคลองบางพระ • KBP 3021";position:absolute;top:13px;left:50%;transform:translateX(-50%);background:#fff;border:3px solid var(--maroon);color:var(--maroon);border-radius:10px;padding:5px 10px;font-weight:900;font-size:.68rem;white-space:nowrap}.rail{position:absolute;left:0;right:0;bottom:23px;height:48px;background:repeating-linear-gradient(90deg,#776d68 0 20px,#b7aaa2 20px 33px);border-top:7px solid #3e3835;border-bottom:7px solid #3e3835}.tap-item{position:absolute;width:67px;height:67px;border:0;border-radius:21px;background:#fff;display:grid;place-items:center;font-size:34px;box-shadow:0 10px 20px rgba(50,30,30,.18);animation:pop .16s ease-out}@keyframes pop{from{transform:scale(.4);opacity:.2}}.tap-item.bonus{background:#fff0a8}.tap-item.bad{background:#ffdfe1}.float-score{position:absolute;font-weight:950;animation:rise .7s forwards;pointer-events:none}@keyframes rise{to{transform:translateY(-45px);opacity:0}}
+.binary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.binary-btn{border:0;border-radius:19px;padding:15px 8px;font-weight:950}.safe{background:#dcf5e7;color:#176544}.danger{background:#ffe1e3;color:#a32f3b}
+.scene{height:390px;border-radius:23px;background:linear-gradient(#dcefff 0 54%,#f2d9b7 54% 75%,#69615d 75%);position:relative;overflow:hidden;border:1px solid #cbdce3}.scene-sign{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:#fff;border:3px solid var(--maroon);color:var(--maroon);border-radius:10px;padding:5px 10px;font-weight:900;font-size:.68rem}.yellow-line{position:absolute;left:0;right:0;top:67%;height:8px;background:#f2c94c}.scene-rail{position:absolute;left:0;right:0;bottom:14px;height:50px;background:repeating-linear-gradient(90deg,#6a625e 0 20px,#b8aaa2 20px 34px);border-top:7px solid #3d3937;border-bottom:7px solid #3d3937}.hazard{position:absolute;border:2px dashed rgba(128,0,0,.28);border-radius:18px;background:rgba(255,255,255,.72);font-size:31px;width:62px;height:62px;display:grid;place-items:center}.hazard.found{background:#dff6e8;border-color:#4daa79}.hazard.decoy{border-color:rgba(70,140,100,.2)}
+.order-list{display:grid;gap:8px;margin-top:12px}.order-item{border:1px solid #dfcccc;background:#fff;border-radius:15px;padding:12px 13px;text-align:left;font-weight:800}.order-item.chosen{background:#eee4ff;border-color:#9d7bd1}.order-sequence{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;min-height:38px}.order-chip{background:var(--maroon);color:#fff;border-radius:99px;padding:6px 9px;font-size:.7rem;font-weight:850}
+.ticket{background:#fffdf2;border:2px dashed #d8b778;border-radius:21px;padding:15px;text-align:left;position:relative}.ticket:after{content:"🎫";position:absolute;right:12px;top:10px;font-size:28px}.ticket h3{margin:0 0 10px;color:var(--maroon)}.ticket-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ticket-field{border:1px solid #ead9bc;border-radius:13px;padding:9px;background:#fff}.ticket-field small{display:block;color:var(--muted);font-size:.6rem}.ticket-field b{font-size:.78rem}.ticket-field.clickable{cursor:pointer}.ticket-field.clickable:hover{border-color:var(--maroon)}.ticket-field.correct{background:#e3f7ec;border-color:#5fb68a}.ticket-field.wrong{background:#ffe7e7;border-color:#db7474}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.match-btn{border:1px solid #dfcccc;background:#fff;border-radius:17px;padding:13px 9px;font-weight:850;min-height:64px}.match-btn.correct{background:#e3f7ec;border-color:#5fb68a}.match-btn.wrong{background:#ffe7e7;border-color:#db7474}
+.timetable{overflow:auto;border-radius:17px;border:1px solid var(--line);margin:10px 0;background:#fff}.timetable table{width:100%;border-collapse:collapse;min-width:520px;font-size:.7rem}.timetable th{background:var(--maroon);color:#fff;padding:8px}.timetable td{padding:7px;border-bottom:1px solid #eee;text-align:center}.timetable tr:nth-child(even) td{background:#fff9f6}
+.announcement{border-radius:21px;background:linear-gradient(145deg,#f3eaff,#e9f6ff);padding:17px;border:1px solid #dcd4ea}.announcement .speaker{font-size:38px}.announcement p{font-size:.86rem;line-height:1.65;color:#4f4653}
+.result-card{text-align:center}.result-icon{font-size:67px}.result-card h2{margin:4px 0;color:var(--maroon)}.stars-big{font-size:31px;letter-spacing:2px}.score-pill{display:inline-block;background:#fff0c9;color:#73530d;border-radius:99px;padding:7px 13px;font-weight:900;margin:8px 0}.lesson{background:#eaf7f1;color:#31654e;border-radius:16px;padding:10px 12px;text-align:left;font-size:.77rem;line-height:1.5}.save-status{font-size:.72rem;color:var(--muted);margin:8px 0}.save-status.success{color:#23704d}.save-status.error{color:#a1323e}
+.dialog{width:min(calc(100% - 22px),650px);max-height:88vh;border:0;border-radius:27px;padding:18px;background:var(--paper);box-shadow:0 30px 80px rgba(45,17,26,.34);color:var(--ink)}.dialog::backdrop{background:rgba(45,20,27,.54);backdrop-filter:blur(4px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.dialog-head h2{margin:0;color:var(--maroon)}.close-btn{border:0;background:#f2e5e4;border-radius:12px;width:38px;height:38px;font-size:18px}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;background:#f1e3e2;border-radius:15px;padding:5px;margin:13px 0}.tab{border:0;background:transparent;border-radius:11px;padding:8px;font-weight:850;color:var(--muted)}.tab.active{background:#fff;color:var(--maroon);box-shadow:0 4px 10px rgba(60,20,30,.1)}.leader-list{max-height:55vh;overflow:auto}.leader-row{display:grid;grid-template-columns:40px 1fr auto;gap:9px;align-items:center;padding:10px 4px;border-top:1px dashed var(--line)}.leader-row:first-child{border-top:0}.leader-row b{color:var(--maroon)}.leader-row small{display:block;color:var(--muted);font-size:.65rem}.loading{text-align:center;padding:28px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);opacity:0;background:#3b2a31;color:#fff;border-radius:99px;padding:10px 14px;font-size:.78rem;font-weight:800;transition:.25s;z-index:80;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+.confetti-layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:90}.confetti{position:absolute;top:-20px;width:9px;height:14px;animation:fall 2.3s linear forwards}@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+@media(max-width:720px){.level-grid{grid-template-columns:repeat(3,1fr)}.features{grid-template-columns:repeat(2,1fr)}.profile-bar{grid-template-columns:1.6fr repeat(3,1fr)}.map-tip{display:none}}
+@media(max-width:480px){.app{padding:8px 8px 84px}.header{top:5px}.brand-mark{width:43px;height:43px}.brand h1{font-size:.86rem}.round-btn{width:39px;height:39px}.hero-card{padding:22px 13px 18px}.name-form{flex-direction:column}.profile-bar{grid-template-columns:1.5fr 1fr 1fr}.profile-chip:nth-child(4){display:none}.level-grid{grid-template-columns:repeat(2,1fr)}.level-card{min-height:120px}.game-body{padding:11px;min-height:410px}.ticket-fields{grid-template-columns:1fr}.scene,.tap-area{height:405px}.match-grid{grid-template-columns:1fr}.binary-grid{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body>
-  <div class="sky-decor" aria-hidden="true">
-    <span>☁️</span><span>☁️</span><span>✨</span>
+<div class="cloud c1"></div><div class="cloud c2"></div>
+<div class="app">
+<header class="header">
+  <div class="brand"><div class="brand-mark" aria-hidden="true">
+    <svg viewBox="0 0 100 100"><rect x="18" y="21" width="64" height="58" rx="18" fill="#fff6dc"/><rect x="29" y="31" width="42" height="24" rx="8" fill="#bfe7ff"/><circle cx="38" cy="44" r="4" fill="#4a3139"/><circle cx="62" cy="44" r="4" fill="#4a3139"/><path d="M40 61 Q50 69 60 61" fill="none" stroke="#4a3139" stroke-width="4" stroke-linecap="round"/><circle cx="29" cy="61" r="5" fill="#ffb4c4"/><circle cx="71" cy="61" r="5" fill="#ffb4c4"/><rect x="12" y="72" width="76" height="9" rx="4" fill="#ffc95c"/><circle cx="31" cy="83" r="7" fill="#2d2430"/><circle cx="69" cy="83" r="7" fill="#2d2430"/></svg>
+  </div><div><h1>KBP Rail Quest</h1><p>สถานีคลองบางพระ • KBP 3021</p></div></div>
+  <div class="header-actions"><button class="round-btn" id="soundBtn" type="button" aria-label="เสียง">🔊</button><button class="round-btn" id="leaderBtn" type="button" aria-label="อันดับ">🏆</button></div>
+</header>
+<div id="connectionBanner" class="banner">กำลังเชื่อมต่อระบบคะแนนกลาง...</div>
+
+<main>
+<section id="welcomeScreen" class="screen active">
+  <div class="hero-card">
+    <span class="spark s1">⭐</span><span class="spark s2">✨</span><span class="spark s3">🎫</span>
+    <div class="mascot-wrap"><svg viewBox="0 0 260 190" aria-label="มาสคอตรถไฟน่ารัก"><ellipse cx="130" cy="167" rx="88" ry="14" fill="rgba(70,30,40,.12)"/><rect x="55" y="34" width="150" height="117" rx="38" fill="#fff8dd" stroke="#800000" stroke-width="7"/><rect x="78" y="55" width="104" height="50" rx="17" fill="#cfeaff" stroke="#800000" stroke-width="5"/><circle cx="103" cy="79" r="7" fill="#34262c"/><circle cx="157" cy="79" r="7" fill="#34262c"/><circle cx="86" cy="106" r="10" fill="#ffb8c8"/><circle cx="174" cy="106" r="10" fill="#ffb8c8"/><path d="M108 108 Q130 126 152 108" fill="none" stroke="#34262c" stroke-width="6" stroke-linecap="round"/><rect x="40" y="138" width="180" height="18" rx="9" fill="#ffc95c" stroke="#800000" stroke-width="5"/><circle cx="88" cy="157" r="16" fill="#34262c"/><circle cx="172" cy="157" r="16" fill="#34262c"/><path d="M79 31 L92 15 H168 L181 31" fill="#800000"/><circle cx="130" cy="18" r="12" fill="#ffc95c"/></svg></div>
+    <p class="eyebrow">ภารกิจผู้โดยสารมือโปร</p><h2>พิชิต 20 สถานี</h2>
+    <p class="lead">เกมความรู้รถไฟหลายรูปแบบ ทั้งจับจุดเสี่ยง ตรวจตั๋ว วางแผนเวลาเดินรถ แก้เหตุฉุกเฉิน และด่านบอสสุดท้าทาย</p>
+    <form class="name-form" id="playerForm"><input id="nickname" maxlength="18" autocomplete="nickname" placeholder="ใส่ชื่อเล่น 2–18 ตัวอักษร" required><button class="primary" type="submit">เริ่มการเดินทาง</button></form>
+    <div class="features"><div class="feature"><b>🗺️</b><strong>20 ด่าน</strong>4 โลกแห่งความรู้</div><div class="feature"><b>🎮</b><strong>10 รูปแบบเกม</strong>เล่นไม่จำเจ</div><div class="feature"><b>⭐</b><strong>60 ดาว</strong>สะสมเพื่อปลดล็อก</div><div class="feature"><b>🏆</b><strong>คะแนนกลาง</strong>แข่งกับผู้เล่นทุกคน</div></div>
+    <div class="info-note">เกมใช้ข้อมูลจากเอกสารการเดินทางและตารางเวลาสถานีคลองบางพระ โปรดตรวจสอบประกาศล่าสุดและปฏิบัติตามคำแนะนำของเจ้าหน้าที่ ณ วันเดินทางจริง</div>
   </div>
+</section>
 
-  <main class="app-shell">
-    <header class="topbar">
-      <button class="brand-button" id="homeButton" type="button" aria-label="กลับหน้าหลัก">
-        <span class="mini-logo">🚉</span>
-        <span>
-          <b id="stationName">สถานีคลองบางพระ</b>
-          <small id="stationCode">KBP 3021</small>
-        </span>
-      </button>
-      <div class="top-actions">
-        <button class="round-button" id="leaderboardButton" type="button" aria-label="อันดับคะแนน">🏆</button>
-        <button class="round-button" id="soundButton" type="button" aria-label="เปิดหรือปิดเสียง">🔊</button>
-      </div>
-    </header>
+<section id="mapScreen" class="screen">
+  <div class="profile-bar"><div class="profile-chip"><small>ผู้เล่น</small><b id="profileName">ผู้โดยสาร</b></div><div class="profile-chip center"><small>คะแนนรวม</small><b id="campaignScore">0</b></div><div class="profile-chip center"><small>ดาวสะสม</small><b id="campaignStars">0/60</b></div><div class="profile-chip center"><small>ผ่านแล้ว</small><b id="highestLevel">0/20</b></div></div>
+  <div class="map-head"><div><h2>แผนที่ภารกิจ</h2><p>ต้องได้อย่างน้อย 2 ดาวเพื่อปลดล็อกด่านถัดไป</p></div><div class="map-tip" id="mapTip">ฟังประกาศและตรวจชื่อสถานีก่อนลงจากรถทุกครั้ง</div></div>
+  <div id="levelMap"></div>
+</section>
 
-    <div id="connectionBanner" class="connection-banner hidden" role="status"></div>
+<section id="gameScreen" class="screen">
+  <div class="game-shell"><div class="game-head"><div class="game-title"><span class="big-icon" id="gameIcon">🎫</span><div><b id="gameTitle">ด่าน</b><small id="gameSubtitle">ภารกิจ</small></div></div><button class="back-btn" id="backMapBtn" type="button">← แผนที่</button></div><div id="gameContent"></div></div>
+</section>
+</main>
+</div>
 
-    <section id="welcomeScreen" class="screen active">
-      <div class="welcome-card card">
-        <div class="mascot-wrap">
-          <div class="mascot-bubble">พร้อมออกเดินทางไหม</div>
-          <div class="train-mascot" aria-label="มาสคอตรถไฟน่ารัก">
-            <span class="train-face">•ᴗ•</span>
-            <span class="train-window left"></span>
-            <span class="train-window right"></span>
-            <span class="train-light"></span>
-            <span class="train-wheel w1"></span>
-            <span class="train-wheel w2"></span>
-          </div>
-        </div>
-        <p class="eyebrow">เกมความรู้รถไฟแบบหลายเลเวล</p>
-        <h1>KBP Rail Adventure</h1>
-        <p class="lead">สนุกกับ 5 ภารกิจ เรียนรู้ความปลอดภัย และแข่งขันคะแนนกับผู้โดยสารทุกคนบนอันดับกลาง</p>
+<dialog id="resultDialog" class="dialog"><div class="result-card"><div class="result-icon" id="resultIcon">🌟</div><h2 id="resultTitle">ผ่านด่านแล้ว</h2><div class="stars-big" id="resultStars">⭐⭐⭐</div><div class="score-pill">+<span id="resultScore">0</span> คะแนน</div><p id="resultMessage"></p><div class="lesson" id="resultLesson"></div><div id="saveStatus" class="save-status">กำลังบันทึกคะแนนกลาง...</div><button class="primary next-btn" id="resultContinueBtn" type="button">กลับสู่แผนที่</button></div></dialog>
 
-        <form id="playerForm" class="player-form">
-          <label for="nickname">ชื่อเล่นบนตารางอันดับ</label>
-          <div class="input-row">
-            <input id="nickname" maxlength="18" autocomplete="nickname" placeholder="เช่น อ๊อฟสายรถไฟ" required />
-            <button class="primary-button" type="submit">เริ่มเล่น</button>
-          </div>
-          <small>กรุณาไม่ใช้ชื่อจริงเต็มหรือข้อมูลส่วนตัว</small>
-        </form>
+<dialog id="leaderDialog" class="dialog"><div class="dialog-head"><div><p class="eyebrow">ตารางอันดับกลาง</p><h2>นักเดินทางดาวเด่น</h2></div><button class="close-btn" id="leaderClose" type="button">✕</button></div><div class="tabs"><button class="tab active" data-period="daily">วันนี้</button><button class="tab" data-period="weekly">สัปดาห์นี้</button><button class="tab" data-period="all">ตลอดกาล</button></div><div id="leaderLoading" class="loading">กำลังโหลดอันดับ...</div><div id="leaderList" class="leader-list"></div></dialog>
+<div id="toast" class="toast"></div><div id="confettiLayer" class="confetti-layer"></div>
 
-        <div class="feature-grid">
-          <article><span>🗺️</span><b>5 เลเวล</b><small>แต่ละด่านเล่นไม่เหมือนกัน</small></article>
-          <article><span>🧠</span><b>ได้ความรู้</b><small>เฉลยพร้อมเหตุผลทุกข้อ</small></article>
-          <article><span>🌍</span><b>คะแนนกลาง</b><small>อันดับรายวันและตลอดกาล</small></article>
-        </div>
-      </div>
-    </section>
+<script>
+window.KBP_CONFIG={SUPABASE_URL:"https://puyooayfsicecwhnukkn.supabase.co",SUPABASE_PUBLISHABLE_KEY:"sb_publishable_k2kbaP0SSd3iGIBOr37s3w_-Ga9BOCC"};
 
-    <section id="mapScreen" class="screen">
-      <div class="profile-strip card">
-        <div class="avatar">🚆</div>
-        <div class="profile-copy">
-          <small>ผู้เล่น</small>
-          <b id="profileNickname">ผู้โดยสาร</b>
-        </div>
-        <div class="profile-stat"><small>คะแนน</small><b id="totalScore">0</b></div>
-        <div class="profile-stat"><small>ดาว</small><b><span id="totalStars">0</span>/15</b></div>
-      </div>
-
-      <div class="map-heading">
-        <div>
-          <p class="eyebrow">แผนที่การเดินทาง</p>
-          <h2>เลือกภารกิจถัดไป</h2>
-        </div>
-        <button class="small-button" id="restartRunButton" type="button">เริ่มรอบใหม่</button>
-      </div>
-
-      <div class="level-map" id="levelMap">
-        <div class="rail-line" aria-hidden="true"></div>
-      </div>
-
-      <div class="knowledge-card card">
-        <span class="knowledge-icon">💡</span>
-        <div><b>ความรู้ก่อนออกเดินทาง</b><p id="mapTip">ยืนรอหลังเส้นสีเหลือง และรอให้รถหยุดสนิทก่อนขึ้นหรือลง</p></div>
-      </div>
-    </section>
-
-    <section id="levelScreen" class="screen">
-      <div class="level-header card">
-        <button class="back-button" id="backToMapButton" type="button">‹</button>
-        <div>
-          <small id="levelNumber">LEVEL 1</small>
-          <h2 id="levelTitle">ตั๋วสายฟ้า</h2>
-        </div>
-        <div class="live-score"><small>คะแนนรวม</small><b id="liveTotalScore">0</b></div>
-      </div>
-      <div id="levelContent"></div>
-    </section>
-
-    <section id="finalScreen" class="screen">
-      <div class="final-card card">
-        <div id="finalMedal" class="final-medal">🏆</div>
-        <p class="eyebrow">จบการเดินทาง</p>
-        <h2 id="finalTitle">นายสถานีดาวเด่น</h2>
-        <p id="finalMessage">คุณผ่านทุกภารกิจเรียบร้อยแล้ว</p>
-        <div class="final-score"><span id="finalScore">0</span><small>คะแนน</small></div>
-        <div class="stars-display" id="finalStars"></div>
-        <div class="save-status" id="saveStatus">กำลังบันทึกคะแนนกลาง...</div>
-        <div class="final-actions">
-          <button class="primary-button" id="viewLeaderboardButton" type="button">ดูอันดับคะแนน</button>
-          <button class="secondary-button" id="playAgainButton" type="button">เล่นอีกรอบ</button>
-        </div>
-      </div>
-      <div class="learning-summary card">
-        <h3>📚 สิ่งที่ได้เรียนรู้</h3>
-        <div id="learningList"></div>
-      </div>
-    </section>
-  </main>
-
-  <dialog id="leaderboardDialog" class="dialog-card">
-    <div class="dialog-head">
-      <div><p class="eyebrow">คะแนนของผู้เล่นทุกคน</p><h2>ตารางอันดับ</h2></div>
-      <button id="closeLeaderboardButton" class="round-button" type="button">✕</button>
-    </div>
-    <div class="tab-row">
-      <button class="tab active" data-period="daily" type="button">วันนี้</button>
-      <button class="tab" data-period="all" type="button">ตลอดกาล</button>
-    </div>
-    <div id="leaderboardLoading" class="loading-state">กำลังโหลดอันดับ...</div>
-    <div id="leaderboardList" class="leaderboard-list"></div>
-    <p class="dialog-note">ระบบแสดงคะแนนที่ดีที่สุดของผู้เล่นแต่ละคน</p>
-  </dialog>
-
-  <dialog id="levelResultDialog" class="dialog-card result-dialog">
-    <div id="levelResultIcon" class="result-icon">⭐</div>
-    <p class="eyebrow">สรุปภารกิจ</p>
-    <h2 id="levelResultTitle">ผ่านเลเวลแล้ว</h2>
-    <div id="levelResultStars" class="stars-display"></div>
-    <p id="levelResultText"></p>
-    <div class="score-chip">+<span id="levelResultScore">0</span> คะแนน</div>
-    <div id="levelLesson" class="lesson-box"></div>
-    <button class="primary-button full" id="continueButton" type="button">ไปด่านถัดไป</button>
-  </dialog>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
-
-  <script>
-window.KBP_CONFIG = {
-  SUPABASE_URL: "https://puyooayfsicecwhnukkn.supabase.co",
-  SUPABASE_PUBLISHABLE_KEY: "sb_publishable_k2kbaP0SSd3iGIBOr37s3w_-Ga9BOCC",
-  STATION_NAME: "สถานีคลองบางพระ",
-  STATION_CODE: "KBP 3021"
-};
-
-  </script>
-  <script>
-
-function createClient(url, key){
-  const STORAGE_KEY = 'kbp_supabase_session_v1';
-  const baseUrl = String(url || '').replace(/\/$/, '');
-
-  function readSession(){
-    try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(!raw) return null;
-      const session = JSON.parse(raw);
-      if(!session?.access_token) return null;
-      try{
-        const payload = JSON.parse(atob(session.access_token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
-        if(payload?.exp && payload.exp * 1000 < Date.now() + 30000){
-          localStorage.removeItem(STORAGE_KEY);
-          return null;
-        }
-      }catch{}
-      return session;
-    }catch{return null}
-  }
-
-  function saveSession(session){
-    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(session)); }catch{}
-  }
-
-  async function parseResponse(response){
-    const text = await response.text();
-    let payload = null;
-    try{ payload = text ? JSON.parse(text) : null; }catch{ payload = text; }
-    if(!response.ok){
-      const message = payload?.message || payload?.msg || payload?.error_description || payload?.error || `HTTP ${response.status}`;
-      return { data:null, error:new Error(message) };
-    }
-    return { data:payload, error:null };
-  }
-
-  async function signInAnonymously(){
-    try{
-      const response = await fetch(`${baseUrl}/auth/v1/signup`, {
-        method:'POST',
-        headers:{
-          'apikey':key,
-          'Authorization':`Bearer ${key}`,
-          'Content-Type':'application/json'
-        },
-        body:'{}'
-      });
-      const result = await parseResponse(response);
-      if(result.error) return { data:{user:null,session:null}, error:result.error };
-      const session = {
-        access_token: result.data?.access_token,
-        refresh_token: result.data?.refresh_token,
-        token_type: result.data?.token_type || 'bearer',
-        expires_in: result.data?.expires_in,
-        user: result.data?.user
-      };
-      if(session.access_token) saveSession(session);
-      return { data:{user:session.user,session}, error:null };
-    }catch(error){ return { data:{user:null,session:null}, error }; }
-  }
-
-  async function rpc(functionName, params={}){
-    try{
-      const session = readSession();
-      const bearer = session?.access_token || key;
-      const response = await fetch(`${baseUrl}/rest/v1/rpc/${encodeURIComponent(functionName)}`, {
-        method:'POST',
-        headers:{
-          'apikey':key,
-          'Authorization':`Bearer ${bearer}`,
-          'Content-Type':'application/json',
-          'Accept':'application/json'
-        },
-        body:JSON.stringify(params)
-      });
-      return await parseResponse(response);
-    }catch(error){ return { data:null, error }; }
-  }
-
-  return {
-    auth:{
-      async getSession(){
-        const session = readSession();
-        return { data:{session}, error:null };
-      },
-      signInAnonymously
-    },
-    rpc
-  };
+function createClient(url,key){
+ const STORAGE_KEY='kbp_supabase_session_v2',base=String(url||'').replace(/\/$/,'');
+ function read(){try{const s=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');if(!s?.access_token)return null;try{const p=JSON.parse(atob(s.access_token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));if(p.exp*1000<Date.now()+30000){localStorage.removeItem(STORAGE_KEY);return null}}catch{}return s}catch{return null}}
+ function save(s){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(s))}catch{}}
+ async function parse(r){const t=await r.text();let d=null;try{d=t?JSON.parse(t):null}catch{d=t}if(!r.ok)return{data:null,error:new Error(d?.message||d?.error_description||d?.error||`HTTP ${r.status}`)};return{data:d,error:null}}
+ async function signInAnonymously(){try{const r=await fetch(`${base}/auth/v1/signup`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${key}`,'Content-Type':'application/json'},body:'{}'});const x=await parse(r);if(x.error)return{data:{session:null},error:x.error};const s={access_token:x.data?.access_token,refresh_token:x.data?.refresh_token,user:x.data?.user};if(s.access_token)save(s);return{data:{session:s},error:null}}catch(error){return{data:{session:null},error}}}
+ async function rpc(name,params={}){try{const s=read(),r=await fetch(`${base}/rest/v1/rpc/${encodeURIComponent(name)}`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${s?.access_token||key}`,'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(params)});return await parse(r)}catch(error){return{data:null,error}}}
+ return{auth:{async getSession(){return{data:{session:read()},error:null}},signInAnonymously},rpc};
 }
 
-const CONFIG = window.KBP_CONFIG || {};
-const $ = selector => document.querySelector(selector);
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const screens={welcome:$('#welcomeScreen'),map:$('#mapScreen'),game:$('#gameScreen')};
+const els={banner:$('#connectionBanner'),form:$('#playerForm'),nickname:$('#nickname'),profileName:$('#profileName'),campaignScore:$('#campaignScore'),campaignStars:$('#campaignStars'),highestLevel:$('#highestLevel'),map:$('#levelMap'),mapTip:$('#mapTip'),gameIcon:$('#gameIcon'),gameTitle:$('#gameTitle'),gameSubtitle:$('#gameSubtitle'),gameContent:$('#gameContent'),result:$('#resultDialog'),resultIcon:$('#resultIcon'),resultTitle:$('#resultTitle'),resultStars:$('#resultStars'),resultScore:$('#resultScore'),resultMessage:$('#resultMessage'),resultLesson:$('#resultLesson'),saveStatus:$('#saveStatus'),leader:$('#leaderDialog'),leaderLoading:$('#leaderLoading'),leaderList:$('#leaderList'),toast:$('#toast'),confetti:$('#confettiLayer')};
+let client=null,backendReady=false,soundOn=true,audioCtx=null,leaderPeriod='daily';
+let state={nickname:'',progress:{},profile:{best_score:0,total_stars:0,highest_level:0},currentLevel:null,sessionId:null,startedAt:0,cleanup:null};
 
-const screens = {
-  welcome: $('#welcomeScreen'),
-  map: $('#mapScreen'),
-  level: $('#levelScreen'),
-  final: $('#finalScreen')
+const zones=[
+ {id:1,icon:'🛡️',name:'โลกผู้พิทักษ์ชานชาลา',desc:'ความปลอดภัย การขึ้นลงรถ และการป้องกันอุบัติเหตุ',class:'zone1'},
+ {id:2,icon:'🎫',name:'โลกเซียนตั๋วโดยสาร',desc:'ตั๋ว สิทธิส่วนลด การเปลี่ยนแปลง และบัตรเหมาจ่าย',class:'zone2'},
+ {id:3,icon:'🗺️',name:'โลกนักเดินทางคลองบางพระ',desc:'เส้นทาง ทิศทาง และตารางเวลาเดินรถ',class:'zone3'},
+ {id:4,icon:'👑',name:'โลกนายสถานีฝึกหัด',desc:'สัมภาระ เหตุฉุกเฉิน ประกาศ และภารกิจรวม',class:'zone4'}
+];
+const levels=[
+ {id:1,z:1,icon:'🎫',name:'ตั๋วสายฟ้า',sub:'เก็บตั๋ว หลีกเลี่ยงจุดเสี่ยง',type:'tap'},
+ {id:2,z:1,icon:'🚦',name:'ปลอดภัยหรือเสี่ยง',sub:'ตัดสินสถานการณ์ให้ไว',type:'binary'},
+ {id:3,z:1,icon:'🔎',name:'นักสืบชานชาลา',sub:'ค้นหา 5 จุดเสี่ยง',type:'spot'},
+ {id:4,z:1,icon:'🧩',name:'ลำดับที่ปลอดภัย',sub:'เรียงขั้นตอนก่อนขึ้นรถ',type:'orderSafety'},
+ {id:5,z:1,icon:'🛡️',name:'บอสผู้พิทักษ์',sub:'ข้อสอบจับเวลารวม',type:'rapidSafety',boss:true},
+ {id:6,z:2,icon:'🧾',name:'ตรวจตั๋วจับผิด',sub:'หาเนื้อหาผิดบนตั๋ว',type:'ticketInspect'},
+ {id:7,z:2,icon:'👧',name:'เด็กสูงเท่าไร',sub:'สิทธิเด็กและส่วนลด',type:'quizChild'},
+ {id:8,z:2,icon:'🤝',name:'จับคู่สิทธิผู้โดยสาร',sub:'เลือกส่วนลดให้ถูกกลุ่ม',type:'matchRights'},
+ {id:9,z:2,icon:'📅',name:'บัตรเหมาจ่ายคุ้มไหม',sub:'เลือกเงื่อนไขให้เหมาะ',type:'multiMonthly'},
+ {id:10,z:2,icon:'🎟️',name:'บอสนายตรวจตั๋ว',sub:'รวมกฎตั๋วระดับยาก',type:'rapidTicket',boss:true},
+ {id:11,z:3,icon:'🧭',name:'สถานีไหนมาก่อน',sub:'เรียงเส้นทางให้ถูก',type:'orderRoute'},
+ {id:12,z:3,icon:'↔️',name:'รถไปทางไหน',sub:'แยกเที่ยวขึ้นและเที่ยวล่อง',type:'direction'},
+ {id:13,z:3,icon:'⏰',name:'จำเวลารถให้แม่น',sub:'ตอบจากตารางเวลาจริง',type:'quizTime'},
+ {id:14,z:3,icon:'🧳',name:'วางแผนการเดินทาง',sub:'เลือกขบวนตามโจทย์',type:'planner'},
+ {id:15,z:3,icon:'🚆',name:'บอสเส้นทาง KBP',sub:'เวลา ขบวน ปลายทาง',type:'rapidRoute',boss:true},
+ {id:16,z:4,icon:'🧳',name:'สัมภาระเจ้าปัญหา',sub:'จัดของให้ไม่กีดขวาง',type:'matchBaggage'},
+ {id:17,z:4,icon:'🚨',name:'เหตุฉุกเฉิน',sub:'เลือกการช่วยเหลือแรกสุด',type:'quizEmergency'},
+ {id:18,z:4,icon:'📢',name:'เสียงประกาศปริศนา',sub:'อ่านประกาศแล้วตอบ',type:'announcement'},
+ {id:19,z:4,icon:'⚡',name:'ชั่วโมงเร่งด่วน',sub:'จัดลำดับเหตุการณ์สำคัญ',type:'triage'},
+ {id:20,z:4,icon:'👑',name:'บอสผู้โดยสารตำนาน',sub:'รวมทุกหมวด 15 ข้อ',type:'finalBoss',boss:true}
+];
+
+const timetable={
+ toBangkok:[
+  {no:'384',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'05:29',dep:'05:30'},
+  {no:'380',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'05:54',dep:'05:55'},
+  {no:'372',origin:'ปราจีนบุรี',dest:'กรุงเทพ',arr:'06:29',dep:'06:30'},
+  {no:'388',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'07:11',dep:'07:12'},
+  {no:'278',origin:'กบินทร์บุรี',dest:'กรุงเทพ',arr:'10:30',dep:'10:33'},
+  {no:'280',origin:'ด่านพรมแดนบ้านคลองลึก',dest:'กรุงเทพ',arr:'10:32',dep:'10:33'},
+  {no:'368',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'12:43',dep:'12:44'},
+  {no:'390',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'14:11',dep:'14:12'},
+  {no:'282',origin:'กบินทร์บุรี',dest:'กรุงเทพ',arr:'15:41',dep:'15:42'},
+  {no:'284',origin:'จุกเสม็ด',dest:'กรุงเทพ',arr:'16:32',dep:'16:33'},
+  {no:'276',origin:'ด่านพรมแดนบ้านคลองลึก',dest:'กรุงเทพ',arr:'18:59',dep:'19:00'}],
+ fromBangkok:[
+  {no:'275',origin:'กรุงเทพ',dest:'ด่านพรมแดนบ้านคลองลึก',arr:'07:27',dep:'07:28'},
+  {no:'283',origin:'กรุงเทพ',dest:'จุกเสม็ด',arr:'08:45',dep:'08:46'},
+  {no:'281',origin:'กรุงเทพ',dest:'กบินทร์บุรี',arr:'09:22',dep:'09:23'},
+  {no:'367',origin:'กรุงเทพ',dest:'ชุมทางฉะเชิงเทรา',arr:'11:34',dep:'11:35'},
+  {no:'389',origin:'กรุงเทพ',dest:'ชุมทางฉะเชิงเทรา',arr:'13:22',dep:'13:23'},
+  {no:'279',origin:'กรุงเทพ',dest:'ด่านพรมแดนบ้านคลองลึก',arr:'14:07',dep:'14:08'},
+  {no:'277',origin:'กรุงเทพ',dest:'กบินทร์บุรี',arr:'16:36',dep:'16:37'},
+  {no:'379',origin:'กรุงเทพ',dest:'ชุมทางฉะเชิงเทรา',arr:'17:56',dep:'17:57'},
+  {no:'391',origin:'กรุงเทพ',dest:'ชุมทางฉะเชิงเทรา',arr:'18:16',dep:'18:17'},
+  {no:'371',origin:'กรุงเทพ',dest:'ปราจีนบุรี',arr:'19:10',dep:'19:11'},
+  {no:'383',origin:'กรุงเทพ',dest:'ชุมทางฉะเชิงเทรา',arr:'20:39',dep:'20:40',originDep:'19:00'}]
 };
+const allTrains=[...timetable.toBangkok.map(x=>({...x,dir:'ไปกรุงเทพ'})),...timetable.fromBangkok.map(x=>({...x,dir:'ออกจากกรุงเทพ'}))];
 
-const els = {
-  stationName: $('#stationName'), stationCode: $('#stationCode'),
-  connectionBanner: $('#connectionBanner'), playerForm: $('#playerForm'), nickname: $('#nickname'),
-  profileNickname: $('#profileNickname'), totalScore: $('#totalScore'), totalStars: $('#totalStars'),
-  liveTotalScore: $('#liveTotalScore'), levelMap: $('#levelMap'), mapTip: $('#mapTip'),
-  levelNumber: $('#levelNumber'), levelTitle: $('#levelTitle'), levelContent: $('#levelContent'),
-  finalMedal: $('#finalMedal'), finalTitle: $('#finalTitle'), finalMessage: $('#finalMessage'),
-  finalScore: $('#finalScore'), finalStars: $('#finalStars'), saveStatus: $('#saveStatus'),
-  learningList: $('#learningList'), leaderboardDialog: $('#leaderboardDialog'),
-  leaderboardLoading: $('#leaderboardLoading'), leaderboardList: $('#leaderboardList'),
-  levelResultDialog: $('#levelResultDialog'), levelResultIcon: $('#levelResultIcon'),
-  levelResultTitle: $('#levelResultTitle'), levelResultStars: $('#levelResultStars'),
-  levelResultText: $('#levelResultText'), levelResultScore: $('#levelResultScore'),
-  levelLesson: $('#levelLesson'), continueButton: $('#continueButton'), toast: $('#toast'),
-  confettiLayer: $('#confettiLayer')
-};
-
-els.stationName.textContent = CONFIG.STATION_NAME || 'สถานีคลองบางพระ';
-els.stationCode.textContent = CONFIG.STATION_CODE || 'KBP 3021';
-els.nickname.value = localStorage.getItem('kbp_nickname') || '';
-
-const LEVELS = [
-  { id: 1, icon: '🎫', name: 'ตั๋วสายฟ้า', desc: 'แตะเก็บตั๋วและดาว หลีกเลี่ยงสิ่งกีดขวาง', color: '#ffe3a5' },
-  { id: 2, icon: '🚦', name: 'ปลอดภัยหรือเสี่ยง', desc: 'ตัดสินสถานการณ์บนสถานีให้ถูกต้อง', color: '#cdeedc' },
-  { id: 3, icon: '🔎', name: 'นักสืบชานชาลา', desc: 'ค้นหาจุดเสี่ยงที่ซ่อนอยู่ในฉาก', color: '#cfe9ff' },
-  { id: 4, icon: '🧠', name: 'เซียนตั๋วรถไฟ', desc: 'ตอบคำถามการเดินทางและการใช้บริการ', color: '#eadbff' },
-  { id: 5, icon: '👑', name: 'ด่านนายสถานี', desc: 'บททดสอบรวดเร็วสำหรับผู้โดยสารมือโปร', color: '#ffd7df' }
+const safetyScenarios=[
+ {e:'🧍🟨',q:'ยืนรอหลังเส้นสีเหลืองและรอให้รถหยุดสนิท',safe:true,x:'เป็นวิธีรอรถที่ปลอดภัย ควรเว้นระยะจากขอบชานชาลา'},
+ {e:'🏃🚆',q:'วิ่งตามและกระโดดขึ้นรถที่เริ่มเคลื่อนที่',safe:false,x:'ห้ามขึ้นหรือลงจากขบวนรถที่กำลังเคลื่อนที่'},
+ {e:'👨‍👧',q:'ผู้ปกครองจับมือเด็กตลอดเวลาบนชานชาลา',safe:true,x:'เด็กเล็กควรอยู่ใกล้ผู้ดูแล โดยเฉพาะบริเวณชานชาลา'},
+ {e:'🎒🚶',q:'วางกระเป๋าใบใหญ่ขวางทางเดิน',safe:false,x:'สัมภาระอาจทำให้ผู้อื่นสะดุด ควรวางใกล้ตัวและไม่กีดขวาง'},
+ {e:'🚬🚉',q:'สูบบุหรี่ในพื้นที่ห้ามสูบบนชานชาลา',safe:false,x:'ให้ปฏิบัติตามป้ายห้ามสูบและใช้พื้นที่ที่กำหนดเท่านั้น'},
+ {e:'📢👂',q:'หยุดฟังประกาศและคำแนะนำจากเจ้าหน้าที่',safe:true,x:'ประกาศช่วยยืนยันขบวน ชานชาลา และข้อมูลสำคัญ'},
+ {e:'📦❓',q:'หยิบกล่องไม่มีเจ้าของขึ้นมาเปิดดู',safe:false,x:'อย่าสัมผัสหรือเคลื่อนย้าย ให้ถอยห่างและแจ้งเจ้าหน้าที่'},
+ {e:'🗑️✅',q:'ทิ้งขยะลงถังและรักษาพื้นที่รอรถให้สะอาด',safe:true,x:'ช่วยลดอุบัติเหตุและทำให้สถานีน่าใช้บริการ'},
+ {e:'👀🚧',q:'ข้ามรางโดยไม่มองและไม่สนใจเสียงหวูด',safe:false,x:'ต้องใช้ทางข้ามที่กำหนด มองซ้ายขวา และฟังสัญญาณ'},
+ {e:'🎫✅',q:'ตรวจวันเดินทาง ปลายทาง และเงินทอนก่อนออกจากช่องขาย',safe:true,x:'หากพบข้อผิดพลาดจะได้แจ้งเจ้าหน้าที่ทันที'},
+ {e:'🚉❓',q:'เห็นชื่อคล้ายกันแล้วลงทันทีโดยไม่ตรวจจังหวัด',safe:false,x:'ควรตรวจชื่อสถานีและจังหวัด สถานีคลองบางพระอยู่ฉะเชิงเทรา ไม่ใช่บางพระ ชลบุรี'},
+ {e:'🤒📣',q:'พบผู้โดยสารหน้ามืดแล้วแจ้งเจ้าหน้าที่ทันที',safe:true,x:'เจ้าหน้าที่สามารถประสานความช่วยเหลือและดูแลพื้นที่ได้'}
 ];
 
-const mapTips = [
-  'ยืนรอหลังเส้นสีเหลือง และรอให้รถหยุดสนิทก่อนขึ้นหรือลง',
-  'ตรวจสอบวันเดินทาง ปลายทาง จำนวนผู้โดยสาร และเงินทอนก่อนออกจากช่องจำหน่าย',
-  'ดูแลเด็กและสัมภาระให้อยู่ใกล้ตัวตลอดเวลาบริเวณสถานี',
-  'พบสิ่งของต้องสงสัย ไม่ควรสัมผัสหรือเคลื่อนย้าย ให้แจ้งเจ้าหน้าที่ทันที',
-  'ควรเตรียมตั๋วและสัมภาระให้พร้อมก่อนขบวนรถเข้าเทียบชานชาลา'
+const safetyOrders=[
+ {q:'ก่อนขึ้นรถไฟอย่างปลอดภัย',items:['เตรียมตั๋วและสัมภาระ','ยืนรอหลังเส้นสีเหลือง','รอรถหยุดสนิท','ให้ผู้โดยสารลงก่อนแล้วจึงขึ้น']},
+ {q:'เมื่อพบสิ่งของไม่มีเจ้าของ',items:['ไม่สัมผัสสิ่งของ','ถอยห่างจากบริเวณ','แจ้งเจ้าหน้าที่สถานี','ปฏิบัติตามคำแนะนำของเจ้าหน้าที่']},
+ {q:'ก่อนข้ามทางรถไฟที่กำหนด',items:['หยุดก่อนถึงทางข้าม','มองซ้ายและขวา','ฟังเสียงหวูดหรือสัญญาณ','ข้ามเมื่อแน่ใจว่าปลอดภัย']},
+ {q:'เมื่อเดินทางพร้อมเด็กเล็ก',items:['อธิบายกฎง่าย ๆ ให้เด็ก','จับมือเด็กบริเวณชานชาลา','ยืนหลังเส้นปลอดภัย','ขึ้นรถเมื่อหยุดสนิท']}
 ];
 
-const safetyScenarios = [
-  { emoji:'🧍‍♂️🟨', title:'ยืนรอหลังเส้นสีเหลือง', detail:'ผู้โดยสารเว้นระยะจากขอบชานชาลา', safe:true, explanation:'ปลอดภัย เพราะเส้นสีเหลืองช่วยกำหนดระยะรอที่เหมาะสมจากขอบชานชาลา' },
-  { emoji:'🏃‍♂️🚆', title:'วิ่งตามรถที่เริ่มเคลื่อนที่', detail:'ผู้โดยสารพยายามกระโดดขึ้นรถให้ทัน', safe:false, explanation:'อันตรายมาก ห้ามขึ้นหรือลงจากรถที่กำลังเคลื่อนที่ ควรแจ้งเจ้าหน้าที่และรอขบวนถัดไป' },
-  { emoji:'👨‍👧', title:'ผู้ปกครองจับมือเด็ก', detail:'เด็กอยู่ใกล้ผู้ดูแลตลอดเวลาบนชานชาลา', safe:true, explanation:'ปลอดภัย เด็กเล็กควรอยู่ใกล้ผู้ปกครองโดยเฉพาะบริเวณชานชาลาและทางข้าม' },
-  { emoji:'🎒🚶', title:'วางกระเป๋าขวางทางเดิน', detail:'สัมภาระกีดขวางผู้โดยสารคนอื่น', safe:false, explanation:'ไม่ปลอดภัย อาจทำให้ผู้อื่นสะดุดล้ม ควรวางใกล้ตัวและไม่กีดขวางทางเดิน' },
-  { emoji:'🎫✅', title:'ตรวจตั๋วก่อนออกจากช่องขาย', detail:'ตรวจวันเดินทาง ปลายทาง และเงินทอนทันที', safe:true, explanation:'เป็นพฤติกรรมที่ถูกต้อง หากข้อมูลผิดจะได้แจ้งเจ้าหน้าที่แก้ไขได้ทันที' },
-  { emoji:'📦❓', title:'เปิดกล่องที่ไม่มีเจ้าของ', detail:'พบของต้องสงสัยแล้วหยิบขึ้นมาตรวจดู', safe:false, explanation:'ไม่ควรสัมผัส เปิด หรือเคลื่อนย้าย ให้ถอยห่างและแจ้งเจ้าหน้าที่สถานีทันที' },
-  { emoji:'📢👂', title:'ฟังประกาศของสถานี', detail:'ผู้โดยสารตรวจสอบชานชาลาและเวลาเดินรถจากประกาศ', safe:true, explanation:'ถูกต้อง ควรฟังประกาศและปฏิบัติตามคำแนะนำของเจ้าหน้าที่' },
-  { emoji:'🚬🚉', title:'สูบบุหรี่บนชานชาลา', detail:'สูบใกล้ผู้โดยสารและพื้นที่รอรถ', safe:false, explanation:'ไม่เหมาะสมและอาจผิดข้อกำหนดของพื้นที่ ให้ปฏิบัติตามป้ายห้ามสูบและใช้จุดที่กำหนดเท่านั้น' }
+const childQuiz=[
+ {e:'👶',q:'เด็กสูงไม่เกิน 100 ซม. ใช้สิทธิอย่างไร',a:['โดยสารฟรี แต่ไม่รับที่นั่ง','ลดครึ่งราคาและมีที่นั่ง','ต้องซื้อเต็มราคา'],c:0,x:'เด็กสูงไม่เกิน 100 ซม. โดยสารฟรีโดยไม่รับที่นั่ง'},
+ {e:'🧒',q:'เด็กสูงเกิน 100 ซม. แต่ไม่เกิน 150 ซม. ได้รับสิทธิใด',a:['ลดค่าโดยสาร 50%','ลดค่าธรรมเนียม 50% ทุกชนิด','ฟรีทุกกรณี'],c:0,x:'ลดเฉพาะค่าโดยสารร้อยละ 50 ตามหลักเกณฑ์'},
+ {e:'👵',q:'ผู้สูงอายุไทยอายุ 60 ปีขึ้นไปใช้ส่วนลด 50% ช่วงใด',a:['1 มิ.ย.–30 ก.ย. ของทุกปี','ตลอดทั้งปี','เฉพาะเดือนธันวาคม'],c:0,x:'สิทธิผู้สูงอายุไทยใช้ระหว่าง 1 มิถุนายนถึง 30 กันยายนของทุกปี'},
+ {e:'♿',q:'คนพิการสัญชาติไทยได้รับส่วนลดอย่างไร',a:['ลดเฉพาะค่าโดยสาร 50% ค่าธรรมเนียมไม่ลด','ลดทุกอย่าง 100%','ลดเฉพาะค่าธรรมเนียม'],c:0,x:'ลดค่าโดยสารร้อยละ 50 ทุกชั้นตลอดทาง แต่ค่าธรรมเนียมไม่ลด'},
+ {e:'🤝',q:'ผู้ติดตามคนพิการ 1 คน ได้รับส่วนลดค่าโดยสารเท่าไร',a:['25%','50%','ไม่มีสิทธิทุกกรณี'],c:0,x:'คนพิการ 1 คน ใช้สิทธิผู้ติดตามได้ 1 คน ลดค่าโดยสาร 25%'},
+ {e:'🪪',q:'หลักฐานสำคัญสำหรับขอสิทธิคนพิการคืออะไร',a:['บัตรประจำตัวคนพิการหรือเอกสารราชการที่เกี่ยวข้อง','บัตรสมาชิกห้าง','รูปถ่ายทั่วไป'],c:0,x:'ต้องแสดงบัตรประจำตัวคนพิการหรือเอกสารที่ราชการออกให้'},
+ {e:'🎓',q:'ตั๋วหมู่คณะนักเรียนเที่ยวเดียว ลดค่าโดยสารเท่าไร',a:['25%','50%','75%'],c:0,x:'เที่ยวเดียวลดค่าโดยสาร 25% ส่วนค่าธรรมเนียมคิดเต็ม'},
+ {e:'🎓',q:'ตั๋วหมู่คณะนักเรียนไป-กลับ ชั้น 3 คิดค่าโดยสารอย่างไร',a:['คิดเพียงเที่ยวเดียว','คิดเต็มสองเที่ยว','โดยสารฟรี'],c:0,x:'ไป-กลับลดเฉพาะชั้น 3 โดยคิดค่าโดยสารเพียงเที่ยวเดียว'}
 ];
 
-const quizBank = [
-  { icon:'🎫', q:'หลังรับตั๋วจากช่องจำหน่าย ควรตรวจสอบอะไร', a:['เฉพาะสีของตั๋ว','วันเดินทาง ปลายทาง จำนวนคน และเงินทอน','ไม่ต้องตรวจสอบ'], c:1, e:'ควรตรวจสอบรายละเอียดสำคัญก่อนออกจากช่องจำหน่าย เพื่อแจ้งแก้ไขได้ทันทีหากข้อมูลไม่ถูกต้อง' },
-  { icon:'🟨', q:'ตำแหน่งที่เหมาะสมในการยืนรอรถไฟคือบริเวณใด', a:['หลังเส้นสีเหลือง','ชิดขอบชานชาลา','บนทางรถไฟ'], c:0, e:'ควรยืนรอหลังเส้นสีเหลืองและไม่เข้าใกล้ขอบชานชาลาจนกว่ารถจะหยุดสนิท' },
-  { icon:'📦', q:'พบกล่องไม่มีเจ้าของวางอยู่ในสถานี ควรทำอย่างไร', a:['เปิดดู','ย้ายไปมุมอื่น','ไม่สัมผัสและแจ้งเจ้าหน้าที่'], c:2, e:'สิ่งของต้องสงสัยไม่ควรถูกสัมผัสหรือเคลื่อนย้าย ให้แจ้งเจ้าหน้าที่ทันที' },
-  { icon:'🧳', q:'สัมภาระใบใหญ่ควรวางอย่างไร', a:['ขวางทางเดิน','ใกล้ตัวและไม่กีดขวาง','ชิดขอบชานชาลา'], c:1, e:'ควรวางสัมภาระใกล้ตัว ในตำแหน่งที่ไม่กีดขวางและไม่เสี่ยงตกลงสู่ทางรถไฟ' },
-  { icon:'🚆', q:'รถเริ่มเคลื่อนที่แล้ว แต่ยังไม่ได้ขึ้น ควรทำอย่างไร', a:['วิ่งตามและกระโดดขึ้น','เกาะราวประตู','หยุดและแจ้งเจ้าหน้าที่'], c:2, e:'ห้ามขึ้นลงรถขณะกำลังเคลื่อนที่ ควรหยุดและขอคำแนะนำจากเจ้าหน้าที่' },
-  { icon:'👧', q:'เมื่อพาเด็กเล็กมาที่สถานี ควรปฏิบัติอย่างไร', a:['ให้วิ่งเล่นได้','ให้อยู่ใกล้ตัวตลอดเวลา','ให้ยืนดูรถใกล้ขอบชานชาลา'], c:1, e:'เด็กเล็กควรอยู่ใกล้ผู้ปกครองตลอดเวลา โดยเฉพาะบนชานชาลาและทางข้าม' },
-  { icon:'🤒', q:'หากพบผู้โดยสารหน้ามืดหรือเจ็บป่วย ควรทำอย่างไร', a:['ปล่อยให้อยู่ลำพัง','แจ้งเจ้าหน้าที่สถานีทันที','พาข้ามรางไปพัก'], c:1, e:'แจ้งเจ้าหน้าที่เพื่อประสานความช่วยเหลือและดูแลพื้นที่ให้ปลอดภัย' },
-  { icon:'📢', q:'ก่อนขบวนรถเข้า ผู้โดยสารควรทำสิ่งใด', a:['เตรียมตั๋วและฟังประกาศ','ลงไปยืนบนทางรถไฟ','เดินตามรถที่กำลังเคลื่อนที่'], c:0, e:'เตรียมตั๋วและสัมภาระให้พร้อม พร้อมฟังประกาศและคำแนะนำของเจ้าหน้าที่' },
-  { icon:'🚭', q:'เรื่องการสูบบุหรี่ในสถานีควรปฏิบัติอย่างไร', a:['สูบได้ทุกที่เมื่อคนน้อย','ปฏิบัติตามป้ายและพื้นที่ที่กำหนด','สูบใกล้ประตูรถ'], c:1, e:'ควรปฏิบัติตามป้ายห้ามสูบและใช้เฉพาะพื้นที่ที่กำหนด หากสถานีมีจัดไว้' }
+const rightsItems=[
+ {q:'เด็กสูง 120 ซม.',a:'ลดค่าโดยสาร 50%'},{q:'ผู้สูงอายุไทย 65 ปี ในเดือนกรกฎาคม',a:'ลดค่าโดยสาร 50%'},{q:'คนพิการสัญชาติไทย',a:'ลดค่าโดยสาร 50%'},{q:'ผู้ติดตามคนพิการ 1 คน',a:'ลดค่าโดยสาร 25%'},{q:'นักเรียนหมู่คณะเที่ยวเดียว',a:'ลดค่าโดยสาร 25%'},{q:'นักเรียนหมู่คณะไป-กลับ ชั้น 3',a:'คิดค่าโดยสารเที่ยวเดียว'},{q:'เด็กสูง 95 ซม. ไม่รับที่นั่ง',a:'โดยสารฟรี'},{q:'ผู้สูงอายุไทย 65 ปี ในเดือนธันวาคม',a:'ไม่ใช้สิทธิตามช่วง มิ.ย.–ก.ย.'}
+];
+const rightChoices=['โดยสารฟรี','ลดค่าโดยสาร 50%','ลดค่าโดยสาร 25%','คิดค่าโดยสารเที่ยวเดียว','ไม่ใช้สิทธิตามช่วง มิ.ย.–ก.ย.'];
+
+const monthlyMulti=[
+ {q:'ข้อใดถูกต้องเกี่ยวกับตั๋วเดือน',opts:['ใช้ได้ตามช่วงวันที่ระบุ','ไม่ต้องซื้อตั๋วใหม่ทุกวัน','ตั๋วเดือนเปลี่ยนแปลงการเดินทางได้เสมอ','ตั๋วเดือนไม่รับคืนเงิน'],correct:[0,1,3],x:'ตั๋วเดือนช่วยลดเวลาซื้อตั๋ว แต่ไม่อนุญาตให้เปลี่ยนแปลงและไม่คืนเงิน'},
+ {q:'บัตรเที่ยวเดียวสำหรับประชาชนทั่วไป ข้อใดจับคู่ถูก',opts:['รายสัปดาห์คิด 6 วัน','1 เดือนคิด 24 วัน','2 เดือนคิด 48 วัน','3 เดือนคิด 90 วัน'],correct:[0,1,2],x:'ราย 3 เดือนคิด 72 วัน ไม่ใช่ 90 วัน'},
+ {q:'บัตรไป-กลับสำหรับนักเรียน–นักศึกษาอายุไม่เกิน 25 ปี ข้อใดถูก',opts:['รายสัปดาห์คิด 5 วัน','1 เดือนคิด 20 วัน','2 เดือนคิด 40 วัน','3 เดือนคิด 60 วัน'],correct:[0,1,2,3],x:'กลุ่มนักเรียนใช้จำนวนวันลดหย่อน 5, 20, 40 และ 60 วันตามลำดับ'},
+ {q:'การเก็บรักษาตั๋วเดือนที่เหมาะสม',opts:['เก็บให้แห้งและอ่านได้ชัด','ควรเคลือบเพื่อสะดวกในการเก็บรักษา','ขีดแก้ข้อมูลเองเมื่อเปลี่ยนวัน','นำติดตัวเมื่อเดินทาง'],correct:[0,1,3],x:'ตั๋วต้องอยู่ในสภาพอ่านได้และใช้ตามรายละเอียดที่ออกให้'}
 ];
 
-const rapidBank = [
-  { emoji:'🚆🏃', q:'รถกำลังเคลื่อนที่ ควรวิ่งขึ้นหรือไม่', choices:['ไม่ควร','ควร'], c:0, lesson:'ห้ามขึ้นหรือลงจากรถที่กำลังเคลื่อนที่' },
-  { emoji:'🟨🧍', q:'ยืนหลังเส้นสีเหลืองเป็นพฤติกรรมที่ถูกต้องหรือไม่', choices:['ถูกต้อง','ไม่ถูกต้อง'], c:0, lesson:'ยืนรอในพื้นที่ปลอดภัยหลังเส้นสีเหลือง' },
-  { emoji:'📦✋', q:'พบของต้องสงสัย ควรหยิบไปส่งเจ้าหน้าที่เองหรือไม่', choices:['ไม่ควรสัมผัส','ควรหยิบไปส่ง'], c:0, lesson:'ถอยห่างและแจ้งเจ้าหน้าที่โดยไม่สัมผัสสิ่งของ' },
-  { emoji:'🎫🔍', q:'ควรตรวจสอบตั๋วก่อนออกจากช่องจำหน่ายหรือไม่', choices:['ควร','ไม่จำเป็น'], c:0, lesson:'ตรวจรายละเอียดตั๋วและเงินทอนทันที' },
-  { emoji:'🎒🚪', q:'วางกระเป๋าขวางประตูเป็นเรื่องปลอดภัยหรือไม่', choices:['ไม่ปลอดภัย','ปลอดภัย'], c:0, lesson:'ไม่วางสัมภาระกีดขวางทางเดินหรือประตู' },
-  { emoji:'👧🤝', q:'เด็กเล็กควรอยู่ใกล้ผู้ปกครองหรือไม่', choices:['ควร','ไม่จำเป็น'], c:0, lesson:'ดูแลเด็กให้อยู่ใกล้ตัวตลอดเวลา' },
-  { emoji:'📢👂', q:'ควรฟังประกาศและคำแนะนำของเจ้าหน้าที่หรือไม่', choices:['ควร','ไม่ต้อง'], c:0, lesson:'ฟังประกาศเพื่อทราบเวลา ชานชาลา และการเปลี่ยนแปลง' },
-  { emoji:'🤒🙋', q:'พบผู้โดยสารเจ็บป่วย ควรแจ้งเจ้าหน้าที่หรือไม่', choices:['ควรแจ้งทันที','ไม่ต้องแจ้ง'], c:0, lesson:'แจ้งเจ้าหน้าที่เมื่อพบเหตุเจ็บป่วยหรือฉุกเฉิน' },
-  { emoji:'🚭🚉', q:'สามารถสูบบุหรี่ในพื้นที่ห้ามสูบได้หรือไม่', choices:['ไม่ได้','ได้เมื่อคนน้อย'], c:0, lesson:'ปฏิบัติตามป้ายและข้อกำหนดเรื่องการสูบบุหรี่' },
-  { emoji:'🚆⏹️', q:'ควรรอให้รถหยุดสนิทก่อนขึ้นหรือลงหรือไม่', choices:['ควร','ไม่จำเป็น'], c:0, lesson:'รอให้ขบวนรถหยุดสนิททุกครั้ง' },
-  { emoji:'🧳👀', q:'ควรดูแลสัมภาระของตนเองหรือไม่', choices:['ควร','ฝากไว้โดยไม่ต้องดู'], c:0, lesson:'ดูแลสัมภาระและตรวจสอบก่อนออกจากสถานี' },
-  { emoji:'🚶‍♂️🛤️', q:'สามารถเดินข้ามรางโดยพลการได้หรือไม่', choices:['ไม่ได้','ได้ถ้าไม่เห็นรถ'], c:0, lesson:'ใช้ทางข้ามที่กำหนดและปฏิบัติตามเจ้าหน้าที่' }
+const ticketBoss=[
+ {e:'📱',q:'ตั๋ว PDF จากอีเมลหรือ D-Ticket บนอุปกรณ์ ใช้แทนตั๋วกระดาษได้หรือไม่',a:['ได้','ไม่ได้ทุกกรณี','ได้เฉพาะไม่มีเจ้าหน้าที่'],c:0,x:'สามารถแสดงตั๋วรูปแบบ PDF หรือ D-Ticket บนอุปกรณ์ได้'},
+ {e:'🪪',q:'ขบวนสำรองที่นั่ง ผู้โดยสารควรเตรียมอะไรยืนยัน',a:['บัตรประชาชนหรือ Passport ตามข้อมูลบนตั๋ว','ใบเสร็จร้านค้า','ไม่ต้องมีหลักฐาน'],c:0,x:'ตั๋วสำรองที่นั่งระบุชื่อและข้อมูลผู้เดินทาง'},
+ {e:'🔄',q:'ต้องการเปลี่ยนชื่อผู้เดินทางบนตั๋วสำรองที่นั่ง ควรทำอย่างไร',a:['คืนตั๋วเดิมตามหลักเกณฑ์และซื้อตั๋วใหม่','ขีดแก้ชื่อเอง','ให้คนอื่นใช้แทนได้เลย'],c:0,x:'ไม่อนุญาตให้โอนสิทธิหรือแก้ชื่อผู้เดินทาง ต้องคืนและออกใหม่'},
+ {e:'📆',q:'เดินทางไม่น้อยกว่า 60% ของระยะทางขบวนรถ สำรองล่วงหน้าได้สูงสุดกี่วัน',a:['90 วัน','30 วัน','1 วัน'],c:0,x:'ตั้งแต่ 60% ของระยะทางขบวนรถขึ้นไป สำรองได้ภายใน 90 วัน'},
+ {e:'📆',q:'เดินทาง 25–59% ของระยะทางขบวนรถ สำรองล่วงหน้าได้สูงสุดกี่วัน',a:['30 วัน','90 วัน','2 ชั่วโมง'],c:0,x:'ช่วง 25–59% สำรองได้ภายใน 30 วัน'},
+ {e:'⏱️',q:'รถที่นั่งอิสระหรือรถธรรมดา ซื้อได้เมื่อใด',a:['วันเดินทางก่อนรถออกไม่เกิน 2 ชั่วโมง','ล่วงหน้า 90 วันทุกกรณี','หลังรถออกแล้วเท่านั้น'],c:0,x:'รถไม่สำรองที่นั่งซื้อได้ในวันเดินทาง ก่อนรถออกไม่เกิน 2 ชั่วโมง'},
+ {e:'💸',q:'ไม่มีตั๋วบนขบวนรถด่วนพิเศษ รถด่วน หรือรถเร็ว อาจมีค่าธรรมเนียมเพิ่มเท่าไร',a:['250 บาท','100 บาท','20 บาท'],c:0,x:'ขบวนกลุ่มนี้เรียกเก็บค่าธรรมเนียมซื้อตั๋วบนรถ 250 บาท'},
+ {e:'💸',q:'ขบวนรถอื่นนอกเหนือจากด่วนพิเศษ ด่วน และเร็ว มีค่าธรรมเนียมซื้อตั๋วบนรถเท่าไร',a:['100 บาท','250 บาท','ไม่มีทุกกรณี'],c:0,x:'ขบวนอื่นเรียกเก็บ 100 บาท เว้นแต่เข้าข้อยกเว้น'},
+ {e:'📝',q:'เปลี่ยนแปลงก่อนขบวนออก 3 วันขึ้นไป คิดค่าธรรมเนียมกี่เปอร์เซ็นต์',a:['20%','30%','50%'],c:0,x:'3 วันขึ้นไปคิด 20% ตามหลักเกณฑ์'},
+ {e:'📝',q:'เปลี่ยนแปลงก่อนขบวนออก 1 วัน คิดค่าธรรมเนียมกี่เปอร์เซ็นต์',a:['50%','30%','20%'],c:0,x:'ก่อนขบวนออก 1 วันคิด 50%'},
+ {e:'🕒',q:'การเปลี่ยนแปลงการเดินทางต้องแจ้งก่อนรถออกอย่างน้อยเท่าไร',a:['24 ชั่วโมง','3 ชั่วโมง','10 นาที'],c:0,x:'ต้องนำตั๋วมาแจ้งก่อนขบวนออกไม่น้อยกว่า 24 ชั่วโมง'},
+ {e:'📅',q:'ตั๋วเดือนสามารถเปลี่ยนแปลงหรือคืนเงินได้หรือไม่',a:['ไม่ได้','ได้ไม่จำกัด','ได้เฉพาะวันหยุด'],c:0,x:'ตั๋วเดือนไม่อนุญาตให้เปลี่ยนแปลงการเดินทางและไม่คืนเงิน'}
 ];
 
-const state = {
-  nickname:'', totalScore:0, totalStars:0, currentLevel:0, unlocked:0,
-  completed:Array(5).fill(false), levelScores:Array(5).fill(0), levelStars:Array(5).fill(0),
-  lessons:[], runStartedAt:null, backendSessionId:null, activeCleanup:null
-};
+const routeOrders=[
+ {q:'เรียงสถานีจากกรุงเทพมาทางชุมทางฉะเชิงเทรา',items:['เปรง','คลองแขวงกลั่น','คลองบางพระ','บางเตย','ชุมทางฉะเชิงเทรา']},
+ {q:'เรียงย้อนจากชุมทางฉะเชิงเทราไปทางกรุงเทพ',items:['บางเตย','คลองบางพระ','คลองแขวงกลั่น','เปรง']},
+ {q:'ตรวจลำดับข้อมูลก่อนลงสถานี',items:['ฟังประกาศชื่อสถานี','ตรวจชื่อสถานีบนป้าย','ตรวจจังหวัดและจุดหมาย','ลงเมื่อรถหยุดสนิท']}
+];
 
-let supabase = null;
-let backendReady = false;
-let currentUser = null;
-let soundOn = true;
-let audioContext = null;
-let leaderboardPeriod = 'daily';
+const emergencyQuiz=[
+ {e:'🤒',q:'พบผู้โดยสารหน้ามืดบนชานชาลา สิ่งแรกที่ควรทำคืออะไร',a:['แจ้งเจ้าหน้าที่และกันพื้นที่ให้ปลอดภัย','ปล่อยให้อยู่คนเดียว','พาลงไปนั่งใกล้ราง'],c:0,x:'แจ้งเจ้าหน้าที่เพื่อประสานความช่วยเหลือและลดความเสี่ยงเพิ่มเติม'},
+ {e:'📦',q:'พบกระเป๋าไม่มีเจ้าของ ควรทำอย่างไร',a:['ไม่สัมผัส ถอยห่าง และแจ้งเจ้าหน้าที่','เปิดดูหาเบอร์โทร','นำกลับบ้าน'],c:0,x:'ไม่ควรสัมผัสหรือเคลื่อนย้ายสิ่งของต้องสงสัย'},
+ {e:'👦',q:'พบเด็กพลัดหลงในสถานี ควรทำอย่างไร',a:['พาไปหาเจ้าหน้าที่ในจุดที่ปลอดภัย','โพสต์ภาพเด็กทันที','ปล่อยให้เดินหาเอง'],c:0,x:'แจ้งเจ้าหน้าที่และดูแลเด็กในพื้นที่ปลอดภัย ไม่เผยแพร่ข้อมูลโดยไม่จำเป็น'},
+ {e:'🎒',q:'ผู้โดยสารแจ้งของหาย สิ่งใดเหมาะสมที่สุด',a:['แจ้งรายละเอียด เวลา จุดที่พบเห็นล่าสุดต่อเจ้าหน้าที่','เข้าไปรื้อกระเป๋าคนอื่น','ข้ามรางไปค้นเอง'],c:0,x:'ให้ข้อมูลที่ชัดเจนและปฏิบัติตามขั้นตอนของสถานี'},
+ {e:'🔥',q:'ได้กลิ่นไหม้หรือเห็นควันผิดปกติ ควรทำอย่างไร',a:['แจ้งเจ้าหน้าที่ทันทีและออกห่าง','เข้าไปตรวจคนเดียว','ใช้ลิฟต์หรือทางปิดกั้น'],c:0,x:'แจ้งเหตุและเคลื่อนตัวตามคำแนะนำ ไม่เข้าไปเสี่ยง'},
+ {e:'🚆',q:'ผู้โดยสารมาสายและรถเริ่มเคลื่อนที่ ควรแนะนำอย่างไร',a:['หยุด ไม่วิ่งตาม และติดต่อเจ้าหน้าที่','กระโดดขึ้นประตูท้าย','เกาะขบวนรถไว้ก่อน'],c:0,x:'ความปลอดภัยสำคัญกว่าเวลาเดินทาง'},
+ {e:'🚧',q:'พบคนกำลังข้ามรางโดยไม่มอง ควรทำอย่างไร',a:['เตือนจากระยะปลอดภัยและแจ้งเจ้าหน้าที่','ผลักให้ข้ามเร็วขึ้น','เดินตามไปด้วย'],c:0,x:'อย่าเข้าไปอยู่ในเขตอันตราย ให้เตือนและแจ้งเจ้าหน้าที่'},
+ {e:'🚬',q:'พบผู้สูบบุหรี่ในพื้นที่ห้ามสูบ ควรทำอย่างไร',a:['แจ้งเตือนสุภาพหรือแจ้งเจ้าหน้าที่','โต้เถียงรุนแรง','ปล่อยก้นบุหรี่ลงราง'],c:0,x:'ใช้วิธีสุภาพและให้เจ้าหน้าที่ช่วยดำเนินการ'}
+];
 
-function isBackendConfigured(){
-  return Boolean(CONFIG.SUPABASE_URL && CONFIG.SUPABASE_PUBLISHABLE_KEY && !String(CONFIG.SUPABASE_URL).includes('YOUR_') && !String(CONFIG.SUPABASE_PUBLISHABLE_KEY).includes('YOUR_'));
+const baggageItems=[
+ {q:'กระเป๋าเดินทางวางชิดตัว ไม่กีดขวาง',a:'เหมาะสม'},{q:'กระเป๋าใบใหญ่ขวางทางเดิน',a:'ต้องจัดใหม่'},{q:'กล่องไม่มีเจ้าของ',a:'แจ้งเจ้าหน้าที่'},{q:'ของวางใกล้ขอบชานชาลา',a:'ต้องจัดใหม่'},{q:'สัมภาระอยู่กับเจ้าของและปิดเรียบร้อย',a:'เหมาะสม'},{q:'ของต้องสงสัยมีกลิ่นหรือเสียงผิดปกติ',a:'แจ้งเจ้าหน้าที่'},{q:'กระเป๋าวางบนที่นั่งจนผู้อื่นไม่มีที่นั่ง',a:'ต้องจัดใหม่'},{q:'ผู้โดยสารตรวจสัมภาระก่อนออกจากสถานี',a:'เหมาะสม'}
+];
+const baggageChoices=['เหมาะสม','ต้องจัดใหม่','แจ้งเจ้าหน้าที่'];
+
+const announcements=[
+ {text:'โปรดทราบ ขบวนรถที่ 383 ออกจากกรุงเทพเวลา 19 นาฬิกา ถึงสถานีคลองบางพระเวลา 20 นาฬิกา 39 นาที และออกเวลา 20 นาฬิกา 40 นาที',q:'ขบวน 383 ถึงคลองบางพระเวลาใด',a:['20:39','19:00','20:40'],c:0,x:'ขบวน 383 ถึง 20:39 และออก 20:40'},
+ {text:'ขอความร่วมมือผู้โดยสารยืนรอหลังเส้นสีเหลือง และรอให้ขบวนรถหยุดสนิทก่อนขึ้นหรือลง',q:'ผู้โดยสารควรเข้าใกล้ประตูเมื่อใด',a:['เมื่อรถหยุดสนิท','ขณะรถยังเคลื่อนที่','ก่อนรถเข้าเทียบ'],c:0,x:'รอให้รถหยุดสนิทก่อนเสมอ'},
+ {text:'ผู้โดยสารโปรดตรวจสอบขบวนรถ วันเดินทาง สถานีต้นทาง ปลายทาง และเงินทอนก่อนออกจากช่องจำหน่ายตั๋ว',q:'ข้อใดไม่อยู่ในรายการที่ประกาศให้ตรวจ',a:['สีเสื้อเจ้าหน้าที่','ปลายทาง','เงินทอน'],c:0,x:'ควรตรวจข้อมูลบนตั๋วและเงินทอน ไม่เกี่ยวกับสีเสื้อเจ้าหน้าที่'},
+ {text:'สถานีนี้คือสถานีคลองบางพระ จังหวัดฉะเชิงเทรา โปรดตรวจสอบชื่อสถานีให้ถูกต้องก่อนลงจากขบวนรถ',q:'ประกาศนี้ช่วยป้องกันปัญหาใด',a:['ลงผิดสถานีเพราะสับสนกับบางพระ ชลบุรี','ซื้อตั๋วออนไลน์ไม่ได้','ลืมรหัสผ่าน'],c:0,x:'ชื่อคล้ายกันอาจทำให้ลงผิด จึงควรตรวจจังหวัดและจุดหมาย'},
+ {text:'หากพบสิ่งของไม่มีเจ้าของหรือสิ่งผิดปกติ กรุณาอย่าสัมผัส และแจ้งเจ้าหน้าที่สถานีทันที',q:'เมื่อพบสิ่งของไม่มีเจ้าของควรทำอย่างไร',a:['ไม่สัมผัสและแจ้งเจ้าหน้าที่','เปิดดูเพื่อหาเจ้าของ','ย้ายไปไว้ใกล้ราง'],c:0,x:'ควรถอยห่างและแจ้งเจ้าหน้าที่'}
+];
+
+const triageRounds=[
+ {q:'เลือกเหตุการณ์ที่ต้องจัดการก่อนที่สุด',items:[{t:'ผู้โดยสารถามเวลาเดินรถ',p:3},{t:'เด็กกำลังวิ่งใกล้ขอบชานชาลา',p:1},{t:'มีขยะชิ้นเล็กในถังเต็ม',p:4},{t:'ผู้โดยสารขอปากกา',p:5}]},
+ {q:'เลือกเหตุการณ์ที่ต้องจัดการก่อนที่สุด',items:[{t:'พบกล่องไม่มีเจ้าของพร้อมเสียงผิดปกติ',p:1},{t:'ผู้โดยสารขอถ่ายรูปป้ายสถานี',p:5},{t:'มีคนถามชื่อสถานี',p:4},{t:'กระเป๋าวางไม่เป็นระเบียบแต่ยังไม่กีดขวาง',p:3}]},
+ {q:'เลือกเหตุการณ์ที่ต้องจัดการก่อนที่สุด',items:[{t:'ผู้โดยสารหน้ามืดและกำลังจะล้ม',p:1},{t:'ผู้โดยสารอยากทราบส่วนลด',p:4},{t:'มีคนทิ้งขวดข้างถัง',p:3},{t:'ผู้โดยสารขอแผนที่',p:5}]},
+ {q:'เลือกเหตุการณ์ที่ต้องจัดการก่อนที่สุด',items:[{t:'รถเริ่มเคลื่อนที่และมีคนวิ่งตาม',p:1},{t:'ผู้โดยสารขอตารางเวลา',p:4},{t:'มีคนคุยเสียงดัง',p:5},{t:'ผู้โดยสารกำลังจัดกระเป๋า',p:3}]}
+];
+
+function q(e,q,a,c,x){return{e,q,a,c,x}}
+function buildTimeQuestions(){
+ const qs=[];
+ allTrains.forEach(t=>{qs.push(q('⏰',`ขบวน ${t.no} ถึงสถานีคลองบางพระเวลาใด`,shuffle([t.arr,...shuffle(allTrains.filter(x=>x.arr!==t.arr).map(x=>x.arr)).slice(0,2)]),0,`ขบวน ${t.no} ถึงคลองบางพระเวลา ${t.arr}`))});
+ // Correct choice indexes are normalized below after shuffling.
+ return qs.map(item=>{const correctText=item.x.match(/เวลา (\d\d:\d\d)/)?.[1];item.c=item.a.indexOf(correctText);return item});
 }
+function buildDirectionQuestions(){return shuffle(allTrains).map(t=>({e:'🚆',q:`ขบวน ${t.no} เส้นทาง ${t.origin} → ${t.dest} เป็นทิศทางใด`,a:['ไปกรุงเทพ','ออกจากกรุงเทพ'],c:t.dir==='ไปกรุงเทพ'?0:1,x:`ขบวน ${t.no} ${t.dir}`}))}
+function buildPlannerQuestions(){return[
+ q('🌅','ต้องการไปกรุงเทพและมาถึงคลองบางพระก่อน 06:00 ควรเลือกขบวนใด',['384 เวลา 05:29','372 เวลา 06:29','388 เวลา 07:11'],0,'ขบวน 384 ถึงคลองบางพระ 05:29'),
+ q('🌙','ต้องการเดินทางออกจากกรุงเทพมาคลองบางพระเที่ยวล่าสุด ควรเลือกขบวนใด',['383 เวลา 20:39','371 เวลา 19:10','391 เวลา 18:16'],0,'ขบวน 383 เป็นเที่ยวล่าสุดตามตารางชุดนี้ ถึง 20:39'),
+ q('🏙️','ต้องการไปกรุงเทพช่วงประมาณ 14:00 ขบวนใดใกล้ที่สุด',['390 เวลา 14:11','368 เวลา 12:43','282 เวลา 15:41'],0,'ขบวน 390 ถึงคลองบางพระ 14:11'),
+ q('🌆','ต้องการออกจากกรุงเทพมาคลองบางพระหลัง 17:00 แต่ก่อน 18:00 ขบวนใดเหมาะ',['379 เวลา 17:56','391 เวลา 18:16','277 เวลา 16:36'],0,'ขบวน 379 ถึง 17:56 อยู่ในช่วงที่กำหนด'),
+ q('🛤️','ต้องการเดินทางต่อไปปราจีนบุรีจากกรุงเทพ ขบวนใดในตารางมีปลายทางปราจีนบุรี',['371','383','389'],0,'ขบวน 371 มีปลายทางปราจีนบุรี'),
+ q('🚉','ต้องการไปจุกเสม็ดจากกรุงเทพ ขบวนใดมีปลายทางตรงตามต้องการ',['283','281','275'],0,'ขบวน 283 มีปลายทางจุกเสม็ด')
+]}
+
+function normalizeQuestionChoices(items){return items.map(item=>{if(item._normalized)return item;const correct=item.a[item.c],choices=shuffle(item.a);return{...item,a:choices,c:choices.indexOf(correct),_normalized:true}})}
+function finalPool(){return normalizeQuestionChoices([...safetyScenarios.map(s=>q(s.e,s.q,['ปลอดภัย','เสี่ยง'],s.safe?0:1,s.x)),...childQuiz,...ticketBoss,...buildDirectionQuestions(),...buildPlannerQuestions(),...emergencyQuiz])}
+
+const tips=['สถานีคลองบางพระอยู่จังหวัดฉะเชิงเทรา โปรดอย่าสับสนกับบางพระ จังหวัดชลบุรี','ขบวน 383 กรุงเทพออก 19:00 ถึงคลองบางพระ 20:39 และออก 20:40','ยืนรอหลังเส้นสีเหลืองและรอให้รถหยุดสนิท','ตรวจวันเดินทาง ปลายทาง และเงินทอนก่อนออกจากช่องขาย','พบสิ่งของไม่มีเจ้าของ อย่าสัมผัสและแจ้งเจ้าหน้าที่ทันที'];
+
+function showScreen(name){Object.values(screens).forEach(s=>s.classList.remove('active'));screens[name].classList.add('active');scrollTo({top:0,behavior:'smooth'})}
+function setBanner(text,type=''){els.banner.textContent=text;els.banner.className=`banner ${type}`.trim()}
+function toast(text){els.toast.textContent=text;els.toast.classList.add('show');setTimeout(()=>els.toast.classList.remove('show'),1800)}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function esc(t){return String(t).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]))}
+function beep(f=520,d=.07,type='sine',v=.06){if(!soundOn)return;try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(audioCtx.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+d);o.stop(audioCtx.currentTime+d)}catch{}}
+function confetti(n=30){const colors=['#800000','#ffc95c','#ccefdc','#cfeaff','#ffd7e2'];for(let i=0;i<n;i++){const p=document.createElement('i');p.className='confetti';p.style.left=`${Math.random()*100}%`;p.style.background=colors[i%colors.length];p.style.animationDelay=`${Math.random()*.5}s`;els.confetti.appendChild(p);setTimeout(()=>p.remove(),2500)}}
+function renderStars(n,max=3){return Array.from({length:max},(_,i)=>i<n?'⭐':'☆').join('')}
+function cleanup(){if(state.cleanup){try{state.cleanup()}catch{}state.cleanup=null}}
+function metricShell(time=0){return`<div class="metric-row"><div class="metric"><small>คะแนน</small><b id="mScore">0</b></div><div class="metric"><small>ถูก</small><b id="mCorrect">0</b></div><div class="metric"><small>ข้อ</small><b id="mIndex">1</b></div><div class="metric"><small>เวลา</small><b id="mTime">${time||'—'}</b></div></div>${time?'<div class="timer-track"><div id="timerFill" class="timer-fill"></div></div>':''}<div class="game-body" id="gameBody"></div>`}
+function progressDots(total,index){return`<div class="progress-dots">${Array.from({length:total},(_,i)=>`<span class="dot ${i<index?'done':i===index?'now':''}"></span>`).join('')}</div>`}
 
 async function initBackend(){
-  if(!isBackendConfigured()){
-    showBanner('โหมดทดลอง: เกมเล่นได้ครบ แต่ยังไม่บันทึกคะแนนกลาง กรุณาตั้งค่า Supabase ในส่วน KBP_CONFIG', 'error');
-    return;
-  }
-  try{
-    supabase = createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_PUBLISHABLE_KEY, { auth:{ persistSession:true, autoRefreshToken:true } });
-    const { data:{ session } } = await supabase.auth.getSession();
-    if(session){ currentUser = session.user; }
-    else{
-      const { data, error } = await supabase.auth.signInAnonymously();
-      if(error) throw error;
-      currentUser = data.user;
-    }
-    backendReady = Boolean(currentUser);
-    hideBanner();
-  }catch(error){
-    console.error(error);
-    showBanner('เชื่อมต่อฐานข้อมูลไม่สำเร็จ เกมยังเล่นได้ แต่คะแนนกลางจะไม่ถูกบันทึก', 'error');
-  }
+ try{client=createClient(window.KBP_CONFIG.SUPABASE_URL,window.KBP_CONFIG.SUPABASE_PUBLISHABLE_KEY);let {data:{session}}=await client.auth.getSession();if(!session){const r=await client.auth.signInAnonymously();if(r.error)throw r.error;session=r.data.session}backendReady=!!session;setBanner('เชื่อมต่อระบบคะแนนกลางแล้ว คะแนนและความคืบหน้าจะบันทึกออนไลน์','success')}
+ catch(e){console.error(e);backendReady=false;setBanner('เชื่อมต่อคะแนนกลางไม่สำเร็จ กรุณาตรวจอินเทอร์เน็ตหรือการตั้งค่าฐานข้อมูล','error')}
 }
-
-function showBanner(message,type=''){
-  els.connectionBanner.textContent = message;
-  els.connectionBanner.className = `connection-banner ${type}`.trim();
-}
-function hideBanner(){ els.connectionBanner.className = 'connection-banner hidden'; }
-
-async function registerNickname(nickname){
-  if(!backendReady) return false;
-  const { error } = await supabase.rpc('register_player', { p_nickname:nickname });
-  if(error) throw error;
-  return true;
-}
-
-async function createBackendSession(){
-  state.backendSessionId = null;
-  if(!backendReady) return;
-  try{
-    const { data, error } = await supabase.rpc('start_game_session');
-    if(error) throw error;
-    state.backendSessionId = data;
-  }catch(error){
-    console.error(error);
-    showBanner('เริ่มเซสชันคะแนนกลางไม่สำเร็จ รอบนี้อาจไม่ถูกบันทึก', 'error');
-  }
-}
-
-async function submitBackendScore(){
-  if(!backendReady || !state.backendSessionId){
-    return { ok:false, message:'รอบนี้อยู่ในโหมดทดลอง จึงยังไม่ได้ส่งคะแนนขึ้นอันดับกลาง' };
-  }
-  try{
-    const duration = Math.max(1, Math.round((Date.now() - state.runStartedAt) / 1000));
-    const payload = {
-      p_session_id:state.backendSessionId,
-      p_total_score:state.totalScore,
-      p_total_stars:state.totalStars,
-      p_correct_answers:state.lessons.length,
-      p_level_scores:state.levelScores,
-      p_duration_seconds:duration
-    };
-    const { data, error } = await supabase.rpc('submit_game_session', payload);
-    if(error) throw error;
-    return { ok:true, message:`บันทึกคะแนนกลางแล้ว${data?.rank ? ` • อันดับปัจจุบัน ${data.rank}` : ''}` };
-  }catch(error){
-    console.error(error);
-    return { ok:false, message:`บันทึกคะแนนไม่สำเร็จ: ${error.message || 'กรุณาลองใหม่'}` };
-  }
-}
-
-function showScreen(name){
-  Object.entries(screens).forEach(([key,el])=>el.classList.toggle('active',key===name));
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function resetRun(){
-  cleanupActiveLevel();
-  state.totalScore=0; state.totalStars=0; state.currentLevel=0; state.unlocked=0;
-  state.completed=Array(5).fill(false); state.levelScores=Array(5).fill(0); state.levelStars=Array(5).fill(0);
-  state.lessons=[]; state.runStartedAt=Date.now(); state.backendSessionId=null;
-  updateStats(); renderMap();
-}
-
-async function startNewRun(){
-  resetRun();
-  await createBackendSession();
-  showScreen('map');
-  renderMap();
-}
-
-function updateStats(){
-  els.profileNickname.textContent=state.nickname || 'ผู้โดยสาร';
-  els.totalScore.textContent=state.totalScore.toLocaleString('th-TH');
-  els.totalStars.textContent=state.totalStars;
-  els.liveTotalScore.textContent=state.totalScore.toLocaleString('th-TH');
-}
-
+async function registerPlayer(name){if(!backendReady)throw new Error('Backend unavailable');const r=await client.rpc('register_player',{p_nickname:name});if(r.error)throw r.error}
+async function loadProgress(){if(!backendReady)return;const r=await client.rpc('get_player_progress',{});if(r.error)throw r.error;const d=r.data||{};state.profile=d.profile||{};state.progress={};(d.levels||[]).forEach(x=>state.progress[x.level_id]=x);updateProfile()}
+function updateProfile(){els.profileName.textContent=state.nickname||state.profile.nickname||'ผู้โดยสาร';els.campaignScore.textContent=Number(state.profile.best_score||0).toLocaleString('th-TH');els.campaignStars.textContent=`${state.profile.total_stars||0}/60`;els.highestLevel.textContent=`${state.profile.highest_level||0}/20`}
+function isUnlocked(id){if(id===1)return true;return Number(state.progress[id-1]?.best_stars||0)>=2}
 function renderMap(){
-  updateStats();
-  els.mapTip.textContent=mapTips[Math.floor(Math.random()*mapTips.length)];
-  const line=els.levelMap.querySelector('.rail-line');
-  els.levelMap.innerHTML='';
-  els.levelMap.appendChild(line || Object.assign(document.createElement('div'),{className:'rail-line'}));
-  LEVELS.forEach((level,index)=>{
-    const unlocked=index<=state.unlocked;
-    const completed=state.completed[index];
-    const button=document.createElement('button');
-    button.type='button'; button.className='level-card'; button.disabled=!unlocked || completed;
-    button.style.setProperty('--level-bg',level.color);
-    const starHTML=[0,1,2].map(i=>`<span class="${i<state.levelStars[index]?'':'off'}">⭐</span>`).join('');
-    button.innerHTML=`
-      <span class="level-icon">${level.icon}</span>
-      <span class="level-copy"><small>LEVEL ${level.id}</small><b>${level.name}</b><p>${level.desc}</p></span>
-      <span class="level-status">${!unlocked?'<span class="lock">🔒</span>':completed?`<span class="mini-stars">${starHTML}</span><span class="play-pill">ผ่านแล้ว</span>`:'<span class="play-pill">เริ่มเล่น</span>'}</span>`;
-    if(unlocked && !completed) button.addEventListener('click',()=>launchLevel(index));
-    els.levelMap.appendChild(button);
-  });
+ els.map.innerHTML=zones.map(z=>`<section class="zone ${z.class}"><div class="zone-title"><div class="zone-icon">${z.icon}</div><div><h3>${z.name}</h3><p>${z.desc}</p></div></div><div class="level-grid">${levels.filter(l=>l.z===z.id).map(l=>{const p=state.progress[l.id]||{},un=isUnlocked(l.id);return`<button class="level-card ${l.boss?'boss':''} ${un?'':'locked'}" data-level="${l.id}" ${un?'':'disabled'}><span class="level-no">ด่าน ${l.id}</span>${un?'':'<span class="lock">🔒</span>'}<div class="level-icon">${l.icon}</div><strong>${l.name}</strong><small>${l.sub}</small><div class="mini-stars">${renderStars(p.best_stars||0)}</div></button>`}).join('')}</div></section>`).join('');
+ $$('.level-card[data-level]').forEach(b=>b.addEventListener('click',()=>startLevel(Number(b.dataset.level))));els.mapTip.textContent=tips[Math.floor(Math.random()*tips.length)];updateProfile();
 }
 
-function launchLevel(index){
-  cleanupActiveLevel();
-  state.currentLevel=index;
-  els.levelNumber.textContent=`LEVEL ${index+1}`;
-  els.levelTitle.textContent=LEVELS[index].name;
-  updateStats();
-  showScreen('level');
-  [startLevelOne,startLevelTwo,startLevelThree,startLevelFour,startLevelFive][index]();
+async function startLevel(id){
+ cleanup();const level=levels.find(x=>x.id===id);if(!level||!isUnlocked(id)){toast('ต้องผ่านด่านก่อนหน้าด้วยอย่างน้อย 2 ดาว');return}
+ state.currentLevel=level;state.sessionId=null;state.startedAt=Date.now();els.gameIcon.textContent=level.icon;els.gameTitle.textContent=`ด่าน ${id}: ${level.name}`;els.gameSubtitle.textContent=level.sub;els.gameContent.innerHTML='<div class="loading">กำลังเตรียมภารกิจ...</div>';showScreen('game');
+ if(backendReady){const r=await client.rpc('start_level_session',{p_level_id:id});if(r.error){console.error(r.error);toast('ยังเริ่มด่านไม่ได้: '+r.error.message);showScreen('map');return}state.sessionId=r.data}
+ const handlers={tap:runTap,binary:()=>runQuiz(normalizeQuestionChoices(shuffle(safetyScenarios).slice(0,7).map(s=>q(s.e,s.q,['ปลอดภัย','เสี่ยง'],s.safe?0:1,s.x))),7,60),spot:runSpot,orderSafety:()=>runOrder(shuffle(safetyOrders).slice(0,3)),rapidSafety:()=>runRapid(normalizeQuestionChoices(shuffle(safetyScenarios).slice(0,10).map(s=>q(s.e,s.q,['ปลอดภัย','เสี่ยง'],s.safe?0:1,s.x))),10,7,'ความปลอดภัย'),ticketInspect:runTicketInspect,quizChild:()=>runQuiz(normalizeQuestionChoices(shuffle(childQuiz).slice(0,7)),7,65),matchRights:()=>runMatch(shuffle(rightsItems).slice(0,7),rightChoices),multiMonthly:()=>runMulti(shuffle(monthlyMulti),4),rapidTicket:()=>runRapid(normalizeQuestionChoices(shuffle(ticketBoss).slice(0,10)),10,8,'กฎตั๋ว'),orderRoute:()=>runOrder(routeOrders),direction:()=>runQuiz(normalizeQuestionChoices(buildDirectionQuestions().slice(0,8)),8,65),quizTime:()=>runTimeQuiz(),planner:()=>runQuiz(normalizeQuestionChoices(buildPlannerQuestions()),6,70,true),rapidRoute:()=>runRapid(normalizeQuestionChoices(shuffle([...buildTimeQuestions(),...buildDirectionQuestions(),...buildPlannerQuestions()]).slice(0,12)),12,8,'เส้นทาง'),matchBaggage:()=>runMatch(shuffle(baggageItems).slice(0,7),baggageChoices),quizEmergency:()=>runQuiz(normalizeQuestionChoices(shuffle(emergencyQuiz).slice(0,7)),7,65),announcement:runAnnouncement,triage:runTriage,finalBoss:()=>runFinalBoss()};
+ handlers[level.type]();
 }
 
-function cleanupActiveLevel(){
-  if(typeof state.activeCleanup==='function') state.activeCleanup();
-  state.activeCleanup=null;
+async function finishLevel({score,stars,correct,total,lesson,message,details={}}){
+ cleanup();score=Math.max(0,Math.min(5000,Math.round(score)));stars=Math.max(1,Math.min(3,stars));correct=Math.max(0,Math.min(40,correct));const elapsed=Math.max(5,Math.floor((Date.now()-state.startedAt)/1000));
+ els.resultIcon.textContent=stars===3?'🏆':stars===2?'🌟':'🚆';els.resultTitle.textContent=stars===3?'ยอดเยี่ยม ได้ 3 ดาว':stars===2?'ผ่านด่าน ได้ 2 ดาว':'ผ่านด่าน ได้ 1 ดาว';els.resultStars.textContent=renderStars(stars);els.resultScore.textContent=score.toLocaleString('th-TH');els.resultMessage.textContent=message||`ตอบถูก ${correct} จาก ${total}`;els.resultLesson.textContent=lesson;els.saveStatus.textContent='กำลังบันทึกคะแนนกลาง...';els.saveStatus.className='save-status';els.result.showModal();if(stars===3)confetti(42);else confetti(18);
+ if(!backendReady||!state.sessionId){els.saveStatus.textContent='เล่นในโหมดทดลอง จึงยังไม่บันทึกคะแนนกลาง';els.saveStatus.className='save-status error';return}
+ try{const wait=Math.max(0,5200-(Date.now()-state.startedAt));if(wait)await new Promise(r=>setTimeout(r,wait));const r=await client.rpc('submit_level_session',{p_session_id:state.sessionId,p_score:score,p_stars:stars,p_correct_answers:correct,p_duration_seconds:Math.max(5,elapsed),p_details:{type:state.currentLevel.type,total,...details}});if(r.error)throw r.error;els.saveStatus.textContent=`บันทึกแล้ว • อันดับรวมประมาณ ${r.data?.rank||'-'}`;els.saveStatus.className='save-status success';await loadProgress()}catch(e){console.error(e);els.saveStatus.textContent='บันทึกไม่สำเร็จ: '+e.message;els.saveStatus.className='save-status error'}
 }
 
-function completeLevel(score,stars,lesson,summary){
-  cleanupActiveLevel();
-  const index=state.currentLevel;
-  if(state.completed[index]) return;
-  state.completed[index]=true;
-  state.levelScores[index]=Math.max(0,Math.round(score));
-  state.levelStars[index]=stars;
-  state.totalScore+=state.levelScores[index];
-  state.totalStars+=stars;
-  if(lesson && !state.lessons.includes(lesson)) state.lessons.push(lesson);
-  state.unlocked=Math.min(4,index+1);
-  updateStats();
-
-  els.levelResultIcon.textContent=stars===3?'🏆':stars===2?'🌟':'🚆';
-  els.levelResultTitle.textContent=stars===3?'ยอดเยี่ยมมาก':stars===2?'ผ่านอย่างสวยงาม':'ผ่านภารกิจแล้ว';
-  els.levelResultStars.innerHTML=renderStars(stars,3);
-  els.levelResultText.textContent=summary;
-  els.levelResultScore.textContent=state.levelScores[index].toLocaleString('th-TH');
-  els.levelLesson.innerHTML=`<b>ความรู้จากด่านนี้</b><br>${escapeHtml(lesson)}`;
-  els.continueButton.textContent=index===4?'ดูผลการเดินทาง':'ไปด่านถัดไป';
-  els.levelResultDialog.showModal();
-  confetti(stars===3?28:14);
+function runTap(){
+ const duration=25;let time=duration,score=0,correct=0,combo=0,stopped=false,spawn,timer;
+ els.gameContent.innerHTML=metricShell(duration);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');idx.textContent='เก็บ';body.innerHTML='<div class="tap-area" id="tapArea"><div class="rail"></div></div><div class="feedback ok">แตะ 🎫 และ ⭐ หลีกเลี่ยง ⛔ ยิ่งต่อคอมโบ คะแนนยิ่งสูง</div>';const area=$('#tapArea');
+ function create(){if(stopped)return;const r=Math.random();let icon='🎫',points=12,kind='';if(r>.75&&r<=.9){icon='⭐';points=30;kind='bonus'}else if(r>.9){icon='⛔';points=-20;kind='bad'}const b=document.createElement('button');b.className=`tap-item ${kind}`;b.textContent=icon;const rect=area.getBoundingClientRect(),size=67;b.style.left=`${8+Math.random()*Math.max(5,rect.width-size-16)}px`;b.style.top=`${55+Math.random()*Math.max(20,rect.height-size-145)}px`;let gone=false;const life=setTimeout(()=>{gone=true;b.remove();if(kind!=='bad')combo=0},800+Math.random()*500);b.addEventListener('pointerdown',e=>{e.preventDefault();if(gone)return;gone=true;clearTimeout(life);if(kind==='bad'){score=Math.max(0,score+points);combo=0;beep(150,.14,'sawtooth')}else{combo++;const mul=Math.min(4,1+Math.floor(combo/5));const gain=points*mul;score+=gain;correct++;points=gain;beep(kind==='bonus'?900:580,.07,'triangle')}s.textContent=score;c.textContent=correct;b.remove();const f=document.createElement('span');f.className='float-score';f.textContent=points>0?`+${points}`:points;f.style.color=points>0?'#16704a':'#b72e3d';f.style.left=b.style.left;f.style.top=b.style.top;area.appendChild(f);setTimeout(()=>f.remove(),700)});area.appendChild(b)}
+ spawn=setInterval(create,480);timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/duration*100}%`;if(time<=0){stopped=true;clearInterval(spawn);clearInterval(timer);area.querySelectorAll('.tap-item').forEach(x=>x.remove());const stars=score>=700?3:score>=450?2:1;finishLevel({score,stars,correct,total:correct,lesson:'การเตรียมตั๋วและสัมภาระให้พร้อมช่วยลดความเร่งรีบและความเสี่ยงบนชานชาลา',message:`เก็บได้ ${correct} ชิ้น ทำคะแนน ${score}`})}},1000);state.cleanup=()=>{stopped=true;clearInterval(spawn);clearInterval(timer)};
 }
 
-function renderStars(value,max=3){
-  return Array.from({length:max},(_,i)=>`<span class="${i<value?'':'off'}">⭐</span>`).join('');
+function runQuiz(items,count,timeLimit=60,showTable=false){
+ items=items.slice(0,count);let i=0,score=0,correct=0,time=timeLimit,locked=false,timer,stopped=false;els.gameContent.innerHTML=metricShell(timeLimit);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function tableHtml(){if(!showTable)return'';return`<div class="timetable"><table><tr><th>ขบวน</th><th>ทิศทาง</th><th>ถึง คบ.</th><th>ปลายทาง</th></tr>${allTrains.slice(0,8).map(x=>`<tr><td>${x.no}</td><td>${x.dir}</td><td>${x.arr}</td><td>${x.dest}</td></tr>`).join('')}</table></div>`}
+ function draw(){if(i>=items.length){done();return}locked=false;const it=items[i];idx.textContent=`${i+1}/${items.length}`;body.innerHTML=`${progressDots(items.length,i)}${tableHtml()}<div class="prompt-card"><div class="prompt-emoji">${it.e||'🧠'}</div><h3>${esc(it.q)}</h3></div><div class="answers">${it.a.map((x,j)=>`<button class="answer" data-i="${j}">${String.fromCharCode(65+j)}. ${esc(x)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>answer(Number(b.dataset.i)))}
+ function answer(v){if(locked)return;locked=true;const it=items[i],ok=v===it.c,buttons=body.querySelectorAll('.answer');buttons.forEach(b=>b.disabled=true);buttons[it.c].classList.add('correct');if(ok){correct++;const gain=120+Math.max(0,time)*2;score+=gain;buttons[v].classList.add('correct');beep(850,.08,'triangle')}else{buttons[v]?.classList.add('wrong');beep(170,.13,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}"><b>${ok?`ถูกต้อง +${120+Math.max(0,time)*2}`:'คำตอบที่ถูกคือข้อ '+String.fromCharCode(65+it.c)}</b><br>${esc(it.x)}</div><button class="primary next-btn" id="nextQ">ข้อต่อไป</button>`;$('#nextQ').onclick=()=>{i++;draw()}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);score+=Math.max(0,time)*3;const rate=correct/items.length,stars=rate>=.86?3:rate>=.65?2:1;finishLevel({score,stars,correct,total:items.length,lesson:'อ่านข้อมูลให้ครบก่อนตัดสินใจ และตรวจสอบประกาศล่าสุดเมื่อเดินทางจริง',message:`ตอบถูก ${correct} จาก ${items.length} ข้อ`,details:{remaining_time:time}})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${Math.max(0,time)/timeLimit*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-function createToolbar({time,label='คะแนนด่าน',score=0,extraLabel='คอมโบ',extra='x1'}){
-  return `<div class="game-toolbar">
-    <div class="game-metric"><small>${label}</small><b id="levelScore">${score}</b></div>
-    <div class="game-metric"><small>${extraLabel}</small><b id="levelExtra">${extra}</b></div>
-    <div class="game-metric"><small>เวลา</small><b id="levelTime">${time}</b></div>
-  </div><div class="time-track"><div class="time-fill" id="timeFill" style="width:100%"></div></div>`;
+function runSpot(){
+ let found=0,score=0,time=45,stopped=false,timer;els.gameContent.innerHTML=metricShell(45);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');idx.textContent='0/5';body.innerHTML=`<div class="scene"><div class="scene-sign">คลองบางพระ • 3 ชานชาลา</div><div class="yellow-line"></div><div class="scene-rail"></div><button class="hazard" data-h="1" style="left:8%;top:58%">🏃</button><button class="hazard" data-h="1" style="left:36%;top:51%">🎒</button><button class="hazard" data-h="1" style="right:10%;top:45%">🚬</button><button class="hazard" data-h="1" style="left:57%;top:62%">👦</button><button class="hazard" data-h="1" style="left:18%;top:24%">📦</button><button class="hazard decoy" data-h="0" style="right:24%;top:20%">🧍</button><button class="hazard decoy" data-h="0" style="left:45%;top:25%">🗑️</button></div><div class="feedback ok">แตะจุดเสี่ยง 5 จุด: วิ่งใกล้รถ กระเป๋าขวาง สูบบุหรี่ เด็กใกล้ขอบ และของไม่มีเจ้าของ</div>`;
+ body.querySelectorAll('.hazard').forEach(b=>b.onclick=()=>{if(b.classList.contains('found'))return;if(b.dataset.h==='1'){b.classList.add('found');found++;score+=180;c.textContent=found;s.textContent=score;idx.textContent=`${found}/5`;beep(800,.08,'triangle');if(found===5)done()}else{score=Math.max(0,score-60);s.textContent=score;beep(160,.12,'sawtooth')}});
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);score+=time*5;const stars=found===5&&time>=20?3:found===5?2:1;finishLevel({score,stars,correct:found,total:5,lesson:'จุดเสี่ยงเล็ก ๆ เช่น การยืนล้ำเส้น กระเป๋าขวางทาง และการไม่ดูแลเด็ก อาจนำไปสู่อุบัติเหตุได้',message:`พบจุดเสี่ยง ${found} จาก 5 จุด`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/45*100}%`;if(time<=0)done()},1000);state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-function startLevelOne(){
-  const duration=20;
-  let time=duration, score=0, combo=0, spawnTimer, clockTimer, stopped=false;
-  els.levelContent.innerHTML=`<div class="game-card">${createToolbar({time})}<div class="tap-arena" id="tapArena"><div class="station-board">คลองบางพระ • KBP</div></div><div class="game-instructions">แตะ 🎫 และ ⭐ ให้ไว หลีกเลี่ยง ⛔ ยิ่งต่อคอมโบ คะแนนยิ่งเพิ่ม</div></div>`;
-  const arena=$('#tapArena'), scoreEl=$('#levelScore'), extraEl=$('#levelExtra'), timeEl=$('#levelTime'), fill=$('#timeFill');
-
-  function spawn(){
-    if(stopped)return;
-    const roll=Math.random();
-    let type='good',icon='🎫',points=10;
-    if(roll>.75&&roll<=.9){type='bonus';icon='⭐';points=25}
-    if(roll>.9){type='bad';icon='⛔';points=-20}
-    const target=document.createElement('button');
-    target.type='button'; target.className=`tap-target ${type}`; target.textContent=icon;
-    const size=window.innerWidth<520?64:72;
-    const maxX=Math.max(8,arena.clientWidth-size-8), maxY=Math.max(95,arena.clientHeight*.68-size);
-    target.style.left=`${8+Math.random()*(maxX-8)}px`; target.style.top=`${68+Math.random()*(maxY-68)}px`;
-    let active=true;
-    const ttl=setTimeout(()=>{if(active){active=false;target.remove();if(type!=='bad'){combo=0;extraEl.textContent='x1'}}},900);
-    target.addEventListener('pointerdown',e=>{
-      e.preventDefault(); if(!active||stopped)return; active=false; clearTimeout(ttl);
-      const x=target.offsetLeft+20,y=target.offsetTop+10; target.remove(); let gained=points;
-      if(type==='bad'){combo=0;beep(150,.14,'sawtooth');}
-      else{combo++;const mul=Math.min(5,1+Math.floor(combo/5));gained=points*mul;beep(type==='bonus'?900:570,.07,'triangle')}
-      score=Math.max(0,score+gained);scoreEl.textContent=score;extraEl.textContent=`x${Math.min(5,1+Math.floor(combo/5))}`;
-      const floater=document.createElement('span');floater.className='score-float';floater.style.left=`${x}px`;floater.style.top=`${y}px`;floater.style.color=gained>0?'#168b55':'#d73737';floater.textContent=gained>0?`+${gained}`:`${gained}`;arena.appendChild(floater);setTimeout(()=>floater.remove(),750);
-    },{passive:false});
-    arena.appendChild(target);
-  }
-  spawn(); spawnTimer=setInterval(spawn,530);
-  clockTimer=setInterval(()=>{time--;timeEl.textContent=time;fill.style.width=`${time/duration*100}%`;if(time<=0)finish()},1000);
-  function finish(){if(stopped)return;stopped=true;clearInterval(spawnTimer);clearInterval(clockTimer);arena.querySelectorAll('.tap-target').forEach(x=>x.remove());const stars=score>=430?3:score>=260?2:1;completeLevel(score,stars,'ห้ามเร่งรีบขึ้นหรือลงจากขบวนรถที่กำลังเคลื่อนที่ และควรเตรียมตั๋วให้พร้อมก่อนรถเข้า','คุณฝึกความไวและการตัดสินใจในการรอรถไฟเรียบร้อยแล้ว');}
-  state.activeCleanup=()=>{stopped=true;clearInterval(spawnTimer);clearInterval(clockTimer)};
+function runOrder(rounds){
+ let r=0,score=0,correct=0,time=90,selected=[],timer,stopped=false;els.gameContent.innerHTML=metricShell(90);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(r>=rounds.length){done();return}selected=[];const round=rounds[r],options=shuffle(round.items);idx.textContent=`${r+1}/${rounds.length}`;body.innerHTML=`${progressDots(rounds.length,r)}<div class="prompt-card"><div class="prompt-emoji">🧩</div><h3>${esc(round.q)}</h3><p>แตะข้อความตามลำดับที่ถูกต้อง</p></div><div class="order-sequence" id="sequence"></div><div class="order-list">${options.map((x,i)=>`<button class="order-item" data-v="${esc(x)}">${esc(x)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.order-item').forEach(b=>b.onclick=()=>{if(b.classList.contains('chosen'))return;b.classList.add('chosen');selected.push(b.dataset.v);$('#sequence').innerHTML=selected.map((x,i)=>`<span class="order-chip">${i+1}. ${esc(x)}</span>`).join('');if(selected.length===round.items.length)check()})}
+ function check(){const round=rounds[r],ok=round.items.every((x,i)=>x===selected[i]);if(ok){correct++;score+=350+time*2;s.textContent=score;c.textContent=correct;$('#feedback').innerHTML='<div class="feedback ok"><b>ลำดับถูกต้อง</b> ทำได้ดีมาก</div><button class="primary next-btn" id="nextOrder">ชุดถัดไป</button>';beep(850,.08,'triangle');$('#nextOrder').onclick=()=>{r++;draw()}}else{$('#feedback').innerHTML='<div class="feedback no"><b>ลำดับยังไม่ถูก</b> ลองใหม่โดยคิดถึงสิ่งที่ต้องทำก่อนเพื่อความปลอดภัย</div><button class="secondary next-btn" id="retryOrder">ลองใหม่</button>';score=Math.max(0,score-80);s.textContent=score;beep(170,.12,'sawtooth');$('#retryOrder').onclick=draw}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const stars=correct===rounds.length&&time>=30?3:correct===rounds.length?2:1;finishLevel({score,stars,correct,total:rounds.length,lesson:'การทำตามลำดับที่ถูกต้องช่วยลดความเร่งรีบและป้องกันอันตราย',message:`เรียงถูก ${correct} จาก ${rounds.length} ชุด`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/90*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-function startLevelTwo(){
-  const items=shuffle(safetyScenarios).slice(0,6);let index=0,correct=0,score=0,time=48,locked=false,clockTimer,stopped=false;
-  els.levelContent.innerHTML=`<div class="game-card">${createToolbar({time,label:'ตอบถูก',extraLabel:'ข้อ',extra:'1/6'})}<div class="scenario-wrap"><div class="progress-dots" id="scenarioDots"></div><div id="scenarioHost"></div></div></div>`;
-  const scoreEl=$('#levelScore'),extraEl=$('#levelExtra'),timeEl=$('#levelTime'),fill=$('#timeFill'),host=$('#scenarioHost'),dots=$('#scenarioDots');
-  dots.innerHTML=items.map((_,i)=>`<span class="progress-dot ${i===0?'current':''}"></span>`).join('');
-  function draw(){
-    if(index>=items.length){finish();return} const item=items[index];locked=false;extraEl.textContent=`${index+1}/6`;
-    [...dots.children].forEach((d,i)=>d.className=`progress-dot ${i<index?'done':i===index?'current':''}`);
-    host.innerHTML=`<div class="scenario-card"><div class="scenario-emoji">${item.emoji}</div><h3>${item.title}</h3><p>${item.detail}</p></div><div class="choice-grid"><button class="choice-button safe" data-value="true">✅ ปลอดภัย</button><button class="choice-button danger" data-value="false">⚠️ เสี่ยง</button></div><div id="scenarioFeedback"></div>`;
-    host.querySelectorAll('.choice-button').forEach(btn=>btn.addEventListener('click',()=>answer(btn.dataset.value==='true')));
-  }
-  function answer(value){
-    if(locked||stopped)return;locked=true;const item=items[index],ok=value===item.safe;if(ok){correct++;score+=100;beep(820,.1,'triangle')}else beep(170,.14,'sawtooth');scoreEl.textContent=correct;
-    host.querySelectorAll('.choice-button').forEach(b=>b.disabled=true);$('#scenarioFeedback').innerHTML=`<div class="feedback-box ${ok?'ok':'no'}"><b>${ok?'ตอบถูก +100 คะแนน':'ยังไม่ถูก'}</b><br>${item.explanation}</div>`;
-    setTimeout(()=>{index++;draw()},1250);
-  }
-  clockTimer=setInterval(()=>{time--;timeEl.textContent=time;fill.style.width=`${time/48*100}%`;if(time<=0)finish()},1000);
-  function finish(){if(stopped)return;stopped=true;clearInterval(clockTimer);const stars=correct>=6?3:correct>=4?2:1;completeLevel(score,stars,'ประเมินสถานการณ์โดยยึดหลักว่า ต้องไม่เข้าใกล้ราง ไม่กีดขวางทางเดิน และปฏิบัติตามเจ้าหน้าที่','คุณตอบถูก '+correct+' จาก 6 สถานการณ์');}
-  draw();state.activeCleanup=()=>{stopped=true;clearInterval(clockTimer)};
+function runRapid(items,count,seconds,label){
+ items=items.slice(0,count);let i=0,score=0,correct=0,streak=0,qtime=seconds,timer,stopped=false,locked=false;els.gameContent.innerHTML=metricShell(seconds);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(i>=items.length){done();return}locked=false;qtime=seconds;const it=items[i];idx.textContent=`${i+1}/${items.length}`;t.textContent=qtime;fill.style.width='100%';body.innerHTML=`${progressDots(items.length,i)}<div class="prompt-card"><div class="prompt-emoji">${it.e||'⚡'}</div><h3>${esc(it.q)}</h3><p>ตอบภายใน ${seconds} วินาที • สตรีค x${Math.min(3,1+Math.floor(streak/3))}</p></div><div class="answers">${it.a.map((x,j)=>`<button class="answer" data-i="${j}">${esc(x)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>answer(Number(b.dataset.i)));clearInterval(timer);timer=setInterval(()=>{qtime--;t.textContent=qtime;fill.style.width=`${qtime/seconds*100}%`;if(qtime<=0)answer(-1)},1000)}
+ function answer(v){if(locked)return;locked=true;clearInterval(timer);const it=items[i],ok=v===it.c,buttons=body.querySelectorAll('.answer');buttons.forEach(b=>b.disabled=true);buttons[it.c].classList.add('correct');if(ok){streak++;correct++;const mul=Math.min(3,1+Math.floor(streak/3)),gain=120*mul+qtime*8;score+=gain;buttons[v].classList.add('correct');beep(900,.08,'triangle')}else{streak=0;if(v>=0)buttons[v]?.classList.add('wrong');beep(160,.13,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}"><b>${ok?'ถูกต้อง':'ยังไม่ถูก'}</b><br>${esc(it.x)}</div>`;setTimeout(()=>{i++;draw()},900)}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const rate=correct/items.length,stars=rate>=.85?3:rate>=.6?2:1;finishLevel({score,stars,correct,total:items.length,lesson:`ด่านบอส${label}เน้นความแม่นยำภายใต้เวลา ควรอ่านคำถามให้ครบก่อนตอบ`,message:`ตอบถูก ${correct} จาก ${items.length} ข้อ`})}
+ draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-function startLevelThree(){
-  const duration=40;let time=duration,found=0,score=0,stopped=false,clockTimer;
-  const objects=[
-    {emoji:'🧍',x:15,y:54,hazard:true,note:'ยืนล้ำเส้นใกล้ขอบชานชาลา'},
-    {emoji:'🎒',x:44,y:61,hazard:true,note:'กระเป๋าวางกีดขวางทางเดิน'},
-    {emoji:'🚬',x:73,y:36,hazard:true,note:'สูบบุหรี่ในบริเวณรอรถ'},
-    {emoji:'📦',x:80,y:63,hazard:true,note:'สิ่งของไม่มีเจ้าของต้องแจ้งเจ้าหน้าที่'},
-    {emoji:'🧒',x:29,y:39,hazard:true,note:'เด็กอยู่ลำพังใกล้ชานชาลา'},
-    {emoji:'🪑',x:58,y:52,hazard:false,note:'ม้านั่งในพื้นที่รอ ไม่ใช่จุดเสี่ยง'},
-    {emoji:'🕒',x:49,y:17,hazard:false,note:'นาฬิกาสถานี ไม่ใช่จุดเสี่ยง'}
-  ];
-  els.levelContent.innerHTML=`<div class="game-card">${createToolbar({time,label:'พบจุดเสี่ยง',score:'0/5',extraLabel:'คะแนนด่าน',extra:'0'})}<div class="hazard-counter">แตะค้นหาจุดเสี่ยงให้ครบ 5 จุด</div><div class="hazard-scene" id="hazardScene"><div class="yellow-line"></div><div class="hazard-note" id="hazardNote">สังเกตคน สัมภาระ และสิ่งของรอบชานชาลา</div></div></div>`;
-  const scene=$('#hazardScene'),scoreEl=$('#levelScore'),extraEl=$('#levelExtra'),timeEl=$('#levelTime'),fill=$('#timeFill'),note=$('#hazardNote');
-  objects.forEach((obj,i)=>{
-    const btn=document.createElement('button');btn.type='button';btn.className='scene-object';btn.textContent=obj.emoji;btn.style.left=`${obj.x}%`;btn.style.top=`${obj.y}%`;btn.style.transform='translate(-50%,-50%)';btn.setAttribute('aria-label','ตรวจสอบวัตถุในฉาก');
-    btn.addEventListener('click',()=>{
-      if(stopped||btn.classList.contains('found'))return;
-      if(obj.hazard){btn.classList.add('found');found++;score+=100;scoreEl.textContent=`${found}/5`;extraEl.textContent=score;note.textContent=`✅ ${obj.note}`;beep(760,.09,'triangle');if(found===5)setTimeout(finish,550)}
-      else{score=Math.max(0,score-20);extraEl.textContent=score;btn.classList.add('wrong');note.textContent=`ไม่ใช่จุดเสี่ยง: ${obj.note}`;beep(170,.13,'sawtooth');setTimeout(()=>btn.classList.remove('wrong'),300)}
-    });scene.appendChild(btn);
-  });
-  clockTimer=setInterval(()=>{time--;timeEl.textContent=time;fill.style.width=`${time/duration*100}%`;if(time<=0)finish()},1000);
-  function finish(){if(stopped)return;stopped=true;clearInterval(clockTimer);score+=found===5?time*5:0;const stars=found===5?3:found>=3?2:1;completeLevel(score,stars,'สังเกตจุดเสี่ยงรอบตัว และเมื่อพบสิ่งผิดปกติหรือของไม่มีเจ้าของ ให้แจ้งเจ้าหน้าที่โดยไม่สัมผัส','คุณค้นพบจุดเสี่ยง '+found+' จาก 5 จุด');}
-  state.activeCleanup=()=>{stopped=true;clearInterval(clockTimer)};
+function runTicketInspect(){
+ const rounds=[
+  {bad:'date',fields:{train:'383',date:'31/02/2570',from:'กรุงเทพ',to:'คลองบางพระ'},x:'วันที่ 31 กุมภาพันธ์ไม่มีอยู่จริง ต้องตรวจวันเดินทางก่อนออกจากช่องขาย'},
+  {bad:'to',fields:{train:'275',date:'12/08/2569',from:'คลองบางพระ',to:'กรุงเทพ'},x:'ขบวน 275 เป็นขบวนออกจากกรุงเทพไปทางตะวันออก จึงไม่ใช่ขบวนจากคลองบางพระไปกรุงเทพ'},
+  {bad:'train',fields:{train:'999',date:'20/09/2569',from:'คลองบางพระ',to:'กรุงเทพ'},x:'หมายเลขขบวนไม่อยู่ในตารางที่ใช้ ต้องตรวจหมายเลขขบวนให้ตรง'},
+  {bad:'from',fields:{train:'383',date:'20/09/2569',from:'บางพระ ชลบุรี',to:'ชุมทางฉะเชิงเทรา'},x:'สถานีคลองบางพระอยู่จังหวัดฉะเชิงเทรา ไม่ใช่บางพระ ชลบุรี'},
+  {bad:'name',fields:{train:'371',date:'20/09/2569',from:'กรุงเทพ',to:'ปราจีนบุรี',name:'บุคคลอื่น'},x:'ตั๋วสำรองที่นั่งไม่อนุญาตให้โอนสิทธิให้บุคคลอื่นใช้แทน'}
+ ];let i=0,score=0,correct=0,time=70,timer,stopped=false,locked=false;els.gameContent.innerHTML=metricShell(70);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');const labels={train:'ขบวน',date:'วันเดินทาง',from:'ต้นทาง',to:'ปลายทาง',name:'ชื่อผู้เดินทาง'};
+ function draw(){if(i>=rounds.length){done();return}locked=false;const r=rounds[i],f={name:'AOF PASSENGER',...r.fields};idx.textContent=`${i+1}/${rounds.length}`;body.innerHTML=`${progressDots(rounds.length,i)}<div class="ticket"><h3>ตั๋วโดยสารจำลอง</h3><div class="ticket-fields">${Object.keys(f).map(k=>`<button class="ticket-field clickable" data-k="${k}"><small>${labels[k]}</small><b>${esc(f[k])}</b></button>`).join('')}</div></div><div class="feedback ok">แตะช่องข้อมูลที่ผิดหรือผิดปกติ</div><div id="feedback"></div>`;body.querySelectorAll('.ticket-field').forEach(b=>b.onclick=()=>answer(b.dataset.k,b))}
+ function answer(k,b){if(locked)return;locked=true;const r=rounds[i],ok=k===r.bad;body.querySelectorAll('.ticket-field').forEach(x=>x.disabled=true);body.querySelector(`[data-k="${r.bad}"]`).classList.add('correct');if(ok){correct++;score+=300+time*2;b.classList.add('correct');beep(850,.08,'triangle')}else{b.classList.add('wrong');beep(170,.12,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}"><b>${ok?'จับผิดได้ถูกต้อง':'ช่องที่ผิดคือ '+labels[r.bad]}</b><br>${r.x}</div><button class="primary next-btn" id="nextTicket">ข้อต่อไป</button>`;$('#nextTicket').onclick=()=>{i++;draw()}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const stars=correct===5?3:correct>=4?2:1;finishLevel({score,stars,correct,total:5,lesson:'ตรวจหมายเลขขบวน วันเดินทาง ต้นทาง ปลายทาง ชื่อผู้เดินทาง และเงินทอนทุกครั้ง',message:`จับผิดถูก ${correct} จาก 5 ใบ`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/70*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-function startLevelFour(){
-  const items=shuffle(quizBank).slice(0,6);let index=0,correct=0,score=0,time=65,locked=false,stopped=false,clockTimer;
-  els.levelContent.innerHTML=`<div class="game-card">${createToolbar({time,label:'ตอบถูก',extraLabel:'ข้อ',extra:'1/6'})}<div class="quiz-wrap"><div class="progress-dots" id="quizDots"></div><div id="quizHost"></div></div></div>`;
-  const scoreEl=$('#levelScore'),extraEl=$('#levelExtra'),timeEl=$('#levelTime'),fill=$('#timeFill'),host=$('#quizHost'),dots=$('#quizDots');
-  dots.innerHTML=items.map((_,i)=>`<span class="progress-dot ${i===0?'current':''}"></span>`).join('');
-  function draw(){
-    if(index>=items.length){finish();return}const item=items[index];locked=false;extraEl.textContent=`${index+1}/6`;[...dots.children].forEach((d,i)=>d.className=`progress-dot ${i<index?'done':i===index?'current':''}`);
-    host.innerHTML=`<div class="quiz-question"><div class="quiz-icon">${item.icon}</div><h3>${item.q}</h3></div><div class="answer-list">${item.a.map((a,i)=>`<button class="answer-button" data-i="${i}">${String.fromCharCode(65+i)}. ${a}</button>`).join('')}</div><div id="quizFeedback"></div>`;
-    host.querySelectorAll('.answer-button').forEach(btn=>btn.addEventListener('click',()=>answer(Number(btn.dataset.i))));
-  }
-  function answer(value){
-    if(locked||stopped)return;locked=true;const item=items[index],ok=value===item.c;const buttons=[...host.querySelectorAll('.answer-button')];buttons.forEach(b=>b.disabled=true);buttons[item.c].classList.add('correct');
-    if(ok){correct++;score+=120;buttons[value].classList.add('correct');beep(820,.1,'triangle')}else{buttons[value].classList.add('wrong');beep(170,.14,'sawtooth')}scoreEl.textContent=correct;
-    $('#quizFeedback').innerHTML=`<div class="feedback-box ${ok?'ok':'no'}"><b>${ok?'ตอบถูก +120 คะแนน':'เฉลยข้อ '+String.fromCharCode(65+item.c)}</b><br>${item.e}</div><button class="primary-button next-question">ข้อต่อไป</button>`;
-    $('.next-question').addEventListener('click',()=>{index++;draw()});
-  }
-  clockTimer=setInterval(()=>{time--;timeEl.textContent=time;fill.style.width=`${time/65*100}%`;if(time<=0)finish()},1000);
-  function finish(){if(stopped)return;stopped=true;clearInterval(clockTimer);score+=correct===6?time*3:0;const stars=correct>=6?3:correct>=4?2:1;completeLevel(score,stars,'ตรวจสอบตั๋วและข้อมูลการเดินทางให้ครบ พร้อมปฏิบัติตามป้าย ประกาศ และคำแนะนำของเจ้าหน้าที่','คุณตอบถูก '+correct+' จาก 6 ข้อ');}
-  draw();state.activeCleanup=()=>{stopped=true;clearInterval(clockTimer)};
+function runMatch(items,choices){
+ let i=0,score=0,correct=0,time=70,timer,stopped=false,locked=false;els.gameContent.innerHTML=metricShell(70);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(i>=items.length){done();return}locked=false;const it=items[i],opts=shuffle(choices);idx.textContent=`${i+1}/${items.length}`;body.innerHTML=`${progressDots(items.length,i)}<div class="prompt-card"><div class="prompt-emoji">🔗</div><h3>${esc(it.q)}</h3><p>เลือกคำตอบที่จับคู่กัน</p></div><div class="match-grid">${opts.map(x=>`<button class="match-btn" data-v="${esc(x)}">${esc(x)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.match-btn').forEach(b=>b.onclick=()=>answer(b.dataset.v,b))}
+ function answer(v,b){if(locked)return;locked=true;const it=items[i],ok=v===it.a;body.querySelectorAll('.match-btn').forEach(x=>{x.disabled=true;if(x.dataset.v===it.a)x.classList.add('correct')});if(ok){correct++;score+=240+time*2;beep(850,.08,'triangle')}else{b.classList.add('wrong');beep(170,.12,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}"><b>${ok?'จับคู่ถูกต้อง':'คำตอบที่ถูกคือ '+it.a}</b></div><button class="primary next-btn" id="nextMatch">ข้อต่อไป</button>`;$('#nextMatch').onclick=()=>{i++;draw()}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const rate=correct/items.length,stars=rate>=.86?3:rate>=.65?2:1;finishLevel({score,stars,correct,total:items.length,lesson:'สิทธิส่วนลดแต่ละประเภทมีเงื่อนไขและหลักฐานต่างกัน ควรสอบถามเจ้าหน้าที่เมื่อไม่แน่ใจ',message:`จับคู่ถูก ${correct} จาก ${items.length} ข้อ`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/70*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-function startLevelFive(){
-  const items=shuffle(rapidBank).slice(0,10);let index=0,correct=0,score=0,streak=0,questionTime=6,questionTimer,stopped=false,answered=false;
-  els.levelContent.innerHTML=`<div class="game-card"><div class="game-toolbar"><div class="game-metric"><small>ตอบถูก</small><b id="levelScore">0</b></div><div class="game-metric"><small>สตรีค</small><b id="levelExtra">x1</b></div><div class="game-metric"><small>ข้อ</small><b id="levelTime">1/10</b></div></div><div class="time-track"><div class="time-fill" id="timeFill" style="width:100%"></div></div><div class="final-wrap" id="rapidHost"></div></div>`;
-  const scoreEl=$('#levelScore'),extraEl=$('#levelExtra'),questionNo=$('#levelTime'),fill=$('#timeFill'),host=$('#rapidHost');
-  function draw(){
-    if(index>=items.length){finish();return}answered=false;questionTime=6;const item=items[index];questionNo.textContent=`${index+1}/10`;fill.style.width='100%';
-    host.innerHTML=`<div class="rapid-card"><div class="rapid-timer" id="rapidTimer">เหลือ 6 วินาที</div><div class="scenario-emoji">${item.emoji}</div><h3>${item.q}</h3><div class="rapid-answers">${item.choices.map((choice,i)=>`<button class="answer-button" data-i="${i}">${choice}</button>`).join('')}</div><div id="rapidFeedback"></div></div><div class="streak-box">ตอบต่อเนื่องเพื่อรับคะแนนคูณสูงสุด x3</div>`;
-    host.querySelectorAll('.answer-button').forEach(btn=>btn.addEventListener('click',()=>answer(Number(btn.dataset.i))));
-    clearInterval(questionTimer);questionTimer=setInterval(()=>{questionTime--;$('#rapidTimer').textContent=`เหลือ ${questionTime} วินาที`;fill.style.width=`${questionTime/6*100}%`;if(questionTime<=0)answer(-1)},1000);
-  }
-  function answer(value){
-    if(answered||stopped)return;answered=true;clearInterval(questionTimer);const item=items[index],ok=value===item.c;const buttons=[...host.querySelectorAll('.answer-button')];buttons.forEach(b=>b.disabled=true);buttons[item.c].classList.add('correct');
-    if(ok){streak++;correct++;const mul=Math.min(3,1+Math.floor(streak/3));const gained=150*mul;score+=gained;buttons[value].classList.add('correct');$('#rapidFeedback').innerHTML=`<div class="feedback-box ok"><b>ถูกต้อง +${gained}</b><br>${item.lesson}</div>`;beep(880,.09,'triangle')}
-    else{streak=0;if(value>=0)buttons[value].classList.add('wrong');$('#rapidFeedback').innerHTML=`<div class="feedback-box no"><b>${value<0?'หมดเวลา':'ยังไม่ถูก'}</b><br>${item.lesson}</div>`;beep(160,.14,'sawtooth')}
-    scoreEl.textContent=correct;extraEl.textContent=`x${Math.min(3,1+Math.floor(streak/3))}`;if(!state.lessons.includes(item.lesson))state.lessons.push(item.lesson);setTimeout(()=>{index++;draw()},1100);
-  }
-  function finish(){if(stopped)return;stopped=true;clearInterval(questionTimer);const stars=correct>=9?3:correct>=6?2:1;completeLevel(score,stars,'ทบทวนทุกขั้นตอนตั้งแต่การรอรถ การดูแลเด็กและสัมภาระ ไปจนถึงการแจ้งเหตุฉุกเฉิน','คุณตอบถูก '+correct+' จาก 10 ข้อในด่านสุดท้าย');}
-  draw();state.activeCleanup=()=>{stopped=true;clearInterval(questionTimer)};
+function runMulti(items,count){
+ items=items.slice(0,count);let i=0,score=0,correct=0,time=80,timer,stopped=false;els.gameContent.innerHTML=metricShell(80);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(i>=items.length){done();return}const it=items[i];idx.textContent=`${i+1}/${items.length}`;body.innerHTML=`${progressDots(items.length,i)}<div class="prompt-card"><div class="prompt-emoji">☑️</div><h3>${esc(it.q)}</h3><p>เลือกทุกข้อที่ถูก แล้วกดยืนยัน</p></div><div class="answers">${it.opts.map((x,j)=>`<button class="answer" data-i="${j}">${esc(x)}</button>`).join('')}</div><button class="primary next-btn" id="submitMulti">ยืนยันคำตอบ</button><div id="feedback"></div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>b.classList.toggle('selected'));$('#submitMulti').onclick=check}
+ function check(){const it=items[i],selected=body.querySelectorAll('.answer.selected');const vals=[...selected].map(b=>Number(b.dataset.i)).sort(),target=[...it.correct].sort(),ok=JSON.stringify(vals)===JSON.stringify(target);body.querySelectorAll('.answer').forEach((b,j)=>{b.disabled=true;if(target.includes(j))b.classList.add('correct');else if(vals.includes(j))b.classList.add('wrong')});if(ok){correct++;score+=350+time*2;beep(850,.08,'triangle')}else beep(170,.12,'sawtooth');s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}"><b>${ok?'เลือกครบถูกต้อง':'ยังเลือกไม่ครบหรือมีข้อเกิน'}</b><br>${it.x}</div><button class="primary next-btn" id="nextMulti">ข้อต่อไป</button>`;$('#nextMulti').onclick=()=>{i++;draw()}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const stars=correct===items.length?3:correct>=Math.ceil(items.length*.6)?2:1;finishLevel({score,stars,correct,total:items.length,lesson:'ตั๋วเหมาจ่ายเหมาะกับผู้เดินทางประจำ แต่ต้องเลือกประเภทและระยะเวลาให้ตรงกับการใช้งาน',message:`ตอบครบถูก ${correct} จาก ${items.length} ชุด`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/80*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-async function finishRun(){
-  els.levelResultDialog.close();
-  showScreen('final');
-  els.finalScore.textContent=state.totalScore.toLocaleString('th-TH');
-  els.finalStars.innerHTML=renderStars(state.totalStars,15);
-  if(state.totalStars>=13){els.finalMedal.textContent='🏆';els.finalTitle.textContent='นายสถานีดาวเด่น';els.finalMessage.textContent='คุณทั้งเล่นเก่งและเข้าใจกฎความปลอดภัยอย่างยอดเยี่ยม'}
-  else if(state.totalStars>=9){els.finalMedal.textContent='🥇';els.finalTitle.textContent='ผู้โดยสารมือโปร';els.finalMessage.textContent='คุณพร้อมเดินทางอย่างมั่นใจและปลอดภัย'}
-  else{els.finalMedal.textContent='🚆';els.finalTitle.textContent='นักเดินทางดาวรุ่ง';els.finalMessage.textContent='ทำได้ดีมาก ลองเล่นอีกครั้งเพื่อสะสมดาวให้ครบ'}
-  els.learningList.innerHTML=[...new Set(state.lessons)].slice(0,8).map(x=>`<div class="learning-item"><span>✅</span><div>${escapeHtml(x)}</div></div>`).join('');
-  els.saveStatus.className='save-status';els.saveStatus.textContent='กำลังบันทึกคะแนนกลาง...';
-  confetti(42);
-  const result=await submitBackendScore();
-  els.saveStatus.textContent=result.message;els.saveStatus.className=`save-status ${result.ok?'success':'error'}`;
+function runTimeQuiz(){
+ const chosen=shuffle(allTrains).slice(0,8);const questions=chosen.map(t=>{const opts=shuffle([t.arr,...shuffle(allTrains.filter(x=>x.arr!==t.arr).map(x=>x.arr)).slice(0,2)]);return q('⏰',`ขบวน ${t.no} ถึงคลองบางพระเวลาใด`,opts,opts.indexOf(t.arr),`ขบวน ${t.no} ถึงเวลา ${t.arr}`)});els.gameContent.innerHTML=metricShell(75);const table=`<div class="timetable"><table><tr><th>ขบวน</th><th>ทิศทาง</th><th>ถึง คบ.</th><th>ปลายทาง</th></tr>${chosen.map(x=>`<tr><td>${x.no}</td><td>${x.dir}</td><td>${x.arr}</td><td>${x.dest}</td></tr>`).join('')}</table></div>`;runQuizWithIntro(questions,75,table);
+}
+function runQuizWithIntro(items,timeLimit,intro){
+ let i=0,score=0,correct=0,time=timeLimit,timer,stopped=false,locked=false;const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(i>=items.length){done();return}locked=false;const it=items[i];idx.textContent=`${i+1}/${items.length}`;body.innerHTML=`${progressDots(items.length,i)}${intro}<div class="prompt-card"><div class="prompt-emoji">${it.e}</div><h3>${esc(it.q)}</h3></div><div class="answers">${it.a.map((x,j)=>`<button class="answer" data-i="${j}">${esc(x)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>answer(Number(b.dataset.i)))}
+ function answer(v){if(locked)return;locked=true;const it=items[i],ok=v===it.c,buttons=body.querySelectorAll('.answer');buttons.forEach(b=>b.disabled=true);buttons[it.c].classList.add('correct');if(ok){correct++;score+=180+time*2;buttons[v].classList.add('correct');beep(850,.08,'triangle')}else{buttons[v]?.classList.add('wrong');beep(170,.12,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}">${it.x}</div><button class="primary next-btn" id="nextIntro">ข้อต่อไป</button>`;$('#nextIntro').onclick=()=>{i++;draw()}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const rate=correct/items.length,stars=rate>=.86?3:rate>=.65?2:1;finishLevel({score,stars,correct,total:items.length,lesson:'เวลาเดินรถอาจเปลี่ยนแปลง ควรตรวจประกาศและสอบถามเจ้าหน้าที่ก่อนเดินทางจริง',message:`ตอบเวลาได้ ${correct} จาก ${items.length} ข้อ`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/timeLimit*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-async function loadLeaderboard(period=leaderboardPeriod){
-  leaderboardPeriod=period;els.leaderboardList.innerHTML='';els.leaderboardLoading.classList.remove('hidden');els.leaderboardLoading.textContent='กำลังโหลดอันดับ...';
-  if(!backendReady){els.leaderboardLoading.textContent='ยังไม่ได้เชื่อมฐานข้อมูลออนไลน์ กรุณาตั้งค่า Supabase ก่อนใช้อันดับกลาง';return}
-  try{
-    const { data, error }=await supabase.rpc('get_leaderboard',{p_period:period,p_limit:20});if(error)throw error;
-    els.leaderboardLoading.classList.add('hidden');
-    if(!data?.length){els.leaderboardList.innerHTML='<div class="loading-state">ยังไม่มีคะแนนในช่วงนี้ มาเป็นคนแรกกันเลย</div>';return}
-    els.leaderboardList.innerHTML=data.map((row,i)=>`<div class="leader-row"><div class="rank-medal">${['🥇','🥈','🥉'][i]||row.rank_no}</div><div class="leader-name"><b>${escapeHtml(row.nickname)}</b><small>${row.total_stars} ดาว • เล่น ${row.games_played} รอบ</small></div><div class="leader-score"><b>${Number(row.best_score).toLocaleString('th-TH')}</b><small>คะแนน</small></div></div>`).join('');
-  }catch(error){console.error(error);els.leaderboardLoading.textContent='โหลดอันดับไม่สำเร็จ กรุณาตรวจสอบการเชื่อมต่อและตั้งค่าฐานข้อมูล'}
+function runAnnouncement(){
+ const items=shuffle(announcements);let i=0,score=0,correct=0,time=75,timer,stopped=false,locked=false;els.gameContent.innerHTML=metricShell(75);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(i>=items.length){done();return}locked=false;const it=items[i];idx.textContent=`${i+1}/${items.length}`;body.innerHTML=`${progressDots(items.length,i)}<div class="announcement"><div class="speaker">📢</div><p>“${esc(it.text)}”</p></div><div class="prompt-card" style="margin-top:10px"><h3>${esc(it.q)}</h3></div><div class="answers">${it.a.map((x,j)=>`<button class="answer" data-i="${j}">${esc(x)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>answer(Number(b.dataset.i)))}
+ function answer(v){if(locked)return;locked=true;const it=items[i],ok=v===it.c,buttons=body.querySelectorAll('.answer');buttons.forEach(b=>b.disabled=true);buttons[it.c].classList.add('correct');if(ok){correct++;score+=300+time*2;buttons[v].classList.add('correct');beep(850,.08,'triangle')}else{buttons[v]?.classList.add('wrong');beep(170,.12,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}">${it.x}</div><button class="primary next-btn" id="nextAnn">ประกาศถัดไป</button>`;$('#nextAnn').onclick=()=>{i++;draw()}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const stars=correct===items.length?3:correct>=3?2:1;finishLevel({score,stars,correct,total:items.length,lesson:'การตั้งใจฟังประกาศช่วยป้องกันการขึ้นผิดขบวน ลงผิดสถานี และพลาดข้อมูลความปลอดภัย',message:`เข้าใจประกาศ ${correct} จาก ${items.length} ข้อ`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/75*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
 }
 
-function openLeaderboard(){els.leaderboardDialog.showModal();loadLeaderboard(leaderboardPeriod)}
-function shuffle(array){const copy=[...array];for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]]}return copy}
-function escapeHtml(text){return String(text).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]))}
-function showToast(message){els.toast.textContent=message;els.toast.classList.add('show');setTimeout(()=>els.toast.classList.remove('show'),1800)}
-function beep(freq=520,duration=.07,type='sine',volume=.07){if(!soundOn)return;try{audioContext=audioContext||new(window.AudioContext||window.webkitAudioContext)();const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type=type;osc.frequency.value=freq;gain.gain.value=volume;osc.connect(gain);gain.connect(audioContext.destination);osc.start();gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+duration);osc.stop(audioContext.currentTime+duration)}catch{}}
-function confetti(amount=25){const colors=['#800000','#ffc95c','#bdebd6','#bfe7ff','#ffd4de'];for(let i=0;i<amount;i++){const piece=document.createElement('span');piece.className='confetti';piece.style.left=`${Math.random()*100}%`;piece.style.background=colors[i%colors.length];piece.style.animationDelay=`${Math.random()*.5}s`;piece.style.transform=`rotate(${Math.random()*180}deg)`;els.confettiLayer.appendChild(piece);setTimeout(()=>piece.remove(),2500)}}
+function runTriage(){
+ let i=0,score=0,correct=0,time=65,timer,stopped=false,locked=false;els.gameContent.innerHTML=metricShell(65);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(i>=triageRounds.length){done();return}locked=false;const r=triageRounds[i],items=shuffle(r.items);idx.textContent=`${i+1}/${triageRounds.length}`;body.innerHTML=`${progressDots(triageRounds.length,i)}<div class="prompt-card"><div class="prompt-emoji">⚡</div><h3>${r.q}</h3><p>เหตุที่เสี่ยงต่อชีวิตหรืออุบัติเหตุต้องมาก่อน</p></div><div class="answers">${items.map((x,j)=>`<button class="answer" data-p="${x.p}">${esc(x.t)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>answer(Number(b.dataset.p),b))}
+ function answer(p,b){if(locked)return;locked=true;const ok=p===1;body.querySelectorAll('.answer').forEach(x=>{x.disabled=true;if(Number(x.dataset.p)===1)x.classList.add('correct')});if(ok){correct++;score+=420+time*2;beep(850,.08,'triangle')}else{b.classList.add('wrong');beep(170,.12,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}"><b>${ok?'จัดลำดับถูกต้อง':'ควรจัดการเหตุเสี่ยงร้ายแรงก่อน'}</b><br>ให้ความสำคัญกับอันตรายต่อชีวิต รถกำลังเคลื่อนที่ เด็กใกล้ราง ผู้ป่วย และสิ่งของต้องสงสัย</div><button class="primary next-btn" id="nextTri">เหตุการณ์ถัดไป</button>`;$('#nextTri').onclick=()=>{i++;draw()}}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const stars=correct===4?3:correct>=3?2:1;finishLevel({score,stars,correct,total:4,lesson:'หลักสำคัญคือจัดการเหตุที่เสี่ยงต่อชีวิตและอุบัติเหตุก่อน แล้วจึงดูแลงานบริการทั่วไป',message:`จัดลำดับถูก ${correct} จาก 4 เหตุการณ์`})}
+ timer=setInterval(()=>{time--;t.textContent=time;fill.style.width=`${time/65*100}%`;if(time<=0)done()},1000);draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
+}
 
-els.playerForm.addEventListener('submit',async e=>{
-  e.preventDefault();const nickname=els.nickname.value.trim().replace(/\s+/g,' ');if(nickname.length<2){showToast('กรุณาใส่ชื่อเล่นอย่างน้อย 2 ตัวอักษร');return}
-  state.nickname=nickname.slice(0,18);localStorage.setItem('kbp_nickname',state.nickname);els.profileNickname.textContent=state.nickname;
-  const button=els.playerForm.querySelector('button');button.disabled=true;button.textContent='กำลังเชื่อมต่อ...';
-  try{await registerNickname(state.nickname)}catch(error){console.error(error);showBanner('บันทึกชื่อผู้เล่นไม่สำเร็จ แต่ยังเล่นในโหมดทดลองได้','error')}
-  button.disabled=false;button.textContent='เริ่มเล่น';await startNewRun();
-});
+function runFinalBoss(){
+ const items=shuffle(finalPool()).slice(0,15);let i=0,score=0,correct=0,streak=0,hearts=3,qtime=7,timer,stopped=false,locked=false;els.gameContent.innerHTML=metricShell(7);const body=$('#gameBody'),s=$('#mScore'),c=$('#mCorrect'),idx=$('#mIndex'),t=$('#mTime'),fill=$('#timerFill');
+ function draw(){if(i>=items.length||hearts<=0){done();return}locked=false;qtime=7;const it=items[i];idx.textContent=`${i+1}/15`;t.textContent=qtime;fill.style.width='100%';body.innerHTML=`${progressDots(15,i)}<div class="prompt-card"><div class="prompt-emoji">${it.e||'👑'}</div><h3>${esc(it.q)}</h3><p>หัวใจ ${'❤️'.repeat(hearts)} • สตรีค x${Math.min(3,1+Math.floor(streak/3))}</p></div><div class="answers">${it.a.map((x,j)=>`<button class="answer" data-i="${j}">${esc(x)}</button>`).join('')}</div><div id="feedback"></div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>answer(Number(b.dataset.i)));clearInterval(timer);timer=setInterval(()=>{qtime--;t.textContent=qtime;fill.style.width=`${qtime/7*100}%`;if(qtime<=0)answer(-1)},1000)}
+ function answer(v){if(locked)return;locked=true;clearInterval(timer);const it=items[i],ok=v===it.c,buttons=body.querySelectorAll('.answer');buttons.forEach(b=>b.disabled=true);buttons[it.c].classList.add('correct');if(ok){streak++;correct++;const mul=Math.min(3,1+Math.floor(streak/3)),gain=140*mul+qtime*10;score+=gain;if(v>=0)buttons[v].classList.add('correct');beep(920,.08,'triangle')}else{hearts--;streak=0;if(v>=0)buttons[v]?.classList.add('wrong');beep(150,.14,'sawtooth')}s.textContent=score;c.textContent=correct;$('#feedback').innerHTML=`<div class="feedback ${ok?'ok':'no'}">${esc(it.x)}</div>`;setTimeout(()=>{i++;draw()},900)}
+ function done(){if(stopped)return;stopped=true;clearInterval(timer);const stars=correct>=13&&hearts>0?3:correct>=9?2:1;finishLevel({score,stars,correct,total:15,lesson:'ผู้โดยสารมือโปรต้องรู้ทั้งความปลอดภัย ตั๋ว เวลาเดินรถ เส้นทาง และการรับมือเหตุฉุกเฉิน',message:`ตอบถูก ${correct} ข้อ • หัวใจเหลือ ${hearts}`,details:{hearts_left:hearts}})}
+ draw();state.cleanup=()=>{stopped=true;clearInterval(timer)};
+}
 
-$('#continueButton').addEventListener('click',()=>{if(state.currentLevel===4)finishRun();else{els.levelResultDialog.close();showScreen('map');renderMap()}});
-$('#backToMapButton').addEventListener('click',()=>{cleanupActiveLevel();showScreen('map');renderMap()});
-$('#leaderboardButton').addEventListener('click',openLeaderboard);$('#viewLeaderboardButton').addEventListener('click',openLeaderboard);
-$('#closeLeaderboardButton').addEventListener('click',()=>els.leaderboardDialog.close());
-$('#playAgainButton').addEventListener('click',startNewRun);$('#restartRunButton').addEventListener('click',startNewRun);
-$('#homeButton').addEventListener('click',()=>{cleanupActiveLevel();showScreen('welcome')});
-$('#soundButton').addEventListener('click',e=>{soundOn=!soundOn;e.currentTarget.textContent=soundOn?'🔊':'🔇';if(soundOn)beep(650,.08,'triangle')});
-document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));tab.classList.add('active');loadLeaderboard(tab.dataset.period)}));
+async function loadLeaderboard(period=leaderPeriod){leaderPeriod=period;els.leaderList.innerHTML='';els.leaderLoading.classList.remove('hidden');els.leaderLoading.textContent='กำลังโหลดอันดับ...';if(!backendReady){els.leaderLoading.textContent='ยังไม่เชื่อมต่อระบบคะแนนกลาง';return}try{const r=await client.rpc('get_leaderboard',{p_period:period,p_limit:30});if(r.error)throw r.error;els.leaderLoading.classList.add('hidden');if(!r.data?.length){els.leaderList.innerHTML='<div class="loading">ยังไม่มีคะแนนในช่วงนี้</div>';return}els.leaderList.innerHTML=r.data.map((x,i)=>`<div class="leader-row"><div style="font-size:22px;text-align:center">${['🥇','🥈','🥉'][i]||x.rank_no}</div><div><b>${esc(x.nickname)}</b><small>${x.total_stars} ดาว • เล่น ${x.games_played} ด่าน</small></div><div style="text-align:right"><b>${Number(x.best_score).toLocaleString('th-TH')}</b><small>คะแนน</small></div></div>`).join('')}catch(e){console.error(e);els.leaderLoading.textContent='โหลดอันดับไม่สำเร็จ: '+e.message}}
 
-window.addEventListener('online',()=>{showToast('กลับมาออนไลน์แล้ว');initBackend()});
-window.addEventListener('offline',()=>showBanner('ขณะนี้ออฟไลน์ เกมยังเล่นได้ แต่ต้องออนไลน์เพื่อบันทึกคะแนนกลาง','error'));
-
-if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')) navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
-initBackend();
-
-  </script>
+els.form.addEventListener('submit',async e=>{e.preventDefault();const name=els.nickname.value.trim().replace(/\s+/g,' ').slice(0,18);if(name.length<2){toast('กรุณาใส่ชื่ออย่างน้อย 2 ตัวอักษร');return}const btn=els.form.querySelector('button');btn.disabled=true;btn.textContent='กำลังเข้าสู่เกม...';state.nickname=name;localStorage.setItem('kbp_quest_name',name);try{if(!backendReady)await initBackend();await registerPlayer(name);await loadProgress();renderMap();showScreen('map')}catch(err){console.error(err);toast('เข้าเกมไม่สำเร็จ: '+err.message)}finally{btn.disabled=false;btn.textContent='เริ่มการเดินทาง'}});
+$('#backMapBtn').onclick=()=>{cleanup();showScreen('map');renderMap()};$('#resultContinueBtn').onclick=()=>{els.result.close();renderMap();showScreen('map')};$('#leaderBtn').onclick=()=>{els.leader.showModal();loadLeaderboard()};$('#leaderClose').onclick=()=>els.leader.close();$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');loadLeaderboard(b.dataset.period)});$('#soundBtn').onclick=e=>{soundOn=!soundOn;e.currentTarget.textContent=soundOn?'🔊':'🔇';if(soundOn)beep(700,.08,'triangle')};
+window.addEventListener('online',()=>initBackend());window.addEventListener('offline',()=>setBanner('ขณะนี้ออฟไลน์ ต้องเชื่อมอินเทอร์เน็ตเพื่อบันทึกคะแนนกลาง','error'));
+els.nickname.value=localStorage.getItem('kbp_quest_name')||'';initBackend();
+</script>
 </body>
 </html>
