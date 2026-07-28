@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#800000">
-<title>KBP Rail Quest X — ภารกิจพิชิต 40 สถานี</title>
+<title>KBP Rail Quest 2026 — ภารกิจพิชิต 40 สถานี</title>
+<meta name="description" content="เกมความรู้ผู้โดยสารรถไฟ สถานีคลองบางพระ อัปเดตข้อมูลปี 2569">
 <style>
 :root{
   --maroon:#800000;--maroon2:#a51b2a;--ink:#2d2430;--muted:#786b76;
@@ -77,6 +78,47 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allow
 @media(max-width:720px){.level-grid{grid-template-columns:repeat(3,1fr)}.features{grid-template-columns:repeat(2,1fr)}.profile-bar{grid-template-columns:1.6fr repeat(3,1fr)}.map-tip{display:none}}
 @media(max-width:480px){.app{padding:8px 8px 84px}.header{top:5px}.brand-mark{width:43px;height:43px}.brand h1{font-size:.86rem}.round-btn{width:39px;height:39px}.hero-card{padding:22px 13px 18px}.name-form{flex-direction:column}.profile-bar{grid-template-columns:1.5fr 1fr 1fr}.profile-chip:nth-child(4){display:none}.level-grid{grid-template-columns:repeat(2,1fr)}.level-card{min-height:120px}.game-body{padding:11px;min-height:410px}.ticket-fields{grid-template-columns:1fr}.scene,.tap-area{height:405px}.match-grid{grid-template-columns:1fr}.binary-grid{grid-template-columns:1fr 1fr}}
 </style>
+
+<style id="kbp-premium-2026">
+:root{--night:#2a0710;--wine:#650015;--wine2:#8f1028;--sun:#ffd56a;--ivory:#fffaf0;--glass:rgba(255,255,255,.78);--glass-strong:rgba(255,255,255,.93);--ring:rgba(128,0,0,.13)}
+html{scroll-behavior:smooth}
+body{background:
+ radial-gradient(circle at 8% 0%,rgba(255,213,106,.30),transparent 30%),
+ radial-gradient(circle at 96% 12%,rgba(159,218,255,.38),transparent 28%),
+ radial-gradient(circle at 60% 100%,rgba(187,239,212,.34),transparent 35%),
+ linear-gradient(145deg,#fff9ed 0%,#f9e6e7 49%,#eaf5f0 100%);background-attachment:fixed}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;opacity:.18;background-image:linear-gradient(rgba(128,0,0,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(128,0,0,.06) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+.app{width:min(100%,1080px);padding:14px 16px 108px}
+.header{top:10px;border-radius:24px;padding:10px 12px;background:rgba(255,252,247,.82);border:1px solid rgba(255,255,255,.72);box-shadow:0 16px 50px rgba(67,9,23,.13)}
+.brand-mark{border-radius:18px;background:linear-gradient(145deg,var(--night),var(--wine2));box-shadow:0 10px 25px rgba(92,0,22,.28)}
+.brand h1{font-size:1.04rem;letter-spacing:-.015em}.brand p{font-weight:700}
+.header-actions{align-items:center}.round-btn{border:1px solid rgba(128,0,0,.08);transition:.18s}.round-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(74,13,27,.15)}
+.data-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;background:#e8f7ef;color:#236846;font-weight:900;font-size:.66rem;border:1px solid #c7ead7;white-space:nowrap}.data-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:#37a66e;box-shadow:0 0 0 4px rgba(55,166,110,.13)}
+.banner{border-radius:16px;margin-top:12px;font-weight:750;box-shadow:0 7px 19px rgba(67,9,23,.07)}
+.hero-card{margin-top:14px;border-radius:34px;padding:30px 24px 24px;background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,244,222,.94));border:1px solid rgba(255,255,255,.88);box-shadow:0 28px 75px rgba(75,12,29,.18)}
+.hero-card:after{content:"KBP • 3021";position:absolute;right:17px;top:18px;padding:6px 10px;border-radius:999px;background:rgba(128,0,0,.07);color:var(--maroon);font-size:.62rem;font-weight:950;letter-spacing:.08em}
+.hero-card h2{font-size:clamp(2rem,7vw,3.15rem);letter-spacing:-.045em;background:linear-gradient(135deg,#5f0012,#a9233c 55%,#6d3800);-webkit-background-clip:text;color:transparent}
+.hero-card .lead{font-size:.97rem;max-width:680px}.mascot-wrap{width:210px;height:164px}.mascot-wrap svg{width:204px}
+.hero-badges{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:-2px auto 15px}.hero-badge{padding:7px 10px;border-radius:999px;font-size:.68rem;font-weight:900;background:#fff;border:1px solid var(--line);box-shadow:0 5px 14px rgba(70,25,35,.07)}
+.name-form{max-width:590px}.name-form input{padding:14px 16px;border-radius:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}.primary,.secondary{border-radius:17px;padding:13px 18px}.primary{background:linear-gradient(145deg,var(--night),var(--wine2));box-shadow:0 11px 24px rgba(101,0,21,.25)}
+.features{gap:10px}.feature{border-radius:20px;padding:13px 8px;background:rgba(255,255,255,.82);box-shadow:0 8px 20px rgba(66,18,30,.06)}
+.info-note{background:linear-gradient(145deg,#eaf8f1,#e8f4ff);border:1px solid rgba(74,155,115,.14)}
+.live-board{margin:14px 2px 0;border-radius:28px;padding:17px;background:linear-gradient(145deg,rgba(42,7,16,.97),rgba(102,0,22,.96));color:#fff;box-shadow:0 24px 60px rgba(47,5,16,.24);overflow:hidden;position:relative}
+.live-board:before{content:"";position:absolute;inset:-100px -40px auto auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,213,106,.24),transparent 66%)}
+.board-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;position:relative;z-index:1}.board-head h3{margin:0;font-size:1.15rem}.board-head p{margin:3px 0 0;font-size:.69rem;opacity:.72}.board-clock{text-align:right}.board-clock b{font-size:1.42rem;color:var(--sun)}.board-clock small{display:block;opacity:.72;font-size:.62rem}
+.board-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:13px;position:relative;z-index:1}.train-row{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;border-radius:18px;padding:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.11)}.train-no{font-size:1.05rem;font-weight:950;color:var(--sun)}.train-row strong{display:block;font-size:.8rem}.train-row small{display:block;font-size:.62rem;opacity:.7;margin-top:2px}.train-time{font-size:1.05rem;font-weight:950;text-align:right}.train-time small{font-size:.58rem;color:#ccefdc}.board-foot{margin:11px 2px 0;font-size:.64rem;opacity:.7;position:relative;z-index:1}
+.quick-strip{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px;margin:12px 2px}.quick-card{border:0;text-align:left;border-radius:21px;padding:15px;background:var(--glass-strong);box-shadow:0 12px 30px rgba(70,18,31,.09);border:1px solid rgba(255,255,255,.78);color:var(--ink);transition:.18s}.quick-card:hover{transform:translateY(-3px)}.quick-card b{display:block;color:var(--maroon);font-size:.9rem}.quick-card small{display:block;color:var(--muted);font-size:.66rem;margin-top:4px;line-height:1.4}.quick-card .qicon{font-size:25px;float:right;margin-left:8px}
+.profile-bar{position:sticky;top:86px;z-index:12;background:rgba(249,239,231,.68);backdrop-filter:blur(9px);padding:6px;border-radius:23px}.profile-chip{border-radius:19px;background:rgba(255,255,255,.9)}
+.zone{border-radius:29px;padding:17px;margin-bottom:15px}.zone-title h3{font-size:1.07rem}.level-card{border-radius:21px;min-height:135px;transition:.2s;border:1px solid rgba(255,255,255,.62)}.level-card:hover:not(:disabled){transform:translateY(-5px) scale(1.015);box-shadow:0 15px 30px rgba(70,20,35,.16)}.level-card.boss{background:linear-gradient(145deg,#fff6c9,#ffd3db);box-shadow:inset 0 0 0 1px rgba(128,0,0,.09)}
+.game-shell{border-radius:31px}.game-head{background:linear-gradient(145deg,var(--night),var(--wine2));padding:15px 16px}.metric-row{padding:10px;gap:8px}.metric{border-radius:15px}.prompt-card{border-radius:24px;padding:21px}.answer{border-radius:18px;padding:13px 14px}.dialog{border-radius:30px;padding:20px;background:rgba(255,253,249,.98)}
+.bottom-dock{position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:70;width:min(calc(100% - 20px),700px);display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:7px;background:rgba(42,7,16,.91);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.14);border-radius:23px;box-shadow:0 20px 55px rgba(35,4,12,.32)}.dock-btn{border:0;border-radius:16px;padding:8px 4px;background:transparent;color:rgba(255,255,255,.72);font-size:.61rem;font-weight:850}.dock-btn span{display:block;font-size:19px;margin-bottom:2px}.dock-btn:hover,.dock-btn.active{background:rgba(255,255,255,.12);color:#fff}.dock-btn.primary-dock{background:linear-gradient(145deg,#ffd970,#ffb95c);color:#4d2400}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.source-card{border-radius:18px;padding:13px;background:#fff;border:1px solid var(--line)}.source-card h3{margin:0 0 6px;color:var(--maroon);font-size:.9rem}.source-card p,.source-card li{font-size:.7rem;line-height:1.55;color:var(--muted)}.source-card ul{padding-left:18px;margin:7px 0}.source-link{display:inline-flex;margin-top:7px;padding:7px 10px;border-radius:12px;background:#f4e8e7;color:var(--maroon);font-weight:900;font-size:.67rem;text-decoration:none}.data-stamp{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}.stamp{border-radius:999px;padding:7px 10px;background:#eaf7f1;color:#246448;font-size:.66rem;font-weight:900}.official-table{width:100%;border-collapse:collapse;font-size:.68rem}.official-table th{background:var(--maroon);color:white;padding:8px}.official-table td{padding:8px;border-bottom:1px solid #eee}.official-table tr:nth-child(even) td{background:#fff9f5}
+@media(min-width:760px){.hero-card{display:grid;grid-template-columns:230px 1fr;grid-template-areas:"mascot eyebrow" "mascot title" "mascot lead" "mascot badges" "mascot form" "features features" "note note";text-align:left;align-items:center;column-gap:18px}.mascot-wrap{grid-area:mascot}.eyebrow{grid-area:eyebrow}.hero-card h2{grid-area:title}.hero-card .lead{grid-area:lead;margin:8px 0 14px}.hero-badges{grid-area:badges;justify-content:flex-start;margin:0 0 14px}.name-form{grid-area:form;margin:0}.features{grid-area:features}.info-note{grid-area:note}.spark{display:none}}
+@media(max-width:720px){.data-badge{display:none}.board-grid{grid-template-columns:1fr}.quick-strip{grid-template-columns:1fr 1fr}.quick-card:first-child{grid-column:1/-1}.info-grid{grid-template-columns:1fr}.profile-bar{top:76px}}
+@media(max-width:480px){.app{padding:8px 8px 102px}.hero-card{border-radius:27px;padding-top:25px}.hero-card:after{display:none}.quick-strip{gap:7px}.quick-card{padding:13px}.live-board{border-radius:24px;padding:14px}.bottom-dock{width:calc(100% - 12px);bottom:max(6px,env(safe-area-inset-bottom));border-radius:20px}.dock-btn{font-size:.57rem}.dock-btn span{font-size:18px}.profile-bar{position:static}.level-card{min-height:129px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+
 </head>
 <body>
 <div class="cloud c1"></div><div class="cloud c2"></div>
@@ -85,7 +127,7 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allow
   <div class="brand"><div class="brand-mark" aria-hidden="true">
     <svg viewBox="0 0 100 100"><rect x="18" y="21" width="64" height="58" rx="18" fill="#fff6dc"/><rect x="29" y="31" width="42" height="24" rx="8" fill="#bfe7ff"/><circle cx="38" cy="44" r="4" fill="#4a3139"/><circle cx="62" cy="44" r="4" fill="#4a3139"/><path d="M40 61 Q50 69 60 61" fill="none" stroke="#4a3139" stroke-width="4" stroke-linecap="round"/><circle cx="29" cy="61" r="5" fill="#ffb4c4"/><circle cx="71" cy="61" r="5" fill="#ffb4c4"/><rect x="12" y="72" width="76" height="9" rx="4" fill="#ffc95c"/><circle cx="31" cy="83" r="7" fill="#2d2430"/><circle cx="69" cy="83" r="7" fill="#2d2430"/></svg>
   </div><div><h1>KBP Rail Quest</h1><p>สถานีคลองบางพระ • KBP 3021</p></div></div>
-  <div class="header-actions"><button class="round-btn" id="soundBtn" type="button" aria-label="เสียง">🔊</button><button class="round-btn" id="leaderBtn" type="button" aria-label="อันดับ">🏆</button></div>
+  <div class="header-actions"><span class="data-badge">ข้อมูลปี 2569</span><button class="round-btn" id="dataBtn" type="button" aria-label="ข้อมูลปัจจุบัน">ℹ️</button><button class="round-btn" id="soundBtn" type="button" aria-label="เสียง">🔊</button><button class="round-btn" id="leaderBtn" type="button" aria-label="อันดับ">🏆</button></div>
 </header>
 <div id="connectionBanner" class="banner">กำลังเชื่อมต่อระบบคะแนนกลาง...</div>
 
@@ -95,10 +137,22 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allow
     <span class="spark s1">⭐</span><span class="spark s2">✨</span><span class="spark s3">🎫</span>
     <div class="mascot-wrap"><svg viewBox="0 0 260 190" aria-label="มาสคอตรถไฟน่ารัก"><ellipse cx="130" cy="167" rx="88" ry="14" fill="rgba(70,30,40,.12)"/><rect x="55" y="34" width="150" height="117" rx="38" fill="#fff8dd" stroke="#800000" stroke-width="7"/><rect x="78" y="55" width="104" height="50" rx="17" fill="#cfeaff" stroke="#800000" stroke-width="5"/><circle cx="103" cy="79" r="7" fill="#34262c"/><circle cx="157" cy="79" r="7" fill="#34262c"/><circle cx="86" cy="106" r="10" fill="#ffb8c8"/><circle cx="174" cy="106" r="10" fill="#ffb8c8"/><path d="M108 108 Q130 126 152 108" fill="none" stroke="#34262c" stroke-width="6" stroke-linecap="round"/><rect x="40" y="138" width="180" height="18" rx="9" fill="#ffc95c" stroke="#800000" stroke-width="5"/><circle cx="88" cy="157" r="16" fill="#34262c"/><circle cx="172" cy="157" r="16" fill="#34262c"/><path d="M79 31 L92 15 H168 L181 31" fill="#800000"/><circle cx="130" cy="18" r="12" fill="#ffc95c"/></svg></div>
     <p class="eyebrow">ภารกิจผู้โดยสารมือโปร</p><h2>พิชิต 40 สถานี</h2>
-    <p class="lead">เกมความรู้รถไฟหลายรูปแบบ ทั้งจับจุดเสี่ยง ตรวจตั๋ว วางแผนเวลาเดินรถ แก้เหตุฉุกเฉิน และด่านบอสสุดท้าทาย</p>
+    <p class="lead">เกมความรู้รถไฟแบบใหม่ สนุกขึ้น ลื่นขึ้น และใช้ข้อมูลตารางเดินรถ–หลักเกณฑ์ผู้โดยสารที่ตรวจสอบล่าสุดสำหรับปี 2569</p>
+    <div class="hero-badges"><span class="hero-badge">✓ เล่นได้แม้ออฟไลน์</span><span class="hero-badge">✓ บันทึกในเครื่องอัตโนมัติ</span><span class="hero-badge">✓ ข้อมูลตรวจสอบ 28 ก.ค. 2569</span></div>
     <form class="name-form" id="playerForm"><input id="nickname" maxlength="18" autocomplete="nickname" placeholder="ใส่ชื่อเล่น 2–18 ตัวอักษร" required><button class="primary" type="submit">เริ่มการเดินทาง</button></form>
     <div class="features"><div class="feature"><b>🗺️</b><strong>40 ด่าน</strong>8 โลก ไล่ระดับความยาก</div><div class="feature"><b>🎮</b><strong>14 รูปแบบเกม</strong>สุ่มโจทย์และบอสปรับระดับ</div><div class="feature"><b>⭐</b><strong>120 ดาว</strong>สะสมเพื่อปลดล็อก</div><div class="feature"><b>🏆</b><strong>คะแนนกลาง</strong>แข่งกับผู้เล่นทุกคน</div></div>
-    <div class="info-note">เกมใช้ข้อมูลจากเอกสารการเดินทาง ตารางเวลาสถานีคลองบางพระ และข้อมูลทางการของการรถไฟฯ โดยด่าน 21–40 จะเพิ่มโจทย์วิเคราะห์หลายขั้น โปรดตรวจสอบประกาศล่าสุด ณ วันเดินทางจริง</div>
+    <div class="info-note">ข้อมูลกฎตั๋วอ้างอิงหน้าให้บริการผู้โดยสารของการรถไฟฯ ที่ปรับปรุง 18 มิถุนายน 2569 และตารางเดินรถ SRT Timetable Matrix 2026 ทั้งนี้ เวลาเดินรถจริงอาจเปลี่ยนแปลง โปรดตรวจสอบอีกครั้งก่อนเดินทาง</div>
+  </div>
+
+  <section class="live-board" aria-label="กระดานขบวนรถถัดไป">
+    <div class="board-head"><div><h3>🚉 KBP Live Board</h3><p>ขบวนถัดไป ณ สถานีคลองบางพระ • ตามตารางปี 2569</p></div><div class="board-clock"><b id="boardClock">--:--</b><small id="boardDate">กำลังโหลดเวลา</small></div></div>
+    <div class="board-grid" id="nextTrainBoard"><div class="loading" style="color:#fff">กำลังคำนวณขบวนถัดไป...</div></div>
+    <div class="board-foot">เวลาในกระดานเป็นเวลาตามตาราง ไม่ใช่เวลาวิ่งจริง โปรดตรวจสอบ TTS หรือสอบถามสายด่วน 1690 ก่อนเดินทาง</div>
+  </section>
+  <div class="quick-strip">
+    <button class="quick-card" id="continueJourneyBtn" type="button"><span class="qicon">🚆</span><b>เดินทางต่อ</b><small>กลับเข้าแผนที่และเล่นจากความคืบหน้าที่บันทึกไว้</small></button>
+    <button class="quick-card" id="dailyChallengeBtn" type="button"><span class="qicon">⚡</span><b>ภารกิจวันนี้</b><small>สุ่มด่านที่ปลดล็อกแล้ว</small></button>
+    <button class="quick-card" id="openDataBtn" type="button"><span class="qicon">📚</span><b>ข้อมูลล่าสุด</b><small>ดูเวลาเดินรถและกฎตั๋วปี 2569</small></button>
   </div>
 </section>
 
@@ -117,6 +171,13 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allow
 <dialog id="resultDialog" class="dialog"><div class="result-card"><div class="result-icon" id="resultIcon">🌟</div><h2 id="resultTitle">ผ่านด่านแล้ว</h2><div class="stars-big" id="resultStars">⭐⭐⭐</div><div class="score-pill">+<span id="resultScore">0</span> คะแนน</div><p id="resultMessage"></p><div class="lesson" id="resultLesson"></div><div id="saveStatus" class="save-status">กำลังบันทึกคะแนนกลาง...</div><button class="primary next-btn" id="resultContinueBtn" type="button">กลับสู่แผนที่</button></div></dialog>
 
 <dialog id="leaderDialog" class="dialog"><div class="dialog-head"><div><p class="eyebrow">ตารางอันดับกลาง</p><h2>นักเดินทางดาวเด่น</h2></div><button class="close-btn" id="leaderClose" type="button">✕</button></div><div class="tabs"><button class="tab active" data-period="daily">วันนี้</button><button class="tab" data-period="weekly">สัปดาห์นี้</button><button class="tab" data-period="all">ตลอดกาล</button></div><div id="leaderLoading" class="loading">กำลังโหลดอันดับ...</div><div id="leaderList" class="leader-list"></div></dialog>
+
+<dialog id="dataDialog" class="dialog"><div class="dialog-head"><div><p class="eyebrow">ข้อมูลอ้างอิงปี 2569</p><h2>ข้อมูลผู้โดยสารฉบับปัจจุบัน</h2></div><button class="close-btn" id="dataClose" type="button">✕</button></div>
+<div class="data-stamp"><span class="stamp">ตรวจสอบ 28 ก.ค. 2569</span><span class="stamp">กฎตั๋วปรับปรุง 18 มิ.ย. 2569</span><span class="stamp">ตั๋วเดือนใหม่เริ่ม 1 ก.ค. 2569</span></div>
+<div class="info-grid"><article class="source-card"><h3>🎫 กฎสำคัญที่อัปเดต</h3><ul><li>ขบวนสำรองที่นั่ง: สูงสุด 1 / 30 / 90 วัน ตามสัดส่วนระยะทาง</li><li>ขบวนที่นั่งอิสระ: ซื้อวันเดินทาง ก่อนรถออกไม่เกิน 2 ชั่วโมง</li><li>เปลี่ยนชื่อหรือโอนตั๋วสำรองที่นั่งไม่ได้ ต้องคืนตั๋วเดิมและซื้อใหม่</li><li>ตั๋วเดือนหลักเกณฑ์ใหม่มีผลตั้งแต่ 1 กรกฎาคม 2569</li></ul><a class="source-link" href="https://www.railway.co.th/Service/Passenger_detail" target="_blank" rel="noopener">เปิดข้อมูลผู้โดยสาร รฟท.</a></article><article class="source-card"><h3>🛡️ สิทธิและความปลอดภัย</h3><ul><li>เด็กสูงเกิน 100–150 ซม. ลดเฉพาะค่าโดยสาร 50%</li><li>ผู้สูงอายุไทย 60 ปีขึ้นไป ลด 50% ช่วง 1 มิ.ย.–30 ก.ย.</li><li>คนพิการสัญชาติไทย ลดเฉพาะค่าโดยสาร 50%; ผู้ติดตาม 1 คน ลด 25%</li><li>พบสิ่งของไม่มีเจ้าของ: ไม่สัมผัส ถอยห่าง และแจ้งเจ้าหน้าที่</li></ul><a class="source-link" href="https://ttsview.railway.co.th/timetable_modern.php?line=3&ln=th&trip=2" target="_blank" rel="noopener">เปิดตารางเดินรถ SRT 2026</a></article></div>
+<div class="source-card" style="margin-top:10px"><h3>⏱️ ตารางขบวนรถ ณ คลองบางพระ</h3><div class="timetable"><table class="official-table"><thead><tr><th>ขบวน</th><th>ทิศทาง</th><th>ถึง</th><th>ออก</th><th>ต้นทาง–ปลายทาง</th></tr></thead><tbody id="officialTimetableBody"></tbody></table></div><p>หมายเหตุ: เวลานี้เป็นข้อมูลตารางชุดปี 2569 ไม่ใช่สถานะรถแบบเรียลไทม์</p></div></dialog>
+<nav class="bottom-dock" aria-label="เมนูหลัก"><button class="dock-btn active" id="dockHome" type="button"><span>🏠</span>หน้าแรก</button><button class="dock-btn" id="dockMap" type="button"><span>🗺️</span>แผนที่</button><button class="dock-btn primary-dock" id="dockDaily" type="button"><span>⚡</span>ด่านวันนี้</button><button class="dock-btn" id="dockData" type="button"><span>📚</span>ข้อมูล</button><button class="dock-btn" id="dockSound" type="button"><span>🔊</span>เสียง</button></nav>
+
 <div id="toast" class="toast"></div><div id="confettiLayer" class="confetti-layer"></div>
 
 <script>
@@ -137,6 +198,16 @@ const screens={welcome:$('#welcomeScreen'),map:$('#mapScreen'),game:$('#gameScre
 const els={banner:$('#connectionBanner'),form:$('#playerForm'),nickname:$('#nickname'),profileName:$('#profileName'),campaignScore:$('#campaignScore'),campaignStars:$('#campaignStars'),highestLevel:$('#highestLevel'),map:$('#levelMap'),mapTip:$('#mapTip'),gameIcon:$('#gameIcon'),gameTitle:$('#gameTitle'),gameSubtitle:$('#gameSubtitle'),gameContent:$('#gameContent'),result:$('#resultDialog'),resultIcon:$('#resultIcon'),resultTitle:$('#resultTitle'),resultStars:$('#resultStars'),resultScore:$('#resultScore'),resultMessage:$('#resultMessage'),resultLesson:$('#resultLesson'),saveStatus:$('#saveStatus'),leader:$('#leaderDialog'),leaderLoading:$('#leaderLoading'),leaderList:$('#leaderList'),toast:$('#toast'),confetti:$('#confettiLayer')};
 let client=null,backendReady=false,soundOn=true,audioCtx=null,leaderPeriod='daily';
 let state={nickname:'',progress:{},profile:{best_score:0,total_stars:0,highest_level:0},currentLevel:null,sessionId:null,startedAt:0,cleanup:null};
+
+const DATA_VERSION={checked:'28 ก.ค. 2569',rulesUpdated:'18 มิ.ย. 2569',monthlyEffective:'1 ก.ค. 2569',timetable:'SRT Timetable Matrix 2026'};
+const LOCAL_SAVE_KEY='kbp_rail_quest_local_v3';
+function readLocalSave(){try{return JSON.parse(localStorage.getItem(LOCAL_SAVE_KEY)||'null')||{nickname:'',progress:{},profile:{best_score:0,total_stars:0,highest_level:0}}}catch{return{nickname:'',progress:{},profile:{best_score:0,total_stars:0,highest_level:0}}}}
+function writeLocalSave(data){try{localStorage.setItem(LOCAL_SAVE_KEY,JSON.stringify(data));return true}catch{return false}}
+function recalcLocalProfile(data){const rows=Object.values(data.progress||{});data.profile={nickname:data.nickname||state.nickname||'',best_score:rows.reduce((n,x)=>n+Number(x.best_score||0),0),total_stars:rows.reduce((n,x)=>n+Number(x.best_stars||0),0),highest_level:rows.reduce((m,x)=>Number(x.best_stars||0)>0?Math.max(m,Number(x.level_id||0)):m,0)};return data}
+function loadLocalProgress(){const d=recalcLocalProfile(readLocalSave());state.nickname=state.nickname||d.nickname||'';state.progress=d.progress||{};state.profile=d.profile||{};updateProfile();return d}
+function saveLocalResult(levelId,{score,stars,correct,total,elapsed,details={}}){const d=readLocalSave();d.nickname=state.nickname||d.nickname||'';d.progress=d.progress||{};const old=d.progress[levelId]||{};d.progress[levelId]={level_id:levelId,best_score:Math.max(Number(old.best_score||0),score),best_stars:Math.max(Number(old.best_stars||0),stars),best_correct:Math.max(Number(old.best_correct||0),correct),last_score:score,last_stars:stars,last_played_at:new Date().toISOString(),total_questions:total,duration_seconds:elapsed,details};recalcLocalProfile(d);writeLocalSave(d);state.progress=d.progress;state.profile=d.profile;updateProfile();return d}
+function mergeRemoteWithLocal(remote){const local=readLocalSave();const merged={nickname:state.nickname||local.nickname||remote.profile?.nickname||'',progress:{...(local.progress||{})}};(remote.levels||[]).forEach(x=>{const old=merged.progress[x.level_id]||{};merged.progress[x.level_id]={...old,...x,best_score:Math.max(Number(old.best_score||0),Number(x.best_score||0)),best_stars:Math.max(Number(old.best_stars||0),Number(x.best_stars||0))}});recalcLocalProfile(merged);writeLocalSave(merged);state.progress=merged.progress;state.profile={...merged.profile,...remote.profile,best_score:Math.max(Number(merged.profile.best_score||0),Number(remote.profile?.best_score||0)),total_stars:Math.max(Number(merged.profile.total_stars||0),Number(remote.profile?.total_stars||0)),highest_level:Math.max(Number(merged.profile.highest_level||0),Number(remote.profile?.highest_level||0))};updateProfile()}
+
 
 const zones=[
  {id:1,icon:'🛡️',name:'โลกผู้พิทักษ์ชานชาลา',desc:'พื้นฐานความปลอดภัย การขึ้นลงรถ และการป้องกันอุบัติเหตุ',class:'zone1'},
@@ -201,7 +272,7 @@ const timetable={
   {no:'380',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'05:54',dep:'05:55'},
   {no:'372',origin:'ปราจีนบุรี',dest:'กรุงเทพ',arr:'06:29',dep:'06:30'},
   {no:'388',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'07:11',dep:'07:12'},
-  {no:'278',origin:'กบินทร์บุรี',dest:'กรุงเทพ',arr:'10:30',dep:'10:33'},
+  {no:'278',origin:'กบินทร์บุรี',dest:'กรุงเทพ',arr:'08:40',dep:'08:41'},
   {no:'280',origin:'ด่านพรมแดนบ้านคลองลึก',dest:'กรุงเทพ',arr:'10:32',dep:'10:33'},
   {no:'368',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'12:43',dep:'12:44'},
   {no:'390',origin:'ชุมทางฉะเชิงเทรา',dest:'กรุงเทพ',arr:'14:11',dep:'14:12'},
@@ -523,11 +594,11 @@ function metricShell(time=0){return`<div class="metric-row"><div class="metric">
 function progressDots(total,index){return`<div class="progress-dots">${Array.from({length:total},(_,i)=>`<span class="dot ${i<index?'done':i===index?'now':''}"></span>`).join('')}</div>`}
 
 async function initBackend(){
- try{client=createClient(window.KBP_CONFIG.SUPABASE_URL,window.KBP_CONFIG.SUPABASE_PUBLISHABLE_KEY);let {data:{session}}=await client.auth.getSession();if(!session){const r=await client.auth.signInAnonymously();if(r.error)throw r.error;session=r.data.session}backendReady=!!session;setBanner('เชื่อมต่อระบบคะแนนกลางแล้ว คะแนนและความคืบหน้าจะบันทึกออนไลน์','success')}
- catch(e){console.error(e);backendReady=false;setBanner('เชื่อมต่อคะแนนกลางไม่สำเร็จ กรุณาตรวจอินเทอร์เน็ตหรือการตั้งค่าฐานข้อมูล','error')}
+ try{client=createClient(window.KBP_CONFIG.SUPABASE_URL,window.KBP_CONFIG.SUPABASE_PUBLISHABLE_KEY);let {data:{session}}=await client.auth.getSession();if(!session){const r=await client.auth.signInAnonymously();if(r.error)throw r.error;session=r.data.session}backendReady=!!session;setBanner('ออนไลน์แล้ว • บันทึกทั้งในเครื่องและระบบคะแนนกลาง','success')}
+ catch(e){console.error(e);backendReady=false;setBanner('โหมดออฟไลน์ • เล่นได้ตามปกติและบันทึกความคืบหน้าไว้ในเครื่อง','')}
 }
-async function registerPlayer(name){if(!backendReady)throw new Error('Backend unavailable');const r=await client.rpc('register_player',{p_nickname:name});if(r.error)throw r.error}
-async function loadProgress(){if(!backendReady)return;const r=await client.rpc('get_player_progress',{});if(r.error)throw r.error;const d=r.data||{};state.profile=d.profile||{};state.progress={};(d.levels||[]).forEach(x=>state.progress[x.level_id]=x);updateProfile()}
+async function registerPlayer(name){if(!backendReady)return null;const r=await client.rpc('register_player',{p_nickname:name});if(r.error)throw r.error;return r.data}
+async function loadProgress(){loadLocalProgress();if(!backendReady)return;const r=await client.rpc('get_player_progress',{});if(r.error)throw r.error;mergeRemoteWithLocal(r.data||{})}
 function updateProfile(){els.profileName.textContent=state.nickname||state.profile.nickname||'ผู้โดยสาร';els.campaignScore.textContent=Number(state.profile.best_score||0).toLocaleString('th-TH');els.campaignStars.textContent=`${state.profile.total_stars||0}/120`;els.highestLevel.textContent=`${state.profile.highest_level||0}/40`}
 function isUnlocked(id){if(id===1)return true;return Number(state.progress[id-1]?.best_stars||0)>=2}
 function renderMap(){
@@ -538,7 +609,7 @@ function renderMap(){
 async function startLevel(id){
  cleanup();const level=levels.find(x=>x.id===id);if(!level||!isUnlocked(id)){toast('ต้องผ่านด่านก่อนหน้าด้วยอย่างน้อย 2 ดาว');return}
  state.currentLevel=level;state.sessionId=null;state.startedAt=Date.now();els.gameIcon.textContent=level.icon;els.gameTitle.textContent=`ด่าน ${id}: ${level.name}`;els.gameSubtitle.textContent=level.sub;els.gameContent.innerHTML='<div class="loading">กำลังเตรียมภารกิจ...</div>';showScreen('game');
- if(backendReady){const r=await client.rpc('start_level_session',{p_level_id:id});if(r.error){console.error(r.error);toast('ยังเริ่มด่านไม่ได้: '+r.error.message);showScreen('map');return}state.sessionId=r.data}
+ if(backendReady){const r=await client.rpc('start_level_session',{p_level_id:id});if(r.error){console.error(r.error);state.sessionId=null;toast('เริ่มแบบออฟไลน์ ระบบคะแนนกลางไม่พร้อม')}else state.sessionId=r.data}
  const handlers={
  tap:runTap,
  binary:()=>runQuiz(normalizeQuestionChoices(shuffle(safetyScenarios).slice(0,7).map(s=>q(s.e,s.q,['ปลอดภัย','เสี่ยง'],s.safe?0:1,s.x))),7,60),
@@ -590,9 +661,10 @@ async function startLevel(id){
 
 async function finishLevel({score,stars,correct,total,lesson,message,details={}}){
  cleanup();score=Math.max(0,Math.min(10000,Math.round(score)));stars=Math.max(1,Math.min(3,stars));correct=Math.max(0,Math.min(80,correct));const elapsed=Math.max(5,Math.floor((Date.now()-state.startedAt)/1000));
- els.resultIcon.textContent=stars===3?'🏆':stars===2?'🌟':'🚆';els.resultTitle.textContent=stars===3?'ยอดเยี่ยม ได้ 3 ดาว':stars===2?'ผ่านด่าน ได้ 2 ดาว':'ผ่านด่าน ได้ 1 ดาว';els.resultStars.textContent=renderStars(stars);els.resultScore.textContent=score.toLocaleString('th-TH');els.resultMessage.textContent=message||`ตอบถูก ${correct} จาก ${total}`;els.resultLesson.textContent=lesson;els.saveStatus.textContent='กำลังบันทึกคะแนนกลาง...';els.saveStatus.className='save-status';els.result.showModal();if(stars===3)confetti(42);else confetti(18);
- if(!backendReady||!state.sessionId){els.saveStatus.textContent='เล่นในโหมดทดลอง จึงยังไม่บันทึกคะแนนกลาง';els.saveStatus.className='save-status error';return}
- try{const wait=Math.max(0,5200-(Date.now()-state.startedAt));if(wait)await new Promise(r=>setTimeout(r,wait));const r=await client.rpc('submit_level_session',{p_session_id:state.sessionId,p_score:score,p_stars:stars,p_correct_answers:correct,p_duration_seconds:Math.max(5,elapsed),p_details:{type:state.currentLevel.type,total,...details}});if(r.error)throw r.error;els.saveStatus.textContent=`บันทึกแล้ว • อันดับรวมประมาณ ${r.data?.rank||'-'}`;els.saveStatus.className='save-status success';await loadProgress()}catch(e){console.error(e);els.saveStatus.textContent='บันทึกไม่สำเร็จ: '+e.message;els.saveStatus.className='save-status error'}
+ saveLocalResult(state.currentLevel.id,{score,stars,correct,total,elapsed,details:{type:state.currentLevel.type,...details}});
+ els.resultIcon.textContent=stars===3?'🏆':stars===2?'🌟':'🚆';els.resultTitle.textContent=stars===3?'สุดปัง! ได้ 3 ดาว':stars===2?'เยี่ยมมาก ได้ 2 ดาว':'ผ่านด่านแล้ว ได้ 1 ดาว';els.resultStars.textContent=renderStars(stars);els.resultScore.textContent=score.toLocaleString('th-TH');els.resultMessage.textContent=message||`ตอบถูก ${correct} จาก ${total}`;els.resultLesson.textContent=lesson;els.saveStatus.textContent='บันทึกความคืบหน้าในเครื่องแล้ว';els.saveStatus.className='save-status success';els.result.showModal();if(stars===3)confetti(42);else confetti(18);
+ if(!backendReady||!state.sessionId)return;
+ try{const wait=Math.max(0,5200-(Date.now()-state.startedAt));if(wait)await new Promise(r=>setTimeout(r,wait));const r=await client.rpc('submit_level_session',{p_session_id:state.sessionId,p_score:score,p_stars:stars,p_correct_answers:correct,p_duration_seconds:Math.max(5,elapsed),p_details:{type:state.currentLevel.type,total,...details}});if(r.error)throw r.error;els.saveStatus.textContent=`บันทึกทั้งในเครื่องและออนไลน์แล้ว • อันดับประมาณ ${r.data?.rank||'-'}`;els.saveStatus.className='save-status success';await loadProgress()}catch(e){console.error(e);els.saveStatus.textContent='บันทึกในเครื่องแล้ว • ระบบออนไลน์ยังไม่พร้อม';els.saveStatus.className='save-status success'}
 }
 
 function runTap(){
@@ -773,10 +845,25 @@ function runLegendBoss(){
 
 async function loadLeaderboard(period=leaderPeriod){leaderPeriod=period;els.leaderList.innerHTML='';els.leaderLoading.classList.remove('hidden');els.leaderLoading.textContent='กำลังโหลดอันดับ...';if(!backendReady){els.leaderLoading.textContent='ยังไม่เชื่อมต่อระบบคะแนนกลาง';return}try{const r=await client.rpc('get_leaderboard',{p_period:period,p_limit:30});if(r.error)throw r.error;els.leaderLoading.classList.add('hidden');if(!r.data?.length){els.leaderList.innerHTML='<div class="loading">ยังไม่มีคะแนนในช่วงนี้</div>';return}els.leaderList.innerHTML=r.data.map((x,i)=>`<div class="leader-row"><div style="font-size:22px;text-align:center">${['🥇','🥈','🥉'][i]||x.rank_no}</div><div><b>${esc(x.nickname)}</b><small>${x.total_stars} ดาว • เล่น ${x.games_played} ด่าน</small></div><div style="text-align:right"><b>${Number(x.best_score).toLocaleString('th-TH')}</b><small>คะแนน</small></div></div>`).join('')}catch(e){console.error(e);els.leaderLoading.textContent='โหลดอันดับไม่สำเร็จ: '+e.message}}
 
-els.form.addEventListener('submit',async e=>{e.preventDefault();const name=els.nickname.value.trim().replace(/\s+/g,' ').slice(0,18);if(name.length<2){toast('กรุณาใส่ชื่ออย่างน้อย 2 ตัวอักษร');return}const btn=els.form.querySelector('button');btn.disabled=true;btn.textContent='กำลังเข้าสู่เกม...';state.nickname=name;localStorage.setItem('kbp_quest_name',name);try{if(!backendReady)await initBackend();await registerPlayer(name);await loadProgress();renderMap();showScreen('map')}catch(err){console.error(err);toast('เข้าเกมไม่สำเร็จ: '+err.message)}finally{btn.disabled=false;btn.textContent='เริ่มการเดินทาง'}});
+els.form.addEventListener('submit',e=>{e.preventDefault();const name=els.nickname.value.trim().replace(/\s+/g,' ').slice(0,18);if(name.length<2){toast('กรุณาใส่ชื่ออย่างน้อย 2 ตัวอักษร');return}const btn=els.form.querySelector('button');btn.disabled=true;btn.textContent='กำลังเข้าสู่เกม...';state.nickname=name;const local=readLocalSave();local.nickname=name;writeLocalSave(local);loadLocalProgress();renderMap();showScreen('map');btn.disabled=false;btn.textContent='เริ่มการเดินทาง';(async()=>{try{if(!backendReady)await initBackend();if(backendReady){await registerPlayer(name);await loadProgress();renderMap()}}catch(err){console.error(err);setBanner('โหมดออฟไลน์ • ความคืบหน้าบันทึกในเครื่องแล้ว','')}})()});
 $('#backMapBtn').onclick=()=>{cleanup();showScreen('map');renderMap()};$('#resultContinueBtn').onclick=()=>{els.result.close();renderMap();showScreen('map')};$('#leaderBtn').onclick=()=>{els.leader.showModal();loadLeaderboard()};$('#leaderClose').onclick=()=>els.leader.close();$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');loadLeaderboard(b.dataset.period)});$('#soundBtn').onclick=e=>{soundOn=!soundOn;e.currentTarget.textContent=soundOn?'🔊':'🔇';if(soundOn)beep(700,.08,'triangle')};
-window.addEventListener('online',()=>initBackend());window.addEventListener('offline',()=>setBanner('ขณะนี้ออฟไลน์ ต้องเชื่อมอินเทอร์เน็ตเพื่อบันทึกคะแนนกลาง','error'));
-els.nickname.value=localStorage.getItem('kbp_quest_name')||'';initBackend();
+window.addEventListener('online',()=>initBackend());window.addEventListener('offline',()=>{backendReady=false;setBanner('โหมดออฟไลน์ • ความคืบหน้ายังคงบันทึกในเครื่อง','')});
+
+function bangkokNowParts(){const parts=new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit',weekday:'short',day:'numeric',month:'short',year:'numeric',hour12:false}).formatToParts(new Date());return Object.fromEntries(parts.map(p=>[p.type,p.value]))}
+function minutesOf(t){const [h,m]=t.split(':').map(Number);return h*60+m}
+function renderStationBoard(){const p=bangkokNowParts(),now=Number(p.hour)*60+Number(p.minute);$('#boardClock').textContent=`${p.hour}:${p.minute}`;$('#boardDate').textContent=`${p.weekday} ${p.day} ${p.month} ${p.year}`;const rows=allTrains.map(x=>({...x,m:minutesOf(x.dep)})).sort((a,b)=>a.m-b.m);let upcoming=rows.filter(x=>x.m>=now).slice(0,4),tomorrow=false;if(!upcoming.length){upcoming=rows.slice(0,4);tomorrow=true}$('#nextTrainBoard').innerHTML=upcoming.map(x=>{const diff=tomorrow?null:x.m-now;return`<div class="train-row"><div class="train-no">${esc(x.no)}</div><div><strong>${esc(x.origin)} → ${esc(x.dest)}</strong><small>${esc(x.dir)}${tomorrow?' • เที่ยววันถัดไป':''}</small></div><div class="train-time">${esc(x.dep)}<small>${diff===null?'พรุ่งนี้':diff===0?'ขณะนี้':`อีก ${diff} นาที`}</small></div></div>`}).join('')}
+function fillOfficialTable(){const body=$('#officialTimetableBody');if(!body)return;body.innerHTML=[...allTrains].sort((a,b)=>minutesOf(a.dep)-minutesOf(b.dep)).map(x=>`<tr><td><b>${esc(x.no)}</b></td><td>${esc(x.dir)}</td><td>${esc(x.arr)}</td><td>${esc(x.dep)}</td><td>${esc(x.origin)} → ${esc(x.dest)}</td></tr>`).join('')}
+function openDataDialog(){fillOfficialTable();$('#dataDialog').showModal()}
+function goToMap(){const saved=readLocalSave();const name=state.nickname||els.nickname.value.trim()||saved.nickname;if(name.length<2){showScreen('welcome');els.nickname.focus();toast('ใส่ชื่อเล่นก่อนเริ่มเดินทาง');return}state.nickname=name;loadLocalProgress();renderMap();showScreen('map')}
+function dailyChallenge(){const saved=readLocalSave();const name=state.nickname||els.nickname.value.trim()||saved.nickname;if(name.length<2){showScreen('welcome');els.nickname.focus();toast('ใส่ชื่อเล่นก่อนเล่นภารกิจวันนี้');return}state.nickname=name;loadLocalProgress();const unlocked=levels.filter(x=>isUnlocked(x.id));const day=Math.floor(Date.now()/86400000);const level=unlocked[day%unlocked.length]||levels[0];startLevel(level.id)}
+function setDock(active){$$('.dock-btn').forEach(x=>x.classList.remove('active'));$(active)?.classList.add('active')}
+$('#dataBtn').onclick=openDataDialog;$('#openDataBtn').onclick=openDataDialog;$('#dataClose').onclick=()=>$('#dataDialog').close();$('#continueJourneyBtn').onclick=goToMap;$('#dailyChallengeBtn').onclick=dailyChallenge;
+$('#dockHome').onclick=()=>{cleanup();showScreen('welcome');setDock('#dockHome')};$('#dockMap').onclick=()=>{goToMap();setDock('#dockMap')};$('#dockDaily').onclick=dailyChallenge;$('#dockData').onclick=openDataDialog;$('#dockSound').onclick=()=>{$('#soundBtn').click();$('#dockSound span').textContent=soundOn?'🔊':'🔇'};
+const oldShowScreen=showScreen;showScreen=function(name){oldShowScreen(name);setDock(name==='welcome'?'#dockHome':name==='map'?'#dockMap':'#dockDaily')};
+renderStationBoard();fillOfficialTable();setInterval(renderStationBoard,60000);
+const savedAtBoot=readLocalSave();if(savedAtBoot.nickname){els.nickname.value=savedAtBoot.nickname;state.nickname=savedAtBoot.nickname;$('#continueJourneyBtn small').textContent=`เล่นต่อในชื่อ ${savedAtBoot.nickname} • ${savedAtBoot.profile?.total_stars||0} ดาว`}
+
+els.nickname.value=readLocalSave().nickname||'';renderStationBoard();initBackend();
 </script>
 </body>
 </html>
