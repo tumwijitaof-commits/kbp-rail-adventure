@@ -2,152 +2,372 @@
 <html lang="th">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KBP Rail Academy</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#560016">
+<title>KBP Rail Quest 3 — Gameplay Rebuild</title>
 <style>
-:root{--m:#690019;--m2:#9b1d3a;--ink:#2c2730;--muted:#776c74;--paper:#fffefa;--line:#eadfdd;--gold:#f3c85b;--green:#3e9e72}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Thai",sans-serif;color:var(--ink);background:linear-gradient(145deg,#fff8ed,#f9e8e8 52%,#edf5ef)}
-button,input{font:inherit}button{cursor:pointer}.app{max-width:1050px;margin:auto;padding:12px 12px 95px}.hide{display:none!important}.screen{display:none}.screen.on{display:block}
-header{position:sticky;top:8px;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:#fffefde8;backdrop-filter:blur(12px);border-radius:22px;box-shadow:0 10px 30px #5b152018}
-.brand{display:flex;gap:10px;align-items:center}.logo{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#260711,var(--m2));color:#fff;font-size:24px}.brand b{color:var(--m)}.brand small{display:block;color:var(--muted);font-size:12px}.icon{border:0;border-radius:12px;background:#fff;padding:10px;font-size:18px}
-.hero,.box{background:#fffef8e8;border:1px solid #fff;border-radius:30px;box-shadow:0 20px 55px #5b152020}.hero{margin-top:14px;padding:28px;overflow:hidden;position:relative}.hero:before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:linear-gradient(90deg,var(--m),var(--gold),var(--green),#7592df)}
-.hero-grid{display:grid;grid-template-columns:190px 1fr;gap:20px;align-items:center}.train{font-size:110px;text-align:center;filter:drop-shadow(0 14px 10px #0002)}.ey{font-size:12px;font-weight:900;color:var(--m);letter-spacing:.08em}.hero h1{font-size:clamp(34px,6vw,55px);line-height:1.02;margin:5px 0;color:var(--m)}.lead{color:var(--muted);line-height:1.65}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{padding:6px 9px;border:1px solid var(--line);background:#fff;border-radius:999px;font-size:12px;font-weight:800}
-form{display:flex;gap:8px;margin-top:14px;max-width:550px}input{flex:1;min-width:0;padding:13px 15px;border-radius:15px;border:1px solid #dbcaca}.primary,.secondary{border-radius:15px;padding:11px 15px;font-weight:900}.primary{border:0;background:linear-gradient(145deg,#260711,var(--m2));color:#fff}.secondary{background:#fff;border:1px solid #dbcaca;color:var(--m)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:11px;text-align:center}.stat b{display:block;color:var(--m);font-size:18px}.stat small{color:var(--muted)}
-.note{margin-top:12px;padding:10px 12px;border-radius:14px;background:#eaf8f1;color:#31634e;font-size:12px;line-height:1.5}
-.quick{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;margin:12px 0}.quick button{border:0;border-radius:18px;background:#fff;padding:13px;text-align:left;box-shadow:0 8px 22px #5b152012}.quick b{display:block;color:var(--m)}.quick small{color:var(--muted)}
-.profile{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:7px;margin:12px 0}.chip{background:#fff;border:1px solid var(--line);border-radius:16px;padding:9px}.chip small{display:block;color:var(--muted);font-size:11px}.chip b{color:var(--m)}.center{text-align:center}
-.world{border-radius:24px;padding:14px;margin:12px 0;box-shadow:0 8px 25px #5b152012}.world:nth-child(1){background:#fff0d9}.world:nth-child(2){background:#e5f4ef}.world:nth-child(3){background:#eee7ff}.world:nth-child(4){background:#ffe9d9}.world:nth-child(5){background:#e3f3ff}.world:nth-child(6){background:#e5f0e9}.wh{display:flex;gap:9px;align-items:center}.wi{width:44px;height:44px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:23px}.wh h2{margin:0;color:var(--m);font-size:17px}.wh p{margin:2px 0;color:var(--muted);font-size:12px}
-.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.level{position:relative;min-height:122px;border:1px solid #ffffffcc;background:#ffffffe8;border-radius:18px;padding:10px 6px;text-align:center}.level.boss{background:linear-gradient(145deg,#fff7ca,#ffdee5);border:2px solid #69001920}.no{position:absolute;left:6px;top:5px;font-size:10px;padding:2px 5px;border-radius:99px;background:#f3e6e8;color:var(--m);font-weight:900}.li{font-size:30px;margin-top:11px}.level strong{display:block;color:var(--m);font-size:12px;margin-top:3px}.level small{display:block;color:var(--muted);font-size:10px;margin-top:2px;line-height:1.25}.stars{font-size:13px;margin-top:5px}
-.game{margin-top:14px;overflow:hidden}.gh{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(145deg,#260711,var(--m2));color:#fff;padding:13px 14px}.gh b{display:block}.gh small{opacity:.75}.back{border:0;border-radius:11px;background:#ffffff22;color:#fff;padding:8px 10px}.lesson{padding:16px}.learn{padding:18px;border-radius:20px;background:linear-gradient(145deg,#fff9ed,#eef7ff);border:1px solid var(--line)}.learn h2{color:var(--m);margin:5px 0}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.fact{position:relative;padding:11px 11px 11px 34px;border:1px solid var(--line);border-radius:14px;background:#fff;font-size:12px;line-height:1.45}.fact:before{content:"✓";position:absolute;left:10px;color:var(--green);font-weight:900}.src{font-size:11px;color:#72545f;margin:8px 0}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:8px;background:#fff7f4}.metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:7px;text-align:center}.metric small{display:block;color:var(--muted);font-size:10px}.metric b{color:var(--m)}.track{height:7px;background:#eadbd8}.fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold),#d34f5c);width:100%}.body{padding:13px;min-height:400px}.prompt{padding:16px;border-radius:19px;background:linear-gradient(145deg,#edf7ff,#fff8e7);text-align:center}.prompt .e{font-size:42px}.prompt h3{color:var(--m);font-size:16px;margin:5px 0}.answers,.order{display:grid;gap:7px;margin-top:9px}.answer,.order button{padding:11px;border-radius:14px;border:1px solid #dfcecf;background:#fff;text-align:left;font-weight:700}.answer.correct{background:#e2f7eb;border-color:#61b68b;color:#17603e}.answer.wrong{background:#ffe8e8;border-color:#d97878;color:#9b2c36}.answer.sel{border:2px solid var(--m);background:#fff4f6}.fb{margin-top:8px;padding:9px 10px;border-radius:13px;font-size:12px;line-height:1.45}.ok{background:#e5f7ed;color:#1c6141}.bad{background:#fff0dc;color:#77510c}.next{width:100%;margin-top:8px}
-.table{overflow:auto;border:1px solid var(--line);border-radius:14px;margin:8px 0;background:#fff}.table table{width:100%;border-collapse:collapse;min-width:600px;font-size:11px}.table th{background:var(--m);color:#fff;padding:7px}.table td{padding:6px;border-bottom:1px solid #eee;text-align:center}
-.knowledge{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.k{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px}.k h3{color:var(--m);font-size:14px}.k li,.k p{color:var(--muted);font-size:11px;line-height:1.5}.k a{display:inline-block;padding:6px 8px;border-radius:10px;background:#f3e6e8;color:var(--m);text-decoration:none;font-weight:800;font-size:11px}
-dialog{width:min(calc(100% - 20px),650px);border:0;border-radius:24px;padding:18px}dialog::backdrop{background:#1d091188}.result{text-align:center}.result h2{color:var(--m)}.result .ri{font-size:55px}.lessonbox{text-align:left;background:#eaf7f1;color:#31634e;padding:10px;border-radius:13px;font-size:12px}
-nav{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);width:min(calc(100% - 16px),700px);display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;border-radius:20px;background:#210710ee;z-index:50}nav button{border:0;border-radius:13px;background:transparent;color:#ffffffbb;padding:7px 3px;font-size:10px;font-weight:800}nav button span{display:block;font-size:17px}nav .learnnav{background:linear-gradient(145deg,#ffd86c,#ffb95d);color:#4d2400}
-.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%);padding:8px 12px;border-radius:99px;background:#33272c;color:#fff;font-size:12px;opacity:0;pointer-events:none}.toast.show{opacity:1}
-@media(max-width:750px){.hero-grid{grid-template-columns:1fr;text-align:center}.tags{justify-content:center}form{margin-left:auto;margin-right:auto}.levels{grid-template-columns:repeat(3,1fr)}.quick{grid-template-columns:1fr 1fr}.quick button:first-child{grid-column:1/-1}.facts{grid-template-columns:1fr}}
-@media(max-width:480px){.app{padding:8px 8px 90px}.hero{padding:22px 13px}.hero-stats,.stats{grid-template-columns:repeat(2,1fr)}form{flex-direction:column}.levels{grid-template-columns:repeat(2,1fr)}.profile{grid-template-columns:1.5fr 1fr 1fr}.profile .chip:last-child{display:none}.knowledge{grid-template-columns:1fr}}
+:root{
+ --wine:#650018;--wine2:#991d3c;--night:#220711;--ink:#2e2730;--muted:#766a73;
+ --paper:#fffefa;--cream:#fff8ed;--line:#eadfdc;--gold:#f4c85b;--green:#3c9b70;
+ --blue:#dff1ff;--red:#d8515c;--shadow:0 22px 65px rgba(66,8,22,.16)
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Thai",sans-serif;color:var(--ink);
+background:radial-gradient(circle at 8% 0%,#f4c85b42,transparent 28%),radial-gradient(circle at 96% 12%,#a9ddff5c,transparent 28%),linear-gradient(145deg,#fff9ef,#fae8e8 52%,#edf5ef)}
+button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.48;cursor:not-allowed}
+.app{width:min(100%,1080px);margin:auto;padding:12px 14px 103px}.screen{display:none}.screen.active{display:block}
+header{position:sticky;top:8px;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-radius:23px;background:#fffefdec;backdrop-filter:blur(14px);box-shadow:0 12px 35px #5e14201a;border:1px solid #ffffffcc}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}.mark{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(145deg,var(--night),var(--wine2));font-size:24px;color:#fff}.brand b{display:block;color:var(--wine)}.brand small{display:block;color:var(--muted);font-size:11px}.iconbtn{width:40px;height:40px;border:1px solid #eee;border-radius:13px;background:#fff;font-size:18px}
+.hero{margin-top:14px;padding:30px 26px;border-radius:34px;background:#fffef8ef;border:1px solid #fff;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0 0 auto;height:8px;background:linear-gradient(90deg,var(--wine),var(--gold),var(--green),#6687d9)}.hero-grid{display:grid;grid-template-columns:210px 1fr;gap:20px;align-items:center}.trainart{font-size:120px;text-align:center;filter:drop-shadow(0 16px 10px #0002)}.ey{font-size:11px;color:var(--wine);font-weight:950;letter-spacing:.08em}.hero h1{margin:4px 0;color:var(--wine);font-size:clamp(34px,6vw,56px);line-height:1.02;letter-spacing:-.04em}.hero p{color:var(--muted);line-height:1.65}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{padding:6px 9px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:11px;font-weight:850}
+form{display:flex;gap:8px;margin-top:14px;max-width:570px}input{flex:1;min-width:0;border:1px solid #dbc8ca;border-radius:15px;padding:13px 15px}.primary,.secondary{border-radius:15px;padding:11px 15px;font-weight:900}.primary{border:0;color:#fff;background:linear-gradient(145deg,var(--night),var(--wine2));box-shadow:0 8px 20px #65001833}.secondary{background:#fff;border:1px solid #dbc9cb;color:var(--wine)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:17px}.stat{padding:11px;border-radius:17px;background:#fff;border:1px solid var(--line);text-align:center}.stat b{display:block;color:var(--wine);font-size:18px}.stat small{font-size:10px;color:var(--muted)}
+.note{margin-top:12px;padding:10px 12px;border-radius:14px;background:#eaf8f1;color:#31634e;font-size:11px;line-height:1.5}
+.quick{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;margin:12px 0}.quick button{border:0;background:#fff;border-radius:18px;padding:13px;text-align:left;box-shadow:0 8px 22px #5b152012}.quick b{display:block;color:var(--wine)}.quick small{color:var(--muted);font-size:11px}
+.profile{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:7px;margin:12px 0}.chip{background:#fff;border:1px solid var(--line);border-radius:16px;padding:9px}.chip small{display:block;color:var(--muted);font-size:10px}.chip b{color:var(--wine)}.center{text-align:center}
+.world{border-radius:25px;padding:14px;margin:12px 0;box-shadow:0 8px 25px #5b152012}.world:nth-child(1){background:#fff0d8}.world:nth-child(2){background:#e5f5ef}.world:nth-child(3){background:#eee7ff}.world:nth-child(4){background:#ffe9d9}.world:nth-child(5){background:#e2f3ff}.world:nth-child(6){background:#e5f0e9}.wh{display:flex;align-items:center;gap:9px}.wi{width:44px;height:44px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:22px}.wh h2{margin:0;color:var(--wine);font-size:16px}.wh p{margin:2px 0;color:var(--muted);font-size:11px}
+.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}.level{position:relative;min-height:128px;padding:10px 6px;border:1px solid #ffffffcc;border-radius:19px;background:#ffffffe8;text-align:center;box-shadow:0 6px 16px #5b15200e}.level.boss{background:linear-gradient(145deg,#fff7c9,#ffdee5);border:2px solid #65001822}.num{position:absolute;left:6px;top:5px;padding:2px 5px;border-radius:99px;background:#f3e5e8;color:var(--wine);font-size:9px;font-weight:950}.level .li{font-size:30px;margin-top:13px}.level strong{display:block;color:var(--wine);font-size:11px;margin-top:3px;line-height:1.2}.level small{display:block;color:var(--muted);font-size:9px;margin-top:3px;line-height:1.25}.stars{margin-top:5px;font-size:12px}
+.gamebox{margin-top:14px;border-radius:28px;overflow:hidden;background:#fffefbf2;box-shadow:var(--shadow)}.gamehead{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 14px;background:linear-gradient(145deg,var(--night),var(--wine2));color:#fff}.gamehead b{display:block}.gamehead small{opacity:.76;font-size:11px}.back{border:0;border-radius:11px;background:#ffffff22;color:#fff;padding:8px 10px}
+.lesson{padding:16px}.learn{padding:18px;border-radius:20px;background:linear-gradient(145deg,#fff9ed,#eef7ff);border:1px solid var(--line)}.learn h2{margin:4px 0;color:var(--wine)}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.fact{position:relative;padding:11px 11px 11px 34px;border:1px solid var(--line);border-radius:14px;background:#fff;font-size:11px;line-height:1.45}.fact:before{content:"✓";position:absolute;left:10px;color:var(--green);font-weight:950}.src{margin-top:8px;color:#72545f;font-size:10px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:8px;background:#fff7f4}.metric{padding:7px;border:1px solid var(--line);border-radius:12px;background:#fff;text-align:center}.metric small{display:block;color:var(--muted);font-size:9px}.metric b{color:var(--wine)}.track{height:7px;background:#eadbd8}.fill{height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--gold),var(--red))}
+.body{padding:13px;min-height:420px}.prompt{padding:16px;border-radius:19px;background:linear-gradient(145deg,#eef7ff,#fff8e7);text-align:center}.prompt .emo{font-size:42px}.prompt h3{margin:5px 0;color:var(--wine);font-size:16px}.prompt p{margin:4px 0;color:var(--muted);font-size:11px}.answers{display:grid;gap:7px;margin-top:9px}.answer{padding:11px;border:1px solid #dfcecf;border-radius:14px;background:#fff;text-align:left;font-weight:750}.answer.correct{background:#e2f7eb;border-color:#61b68b;color:#17603e}.answer.wrong{background:#ffe8e8;border-color:#d97878;color:#9b2c36}.answer.selected{border:2px solid var(--wine);background:#fff4f6}.fb{margin-top:8px;padding:9px 10px;border-radius:13px;font-size:11px;line-height:1.5}.ok{background:#e5f7ed;color:#1c6141}.bad{background:#fff0dc;color:#77510c}.next{width:100%;margin-top:8px}
+.board{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}.card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px}.card h4{margin:0 0 5px;color:var(--wine)}.card small{color:var(--muted)}.big-choice{border:2px solid transparent}.big-choice:hover{border-color:#65001855}.big-choice.done{background:#e5f7ed;border-color:#61b68b}
+.slot-row{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;min-height:35px}.slot{padding:6px 9px;border-radius:999px;background:var(--wine);color:#fff;font-size:10px;font-weight:850}.order-list{display:grid;gap:7px}.order-item{padding:10px 11px;border:1px solid #dfcecf;border-radius:14px;background:#fff;text-align:left}.order-item.used{opacity:.5;background:#eee7ff}
+.ticket{border:2px dashed #d6b775;border-radius:19px;background:#fffdf1;padding:13px}.ticket-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.field{padding:9px;border:1px solid #e5d8bc;border-radius:12px;background:#fff}.field small{display:block;color:var(--muted);font-size:9px}.field b{font-size:12px}
+.scanner{display:grid;grid-template-columns:1fr 80px 1fr;gap:10px;align-items:center}.person,.ticketmini{padding:14px;border-radius:18px;background:#fff;border:1px solid var(--line);text-align:center}.scanline{font-size:38px;text-align:center}
+.meter{margin:15px 0;padding:15px;border-radius:18px;background:#fff;border:1px solid var(--line)}input[type=range]{width:100%}.meter-value{text-align:center;color:var(--wine);font-size:32px;font-weight:950}
+.queue{display:grid;gap:8px}.passenger{display:grid;grid-template-columns:50px 1fr auto;gap:8px;align-items:center;padding:10px;border-radius:16px;background:#fff;border:1px solid var(--line)}.avatar{font-size:30px}.passenger b{display:block;color:var(--wine)}.passenger small{color:var(--muted)}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:330px;margin:12px auto}.keypad button{padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff;font-weight:900}.display{padding:15px;border-radius:16px;background:#260711;color:#ffd86c;text-align:right;font-size:28px;font-weight:950;letter-spacing:.04em}
+.pack-zone{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bag,.items{min-height:260px;border-radius:20px;padding:12px}.bag{background:#e8f7ef;border:2px dashed #55a982}.items{background:#fff7e7;border:2px dashed #ddb95c}.item-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:8px}.item{padding:10px;border:1px solid var(--line);border-radius:13px;background:#fff;text-align:center}.item.packed{background:#def4e8}.item.blocked{background:#ffe7e9}
+.scene{height:360px;border-radius:20px;position:relative;overflow:hidden;background:linear-gradient(#dff2ff 0 58%,#f1d8b7 58% 75%,#69615d 75%)}.scene:before{content:"KHLONG BANG PHRA";position:absolute;left:50%;top:10px;transform:translateX(-50%);padding:5px 8px;background:#fff;border:3px solid var(--wine);border-radius:9px;color:var(--wine);font-size:10px;font-weight:950}.rail{position:absolute;left:0;right:0;bottom:16px;height:48px;background:repeating-linear-gradient(90deg,#6b625e 0 20px,#b8aaa2 20px 34px);border-top:7px solid #3d3937;border-bottom:7px solid #3d3937}.hot{position:absolute;width:59px;height:59px;border-radius:17px;border:2px dashed #69001955;background:#ffffffcc;font-size:29px}.hot.hit{background:#ddf4e7;border-color:#4b9d72}
+.priority{display:grid;gap:7px}.prio{padding:11px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:left}.prio.used{background:#eee7ff}
+.route-line{display:flex;align-items:center;gap:6px;overflow:auto;padding:14px 6px}.station{min-width:105px;padding:10px;border-radius:15px;background:#fff;border:1px solid var(--line);text-align:center}.station.active{background:#fff0c5;border-color:#dcb44b}.station.done{background:#e1f5e9;border-color:#5daf83}.arrow{color:var(--wine);font-weight:950}
+.direction-pad{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.dirbtn{padding:22px 10px;border:0;border-radius:18px;font-size:22px;font-weight:950}.left{background:#e3f0ff;color:#2c4d78}.right{background:#ffe8e4;color:#8a3342}
+.table{overflow:auto;border:1px solid var(--line);border-radius:14px;margin:8px 0;background:#fff}.table table{width:100%;border-collapse:collapse;min-width:620px;font-size:10px}.table th{background:var(--wine);color:#fff;padding:7px}.table td{padding:6px;border-bottom:1px solid #eee;text-align:center}
+.inbox{display:grid;gap:8px}.mail{padding:12px;border-radius:16px;background:#fff;border:1px solid var(--line)}.mail .subject{font-weight:950;color:var(--wine)}.mail .time{font-size:10px;color:var(--muted)}
+.timeline{display:grid;gap:8px;margin-top:10px}.stage{padding:12px;border-radius:15px;background:#fff;border:1px solid var(--line)}.stage.done{background:#e4f7ec}.stage.current{border:2px solid var(--gold)}
+dialog{width:min(calc(100% - 20px),650px);border:0;border-radius:24px;padding:18px}dialog::backdrop{background:#1d091188}.result{text-align:center}.result h2{color:var(--wine)}.result .ri{font-size:56px}.lessonbox{text-align:left;background:#eaf7f1;color:#31634e;padding:10px;border-radius:13px;font-size:11px}
+nav{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);width:min(calc(100% - 16px),700px);display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;border-radius:20px;background:#210710ee;z-index:60}nav button{border:0;border-radius:13px;background:transparent;color:#ffffffbb;padding:7px 3px;font-size:9px;font-weight:800}nav button span{display:block;font-size:17px}.special{background:linear-gradient(145deg,#ffd86c,#ffb95d)!important;color:#4d2400!important}
+.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%);padding:8px 12px;border-radius:99px;background:#33272c;color:#fff;font-size:11px;opacity:0;pointer-events:none;z-index:90}.toast.show{opacity:1}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr;text-align:center}.tags{justify-content:center}form{margin:auto;margin-top:14px}.levels{grid-template-columns:repeat(3,1fr)}.quick{grid-template-columns:1fr 1fr}.quick button:first-child{grid-column:1/-1}.facts{grid-template-columns:1fr}.scanner{grid-template-columns:1fr}.scanline{transform:rotate(90deg)}}
+@media(max-width:480px){.app{padding:8px 8px 92px}.hero{padding:22px 13px}.stats{grid-template-columns:repeat(2,1fr)}form{flex-direction:column}.levels{grid-template-columns:repeat(2,1fr)}.profile{grid-template-columns:1.5fr 1fr 1fr}.profile .chip:last-child{display:none}.board,.pack-zone{grid-template-columns:1fr}.ticket-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="app">
-<header><div class="brand"><div class="logo">🚆</div><div><b>KBP Rail Academy</b><small>เกมความรู้รถไฟจากแหล่งข้อมูลทางการ</small></div></div><div><button class="icon" id="kbtn">📚</button><button class="icon" id="sound">🔊</button></div></header>
+<header><div class="brand"><div class="mark">🚆</div><div><b>KBP Rail Quest 3</b><small>Gameplay Rebuild • ไม่ใช่ข้อสอบวน ๆ แล้ว</small></div></div><div><button class="iconbtn" id="sound">🔊</button></div></header>
 
-<section id="welcome" class="screen on">
- <div class="hero">
-  <div class="hero-grid"><div class="train">🚆</div><div><div class="ey">OFFICIAL-SOURCE LEARNING GAME • 2026</div><h1>รู้เรื่องรถไฟ<br>ก่อนเดินทางจริง</h1><p class="lead">สร้างใหม่จากศูนย์: เรียนรู้เรื่องตู้โดยสาร การซื้อตั๋ว D-Ticket สิทธิผู้โดยสาร ค่าธรรมเนียม สัมภาระ สัตว์เลี้ยง ความปลอดภัย และการวางแผนเดินทางสายตะวันออกที่คลองบางพระ ก่อนเข้าสถานการณ์จำลอง</p><div class="tags"><span class="tag">เรียนก่อนเล่น</span><span class="tag">30 ภารกิจ</span><span class="tag">6 หมวด</span><span class="tag">รฟท. / D-Ticket / Timetable 2026</span></div><form id="form"><input id="name" placeholder="ชื่อเล่น 2–18 ตัวอักษร" maxlength="18"><button class="primary">เข้า Rail Academy</button></form></div></div>
-  <div class="stats"><div class="stat"><b>30</b><small>บทเรียน</small></div><div class="stat"><b>90</b><small>ดาวสูงสุด</small></div><div class="stat"><b>6</b><small>บอสประจำหมวด</small></div><div class="stat"><b>16 ส.ค. 2569</b><small>ตรวจแหล่งข้อมูล</small></div></div>
-  <div class="note">ข้อมูลหลักอ้างอิงเว็บไซต์การรถไฟแห่งประเทศไทย, D-Ticket และ SRT Timetable Matrix 2026 โดยตรง • เวลาเดินรถและเงื่อนไขบริการอาจเปลี่ยนได้ ควรตรวจสอบล่าสุดก่อนเดินทาง</div>
- </div>
- <div class="quick"><button id="cont"><b>🗺️ เรียนต่อ</b><small>กลับสู่เส้นทางหลักสูตร</small></button><button id="random"><b>⚡ ทบทวนสุ่ม</b><small>สุ่มบทที่ปลดล็อกแล้ว</small></button><button id="know"><b>📚 คลังความรู้</b><small>อ่านอย่างเดียวได้</small></button></div>
+<section id="welcome" class="screen active">
+<div class="hero">
+ <div class="hero-grid"><div class="trainart">🚆</div><div><div class="ey">GAMEPLAY-FIRST REBUILD</div><h1>30 ด่าน<br>15+ วิธีเล่น</h1><p>เนื้อหายังเป็นความรู้รถไฟสำหรับผู้โดยสาร แต่ทุกหมวดเปลี่ยนวิธีเล่นจริง: เคาน์เตอร์ขายตั๋ว, เครื่องสแกนชื่อ, เครื่องคิดค่าธรรมเนียม, จัดกระเป๋า, ฉากหาจุดเสี่ยง, แผนที่สถานี, Inbox Waiting List, Journey Simulation และ Boss แบบหลายขั้น</p><div class="tags"><span class="tag">Ticket Desk</span><span class="tag">Scanner</span><span class="tag">Calculator</span><span class="tag">Hotspot</span><span class="tag">Route Map</span><span class="tag">Inbox</span><span class="tag">Journey Sim</span></div><form id="form"><input id="name" maxlength="18" placeholder="ชื่อเล่น 2–18 ตัวอักษร"><button class="primary">เริ่มเล่น</button></form></div></div>
+ <div class="stats"><div class="stat"><b>30</b><small>ภารกิจหลัก</small></div><div class="stat"><b>15+</b><small>Gameplay mechanics</small></div><div class="stat"><b>6</b><small>Boss หลายขั้น</small></div><div class="stat"><b>90</b><small>ดาวสูงสุด</small></div></div>
+ <div class="note">เวอร์ชันนี้ตั้งใจแก้ปัญหา “ทุกด่านคือ quiz” โดยตรง • ระบบดาว: ⭐ ฝึก / ⭐⭐ ผ่าน / ⭐⭐⭐ เชี่ยวชาญ</div>
+</div>
+<div class="quick"><button id="cont"><b>🗺️ เล่นต่อ</b><small>กลับสู่แผนที่ภารกิจ</small></button><button id="random"><b>⚡ สุ่มด่าน</b><small>สุ่มจากที่ปลดล็อกแล้ว</small></button><button id="reset"><b>🧹 เริ่มใหม่</b><small>ล้างความคืบหน้ารุ่นนี้</small></button></div>
 </section>
 
-<section id="map" class="screen"><div class="profile"><div class="chip"><small>ผู้เรียน</small><b id="pn">-</b></div><div class="chip center"><small>คะแนน</small><b id="ps">0</b></div><div class="chip center"><small>ดาว</small><b id="pst">0/90</b></div><div class="chip center"><small>ผ่าน</small><b id="pp">0/30</b></div></div><div id="worldmap"></div></section>
+<section id="map" class="screen"><div class="profile"><div class="chip"><small>ผู้เล่น</small><b id="pn">-</b></div><div class="chip center"><small>คะแนน</small><b id="ps">0</b></div><div class="chip center"><small>ดาว</small><b id="pst">0/90</b></div><div class="chip center"><small>ผ่าน</small><b id="pp">0/30</b></div></div><div id="worldmap"></div></section>
 
-<section id="game" class="screen"><div class="box game"><div class="gh"><div><b id="gt">บทเรียน</b><small id="gs">ภารกิจ</small></div><button class="back" id="back">← หลักสูตร</button></div><div id="gc"></div></div></section>
-
-<section id="knowledge" class="screen"><div style="display:flex;justify-content:space-between;align-items:center;margin:14px 3px 10px"><div><h2 style="margin:0;color:var(--m)">คลังความรู้รถไฟ</h2><small style="color:var(--muted)">อ่านเนื้อหาทั้งหมด พร้อมแหล่งข้อมูลทางการ</small></div><button class="secondary" id="kb">← กลับ</button></div><div id="kc" class="knowledge"></div></section>
+<section id="game" class="screen"><div class="gamebox"><div class="gamehead"><div><b id="gt">ภารกิจ</b><small id="gs">Gameplay</small></div><button class="back" id="back">← แผนที่</button></div><div id="gc"></div></div></section>
 </div>
 
-<dialog id="result"><div class="result"><div class="ri" id="ri">🌟</div><h2 id="rt">ผลภารกิจ</h2><div id="rs" style="font-size:28px">☆☆☆</div><p id="rr"></p><div class="lessonbox" id="rl"></div><button class="primary next" id="rback">กลับสู่หลักสูตร</button></div></dialog>
+<dialog id="result"><div class="result"><div class="ri" id="ri">🌟</div><h2 id="rt">ผลภารกิจ</h2><div id="rs" style="font-size:28px">☆☆☆</div><p id="rr"></p><div id="rl" class="lessonbox"></div><button id="rback" class="primary next">กลับสู่แผนที่</button></div></dialog>
 
-<nav><button id="nh"><span>🏠</span>หน้าแรก</button><button id="nm"><span>🗺️</span>หลักสูตร</button><button id="nr"><span>⚡</span>ทบทวน</button><button id="nk" class="learnnav"><span>📚</span>ความรู้</button><button id="ns"><span>🔊</span>เสียง</button></nav>
+<nav><button id="nh"><span>🏠</span>หน้าแรก</button><button id="nm"><span>🗺️</span>ภารกิจ</button><button id="nr"><span>⚡</span>สุ่ม</button><button id="nnext" class="special"><span>▶️</span>ด่านถัดไป</button><button id="ns"><span>🔊</span>เสียง</button></nav>
 <div id="toast" class="toast"></div>
 
 <script>
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],KEY='kbp_academy_v2';
-let cur=null,cleaner=null,soundOn=true,prev='welcome';
-const SRC={passenger:['กฎตั๋ว สิทธิ Waiting List ตั๋วเดือน','https://www.railway.co.th/Service/Passenger_detail'],dticket:['คู่มือ D-Ticket','https://dticket.railway.co.th/DTicketPublicWeb/help/'],cars:['ประเภทรถโดยสาร','https://www.railway.co.th/Service/Passenger_detail'],baggage:['หีบห่อวัตถุ / สัตว์มีชีวิต','https://www.railway.co.th/Service/Passenger_detail'],safety:['ข้อควรปฏิบัติด้านความปลอดภัย','https://www.railway.co.th/More/Knowledge_Detail'],timetable:['SRT Timetable Matrix 2026','https://ttsview.railway.co.th/timetable_modern.php?line=3&ln=th']};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const KEY='kbp_rail_quest3_v1'; let cur=null,cleaner=null,soundOn=true;
 const TT=[
-['384','รถธรรมดา','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','05:29','05:30'],['380','รถธรรมดา','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','05:54','05:55'],['372','รถธรรมดา','ไปกรุงเทพ','ปราจีนบุรี','กรุงเทพ','06:29','06:30'],['388','รถพิเศษชานเมือง','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','07:11','07:12'],['278','รถธรรมดา','ไปกรุงเทพ','กบินทร์บุรี','กรุงเทพ','08:40','08:41'],['280','รถธรรมดา','ไปกรุงเทพ','ด่านพรมแดนบ้านคลองลึก','กรุงเทพ','10:32','10:33'],['368','รถธรรมดา','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','12:43','12:44'],['390','รถพิเศษชานเมือง','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','14:11','14:12'],['282','รถธรรมดา','ไปกรุงเทพ','กบินทร์บุรี','กรุงเทพ','15:41','15:42'],['284','รถธรรมดา','ไปกรุงเทพ','จุกเสม็ด','กรุงเทพ','16:32','16:33'],['276','รถธรรมดา','ไปกรุงเทพ','ด่านพรมแดนบ้านคลองลึก','กรุงเทพ','18:59','19:00'],
-['275','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ด่านพรมแดนบ้านคลองลึก','07:27','07:28'],['283','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','จุกเสม็ด','08:45','08:46'],['281','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','กบินทร์บุรี','09:22','09:23'],['367','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','11:34','11:35'],['389','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','13:22','13:23'],['279','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ด่านพรมแดนบ้านคลองลึก','14:07','14:08'],['277','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','กบินทร์บุรี','16:36','16:37'],['379','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','17:56','17:57'],['391','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','18:16','18:17'],['371','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ปราจีนบุรี','19:10','19:11'],['383','รถธรรมดา','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','20:39','20:40']
-].map(x=>({no:x[0],kind:x[1],dir:x[2],origin:x[3],dest:x[4],arr:x[5],dep:x[6]}));
-const q=(e,q,a,c,x)=>({e,q,a,c,x}),o=(q,items,x)=>({q,items,x}),m=(q,opts,correct,x)=>({q,opts,correct,x});
-const LES={
-car:{t:'รู้จักตู้โดยสารและคำย่อ',i:'🚃',s:'cars',f:['รฟท. ให้บริการตู้โดยสารชั้น 1 ชั้น 2 และชั้น 3','บนอ.ป. = รถนั่งและนอนชั้น 1 ปรับอากาศ','บนท.ป. = รถนั่งและนอนชั้น 2 ปรับอากาศ','บชส. = รถโบกี้ชั้น 3']},
-type:{t:'ขบวนสำรองกับที่นั่งอิสระ',i:'🚆',s:'passenger',f:['ขบวนสำรองที่นั่งรวมตัวอย่างรถด่วนพิเศษ รถด่วน รถเร็ว','รถธรรมดา ชานเมือง ท้องถิ่น และที่นั่งอิสระอยู่ในกลุ่มจำหน่ายวันเดินทาง','รถกลุ่มที่นั่งอิสระซื้อในวันเดินทางก่อนรถออกไม่เกิน 2 ชั่วโมง']},
-buy:{t:'ช่องทางซื้อตั๋วทางการ',i:'🎟️',s:'passenger',f:['ซื้อได้ที่สถานีรถไฟทั่วประเทศ','จองทางโทรศัพท์ 1690 ได้ตลอด 24 ชม. ตามหน้า รฟท.','สำรองผ่านเว็บไซต์ D-Ticket และแอป SRT D-Ticket','หลังซื้อควรตรวจขบวน วันเดินทาง ต้นทาง ปลายทาง และเงินทอน']},
-dt:{t:'D-Ticket ตั้งแต่ค้นหาถึงชำระเงิน',i:'📱',s:'dticket',f:['สมัครสมาชิกหรือเข้าสู่ระบบก่อนจอง','เลือกสาย ต้นทาง ปลายทาง วันที่ และจำนวนผู้โดยสาร','เลือกขบวน ตู้โดยสาร กรอกข้อมูลผู้เดินทาง แล้วเลือกที่นั่ง','ตรวจสรุปและชำระเงิน จากนั้นระบบออกข้อมูลตั๋ว']},
-id:{t:'ตั๋วสำรองผูกกับตัวตนผู้เดินทาง',i:'🪪',s:'passenger',f:['ทุกที่นั่งสำรองต้องมีชื่อและเลขบัตรประชาชนหรือ Passport','ตั้งแต่ 1 ก.ค. 2567 ไม่อนุญาตให้แก้ชื่อหรือโอนสิทธิ','หากเปลี่ยนคนเดินทางต้องคืนตั๋วเดิมและออกใหม่','PDF จากอีเมลหรือ D-Ticket บนอุปกรณ์ใช้แสดงแทนตั๋วกระดาษได้']},
-book:{t:'เกณฑ์จองล่วงหน้า 1–30–90 วัน',i:'📆',s:'passenger',f:['น้อยกว่า 25% ของระยะทางขบวน → 1 วัน','25–59% → 30 วัน','ตั้งแต่ 60% ขึ้นไป → 90 วัน','เกณฑ์นี้ใช้กับขบวนสำรองที่นั่งตามหน้า รฟท.']},
-rights:{t:'สิทธิผู้โดยสารที่ควรรู้',i:'🤝',s:'passenger',f:['เด็กสูงเกิน 100 แต่ไม่เกิน 150 ซม. ลดค่าโดยสาร 50%','ผู้สูงอายุไทย 60+ ลด 50% ช่วง 1 มิ.ย.–30 ก.ย.','คนพิการสัญชาติไทยลดเฉพาะค่าโดยสาร 50%','ผู้ติดตามคนพิการ 1 คนลดเฉพาะค่าโดยสาร 25% และผู้มีหลายสิทธิเลือกใช้หนึ่งสิทธิ']},
-fee:{t:'ค่าธรรมเนียมซื้อตั๋วบนขบวน',i:'💸',s:'passenger',f:['ด่วนพิเศษ ด่วน และเร็ว: 250 บาทต่อคน','ขบวนอื่นนอกเหนือกลุ่มดังกล่าว: 100 บาทต่อคน','มีข้อยกเว้น เช่น เด็ก นักเรียนในเครื่องแบบไม่เกินมัธยม และผู้ขึ้นจากที่หยุดรถที่ไม่มีจุดขายตั๋ว']},
-month:{t:'ตั๋วเดือนหลักเกณฑ์ใหม่ปี 2569',i:'🗓️',s:'passenger',f:['เริ่ม 1 ก.ค. 2569','เที่ยวเดียวประชาชนทั่วไป: 6 / 24 / 48 / 72 วัน สำหรับรายสัปดาห์ / 1 / 2 / 3 เดือน','ส่วนลดประชาชนทั่วไป 25% / 25% / 28% / 30% ตามช่วง','ตั๋วเดือนไม่อนุญาตให้เปลี่ยนแปลงและไม่คืนเงิน']},
-bag:{t:'สัมภาระและหัตถภาระ',i:'🧳',s:'baggage',f:['หัตถภาระคือของที่ผู้โดยสารนำเข้าไปในห้องโดยสารเพื่อใช้เองหรือเพื่อความสะดวก','ของเกินน้ำหนักหรือปริมาตรที่อนุญาตอาจมีค่าระวางและค่าธรรมเนียม','ควรจัดสัมภาระไม่ให้กีดขวางหรือสร้างความเสี่ยง']},
-pet:{t:'เดินทางพร้อมสัตว์',i:'🐶',s:'baggage',f:['สุนัขและแมวโดยทั่วไปต้องบรรจุในที่คุมขังมีฝาปิด','สุนัขที่ไม่ดุร้ายอาจไม่ต้องบรรจุที่คุมขังตามเงื่อนไข รฟท.','ห้ามนำสัตว์ทุกชนิดเข้าไปในรถปรับอากาศ','ค่าระวางและรายละเอียดควรตรวจกับสถานีก่อนเดินทาง']},
-safe:{t:'ความปลอดภัยบนรถไฟและทางรถไฟ',i:'🛡️',s:'safety',f:['อย่าขึ้นลงขณะรถเคลื่อน ให้รอจนหยุดนิ่ง','ห้ามโดยสารบริเวณข้อต่อรถ บันไดรถ และหลังคา','มองซ้ายขวาก่อนข้ามทางรถไฟ และไม่ข้ามขณะมีรถจอดขวาง','ไม่รับฝากสัมภาระจากคนแปลกหน้า และแจ้งเจ้าหน้าที่เมื่อพบพฤติกรรมน่าสงสัย']},
-kbp:{t:'คลองบางพระในสายตะวันออก',i:'📍',s:'timetable',f:['SRT Timetable Matrix 2026 แสดงคลองบางพระที่ระยะ 53.60 กม.','ลำดับฝั่งกรุงเทพ: เปรง → คลองแขวงกลั่น → คลองบางพระ','ด้านฉะเชิงเทรา: คลองบางพระ → บางเตย → ชุมทางฉะเชิงเทรา','เวลาเดินรถอาจเปลี่ยน ควรตรวจสอบอีกครั้งก่อนเดินทางจริง']},
-change:{t:'เปลี่ยนแปลงการเดินทาง',i:'🔄',s:'passenger',f:['ก่อนรถออก 1 วัน ค่าธรรมเนียม 50%','2 วัน = 30%','3 วันขึ้นไป = 20%','ต้องแจ้งก่อนรถออกไม่น้อยกว่า 24 ชั่วโมง และตั๋วเดือนไม่อยู่ในสิทธิเปลี่ยน']},
-refund:{t:'คืนตั๋วอย่างมีหลักเกณฑ์',i:'↩️',s:'passenger',f:['ตั๋วรายบุคคลขอคืนก่อนรถออกจากต้นทางตามตั๋วไม่น้อยกว่า 3 ชั่วโมง','ค่าธรรมเนียมคืนขั้นต่ำ 20 บาทต่อฉบับ','หน้า รฟท. ระบุว่าตั๋วรายบุคคลที่เข้าเกณฑ์คืนหักไว้ร้อยละ 70 ของราคาตั๋ว','ตั๋วเดือนไม่คืนเงิน']},
-wait:{t:'Waiting List เมื่อที่นั่งเต็ม',i:'⏳',s:'passenger',f:['ใช้กับขบวนที่ต้องสำรองที่นั่ง เช่น ด่วนพิเศษ ด่วน เร็ว และนำเที่ยว','ผู้ใช้ต้องเป็นสมาชิก D-Ticket ที่ยืนยันตัวตนแล้ว','เมื่อมีที่นั่งว่าง ระบบแจ้งทางอีเมลตามลำดับ','ต้องออกตั๋วและชำระภายใน 3 ชั่วโมงหลังระบบส่งอีเมล']}
-};
+['384','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','05:29','05:30'],['380','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','05:54','05:55'],['372','ไปกรุงเทพ','ปราจีนบุรี','กรุงเทพ','06:29','06:30'],['388','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','07:11','07:12'],['278','ไปกรุงเทพ','กบินทร์บุรี','กรุงเทพ','08:40','08:41'],['280','ไปกรุงเทพ','ด่านพรมแดนบ้านคลองลึก','กรุงเทพ','10:32','10:33'],['368','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','12:43','12:44'],['390','ไปกรุงเทพ','ชุมทางฉะเชิงเทรา','กรุงเทพ','14:11','14:12'],['282','ไปกรุงเทพ','กบินทร์บุรี','กรุงเทพ','15:41','15:42'],['284','ไปกรุงเทพ','จุกเสม็ด','กรุงเทพ','16:32','16:33'],['276','ไปกรุงเทพ','ด่านพรมแดนบ้านคลองลึก','กรุงเทพ','18:59','19:00'],
+['275','ออกจากกรุงเทพ','กรุงเทพ','ด่านพรมแดนบ้านคลองลึก','07:27','07:28'],['283','ออกจากกรุงเทพ','กรุงเทพ','จุกเสม็ด','08:45','08:46'],['281','ออกจากกรุงเทพ','กรุงเทพ','กบินทร์บุรี','09:22','09:23'],['367','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','11:34','11:35'],['389','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','13:22','13:23'],['279','ออกจากกรุงเทพ','กรุงเทพ','ด่านพรมแดนบ้านคลองลึก','14:07','14:08'],['277','ออกจากกรุงเทพ','กรุงเทพ','กบินทร์บุรี','16:36','16:37'],['379','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','17:56','17:57'],['391','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','18:16','18:17'],['371','ออกจากกรุงเทพ','กรุงเทพ','ปราจีนบุรี','19:10','19:11'],['383','ออกจากกรุงเทพ','กรุงเทพ','ชุมทางฉะเชิงเทรา','20:39','20:40']
+].map(x=>({no:x[0],dir:x[1],origin:x[2],dest:x[3],arr:x[4],dep:x[5]}));
+
 const W=[
-[1,'🚆','รู้จักรถไฟไทย','ตู้โดยสาร ชั้น และประเภทขบวน'],[2,'🎫','ซื้อตั๋วและ D-Ticket','ช่องทางซื้อ ตัวตน และการจอง'],[3,'💳','สิทธิและค่าโดยสาร','ส่วนลด ค่าธรรมเนียม และตั๋วเดือน'],[4,'🛡️','สัมภาระ สัตว์ ความปลอดภัย','ของที่นำไปและพฤติกรรมปลอดภัย'],[5,'📍','สายตะวันออก–คลองบางพระ','อ่านตารางจริงและเลือกขบวน'],[6,'🧭','แก้ปัญหาการเดินทาง','เปลี่ยน คืน Waiting List และ Final']
-].map(x=>({id:x[0],i:x[1],n:x[2],d:x[3]}));
-const MS=[
-{id:1,w:1,i:'🚃',n:'ตู้โดยสาร 3 ชั้น',l:'car',t:'quiz',q:[q('🚃','รฟท. ให้บริการตู้โดยสารหลักกี่ชั้น',['3 ชั้น','2 ชั้น','5 ชั้น'],0,'มีชั้น 1 ชั้น 2 และชั้น 3'),q('🔤','บนอ.ป. คืออะไร',['ชั้น 1 นั่งและนอน ปรับอากาศ','ชั้น 3','รถสินค้า'],0,'บนอ.ป. เป็นรถชั้น 1 นั่งและนอน ปรับอากาศ'),q('🔤','บชส. คืออะไร',['รถโบกี้ชั้น 3','รถนอนชั้น 1','รถจักร'],0,'บชส. = รถโบกี้ชั้น 3')]},
-{id:2,w:1,i:'🔤',n:'ถอดรหัสตู้โดยสาร',l:'car',t:'quiz',q:[q('🔤','บนท.ป. หมายถึง',['ชั้น 2 นั่งและนอน ปรับอากาศ','ชั้น 1','ชั้น 3'],0,'บนท.ป. = ชั้น 2 นั่งและนอน ปรับอากาศ'),q('🪑','บชท. หมายถึง',['รถโบกี้ชั้น 2','รถโบกี้ชั้น 3','รถจักร'],0,'บชท. = รถโบกี้ชั้น 2'),q('✅','ก่อนเลือกตู้ควรดูอะไร',['ขบวน + ชั้น + ประเภทตู้','สีตั๋ว','ชื่อพนักงาน'],0,'ดูข้อมูลหลายส่วนร่วมกัน')]},
-{id:3,w:1,i:'🚆',n:'สำรอง vs ที่นั่งอิสระ',l:'type',t:'quiz',q:[q('🎫','กลุ่มใดเป็นตัวอย่างขบวนสำรองที่นั่ง',['ด่วนพิเศษ ด่วน เร็ว','ธรรมดา ชานเมือง ท้องถิ่น','รถสินค้า'],0,'หน้า รฟท. ระบุกลุ่มด่วนพิเศษ ด่วน เร็ว'),q('🕑','รถธรรมดา/ชานเมือง/ท้องถิ่นซื้อเมื่อใดตามเกณฑ์',['วันเดินทางก่อนรถออกไม่เกิน 2 ชม.','ล่วงหน้า 90 วันเสมอ','หลังรถออก'],0,'กลุ่มที่นั่งอิสระซื้อในวันเดินทาง'),q('🚉','คลองบางพระมีประเภทใดในตารางปี 2026',['รถธรรมดาและรถพิเศษชานเมือง','เฉพาะด่วนพิเศษ','เฉพาะรถนอน'],0,'พบรถธรรมดาและรถพิเศษชานเมือง')]},
-{id:4,w:1,i:'🧠',n:'เลือกประเภทให้ถูก',l:'type',t:'quiz',q:[q('🚆','ขบวน 388 ในตารางสายตะวันออกเป็นประเภทใด',['รถพิเศษชานเมือง','รถด่วนพิเศษ','รถสินค้า'],0,'ตาราง รฟท. ระบุ 388 เป็นรถพิเศษชานเมือง'),q('🚆','ขบวน 278 เป็นประเภทใด',['รถธรรมดา','รถนอน','รถสินค้า'],0,'ตาราง รฟท. ระบุ 278 เป็นรถธรรมดา'),q('🎯','ความต่างสำคัญที่เกมเน้นคืออะไร',['หลักการจอง/ที่นั่งและบริการต่างกัน','สีรถเท่านั้น','ไม่มีความต่าง'],0,'ผู้โดยสารต้องดูประเภทขบวนและเงื่อนไข')]},
-{id:5,w:1,i:'🏁',n:'บอสหมวดรถไฟไทย',l:'car',t:'boss',pool:[1,2,3,4],boss:1},
-
-{id:6,w:2,i:'🎟️',n:'ช่องทางซื้อตั๋ว',l:'buy',t:'quiz',q:[q('🏢','ซื้อที่ไหนได้',['สถานีรถไฟทั่วประเทศ','ร้านใดก็ได้','เฉพาะสนามบิน'],0,'สถานีรถไฟทั่วประเทศ'),q('☎️','หมายเลขจองทางโทรศัพท์',['1690','191','1155'],0,'1690'),q('✅','หลังซื้อควรตรวจอะไร',['ขบวน วัน ต้นทาง ปลายทาง เงินทอน','สีตั๋ว','อากาศ'],0,'ตรวจรายละเอียดตั๋วทันที')]},
-{id:7,w:2,i:'📱',n:'D-Ticket Flow',l:'dt',t:'order',o:[o('เรียงขั้นตอนแบบย่อ',['เข้าสู่ระบบ','เลือกต้นทาง–ปลายทาง–วันเดินทาง','เลือกขบวนและตู้โดยสาร','กรอกข้อมูลผู้โดยสารและเลือกที่นั่ง','ตรวจสรุปและชำระเงิน'],'โครงหลักจากคู่มือ D-Ticket')]},
-{id:8,w:2,i:'🪪',n:'ชื่อบนตั๋วต้องตรง',l:'id',t:'quiz',q:[q('🪪','ตั๋วสำรองต้องมีอะไร',['ชื่อและเลขบัตร/Passport ของผู้เดินทาง','ชื่อผู้ซื้ออย่างเดียว','สีตั๋ว'],0,'ทุกที่นั่งต้องมีข้อมูลผู้เดินทาง'),q('🔁','เปลี่ยนชื่อผู้เดินทางได้ไหม',['ไม่ได้ ต้องคืนเดิมและออกใหม่','ได้ฟรี','ขีดแก้เอง'],0,'ตั้งแต่ 1 ก.ค. 2567 ไม่อนุญาตให้แก้ชื่อ/โอนสิทธิ'),q('📧','PDF หรือ D-Ticket บนอุปกรณ์ใช้แทนกระดาษได้ไหม',['ได้','ไม่ได้','ได้เฉพาะรถสินค้า'],0,'หน้า รฟท. ระบุว่าใช้แสดงได้')]},
-{id:9,w:2,i:'📆',n:'สูตร 1–30–90 วัน',l:'book',t:'quiz',q:[q('📏','เดินทาง 20% จองได้สูงสุด',['1 วัน','30 วัน','90 วัน'],0,'น้อยกว่า 25% = 1 วัน'),q('📏','เดินทาง 50% จองได้สูงสุด',['30 วัน','1 วัน','90 วัน'],0,'25–59% = 30 วัน'),q('📏','เดินทาง 60% จองได้สูงสุด',['90 วัน','30 วัน','1 วัน'],0,'ตั้งแต่ 60% = 90 วัน'),q('🧮','150 กม. จาก 600 กม. = ?',['25% → 30 วัน','20% → 1 วัน','60% → 90 วัน'],0,'150/600 = 25%')]},
-{id:10,w:2,i:'🏁',n:'บอสการจองตั๋ว',l:'book',t:'boss',pool:[6,8,9],boss:1},
-
-{id:11,w:3,i:'🤝',n:'สิทธิส่วนลดหลัก',l:'rights',t:'quiz',q:[q('🧒','เด็กสูง 120 ซม. ได้สิทธิใด',['ลดค่าโดยสาร 50%','ฟรีทั้งหมด','ลดค่าธรรมเนียม 50%'],0,'สูงเกิน 100 ไม่เกิน 150 ซม. ลดค่าโดยสาร 50%'),q('👵','ผู้สูงอายุไทย 60+ ใช้สิทธิช่วงใด',['1 มิ.ย.–30 ก.ย.','ทั้งปี','ธันวาคม'],0,'ช่วง 1 มิ.ย.–30 ก.ย.'),q('♿','คนพิการไทยลดอย่างไร',['ค่าโดยสาร 50% ค่าธรรมเนียมไม่ลด','ฟรีทั้งหมด','ลดค่าธรรมเนียม'],0,'ลดเฉพาะค่าโดยสาร 50%'),q('🤝','ผู้ติดตาม 1 คนลดเท่าไร',['25%','50%','100%'],0,'ลดค่าโดยสาร 25%')]},
-{id:12,w:3,i:'💸',n:'ไม่มีตั๋วบนขบวน',l:'fee',t:'quiz',q:[q('🚄','ด่วนพิเศษ/ด่วน/เร็ว ค่าธรรมเนียมบนรถ',['250 บาท','100 บาท','20 บาท'],0,'250 บาทต่อคน'),q('🚃','ขบวนอื่น ค่าธรรมเนียม',['100 บาท','250 บาท','0 ทุกกรณี'],0,'100 บาทต่อคน'),q('🚏','ขึ้นจากป้ายหยุดรถไม่มีจุดขายตั๋ว',['อยู่ในข้อยกเว้นบางกรณี','ต้อง 250 เสมอ','ห้ามขึ้น'],0,'หน้า รฟท. ระบุเป็นข้อยกเว้น')]},
-{id:13,w:3,i:'👥',n:'หมู่คณะนักเรียน',l:'rights',t:'quiz',q:[q('📄','เอกสารหลักคืออะไร',['หนังสือรับรองจากสถานศึกษา','รูปหมู่','ไม่ต้องมีเอกสาร'],0,'ต้องมีหนังสือรับรอง'),q('👨‍🏫','อาจารย์ควบคุมกี่คนต่อผู้เรียน 10 คน',['1 คน','5 คน','ไม่ต้องมี'],0,'1 คนต่อ 10 คน'),q('🎫','เที่ยวเดียวลดค่าโดยสารเท่าไร',['25%','50%','ฟรี'],0,'ลดค่าโดยสาร 25% ค่าธรรมเนียมเต็ม')]},
-{id:14,w:3,i:'🗓️',n:'ตั๋วเดือน 2569',l:'month',t:'quiz',q:[q('📅','เริ่มหลักเกณฑ์ใหม่เมื่อใด',['1 ก.ค. 2569','1 ม.ค. 2569','1 ธ.ค. 2569'],0,'1 ก.ค. 2569'),q('1️⃣','ราย 1 เดือนคิดกี่วัน',['24','20','30'],0,'24 วัน'),q('3️⃣','ราย 3 เดือนคิดกี่วัน',['72','90','60'],0,'72 วัน'),q('🔁','ตั๋วเดือนเปลี่ยน/คืนได้ไหม',['ไม่ได้','ได้ฟรี','ได้เฉพาะวันหยุด'],0,'ไม่เปลี่ยนและไม่คืนเงิน')]},
-{id:15,w:3,i:'🏁',n:'บอสสิทธิและค่าโดยสาร',l:'rights',t:'boss',pool:[11,12,13,14],boss:1},
-
-{id:16,w:4,i:'🧳',n:'สัมภาระและหัตถภาระ',l:'bag',t:'quiz',q:[q('👜','หัตถภาระคืออะไร',['ของที่ผู้โดยสารนำเข้าห้องโดยสารเพื่อใช้เอง/ความสะดวก','รถจักร','สัญญาณ'],0,'เป็นสัมภาระที่นำเข้าไปในห้องโดยสาร'),q('⚖️','ของเกินเกณฑ์อาจเกิดอะไร',['มีค่าระวางและค่าธรรมเนียม','ฟรีเสมอ','ต้องทิ้ง'],0,'ขึ้นกับหลักเกณฑ์ รฟท.'),q('🚶','วางของแบบไหนเหมาะ',['ไม่กีดขวางทางเดิน','ขวางประตู','ใกล้ขอบชานชาลา'],0,'ควรลดความเสี่ยง')]},
-{id:17,w:4,i:'🐶',n:'สัตว์เลี้ยงขึ้นรถไฟ',l:'pet',t:'quiz',q:[q('🐱','สุนัข/แมวโดยทั่วไปควรอย่างไร',['อยู่ในที่คุมขังมีฝาปิด','ปล่อยอิสระเสมอ','ใส่ถุงเปิด'],0,'หน้า รฟท. ระบุที่คุมขังมีฝาปิด'),q('🐕','สุนัขไม่ดุร้ายมีข้อยกเว้นอะไร',['อาจไม่ต้องอยู่ในที่คุมขังตามเงื่อนไข','เข้าแอร์ได้เสมอ','ฟรีเสมอ'],0,'มีข้อยกเว้นเรื่องที่คุมขัง'),q('❄️','สัตว์เข้าในรถปรับอากาศได้ไหม',['ไม่ได้','ได้ทุกกรณี','ได้เฉพาะกลางคืน'],0,'รฟท. ระบุห้ามสัตว์ทุกชนิดในรถปรับอากาศ')]},
-{id:18,w:4,i:'🚆',n:'ปลอดภัยบนขบวน',l:'safe',t:'quiz',q:[q('🚶','ควรขึ้นลงเมื่อใด',['รถหยุดนิ่ง','รถกำลังเคลื่อน','ก่อนจอด'],0,'รอรถหยุดนิ่ง'),q('🚫','บริเวณใดห้ามโดยสาร',['ข้อต่อรถ บันได หลังคา','ที่นั่ง','ห้องโดยสาร'],0,'รฟท. ระบุห้าม'),q('👦','เด็กในรถนอนควรนอนชั้นใด',['ชั้นล่าง','ชั้นบน','ทางเดิน'],0,'แนะนำชั้นล่างเพื่อป้องกันตก')]},
-{id:19,w:4,i:'🚧',n:'ทางรถไฟและสิ่งน่าสงสัย',l:'safe',t:'quiz',q:[q('👀','ก่อนข้ามทางรถไฟ',['มองซ้ายขวา','วิ่งทันที','มองด้านเดียว'],0,'มองซ้ายขวาให้ถี่ถ้วน'),q('🚆','รถจอดขวางทางข้าม ควรข้ามไหม',['ไม่ควร','ควรรีบ','ข้ามได้'],0,'อาจมีรถสวนมา'),q('🎒','คนแปลกหน้าขอฝากกระเป๋า',['ไม่รับฝาก','รับแล้วเปิด','วางข้างราง'],0,'ข้อควรปฏิบัติแนะนำไม่รับฝาก')]},
-{id:20,w:4,i:'🏁',n:'บอสความปลอดภัย',l:'safe',t:'boss',pool:[16,17,18,19],boss:1},
-
-{id:21,w:5,i:'📍',n:'คลองบางพระอยู่ตรงไหน',l:'kbp',t:'quiz',q:[q('🗺️','คลองบางพระอยู่ที่ระยะเท่าไรใน Matrix 2026',['53.60 กม.','5.36 กม.','153.60 กม.'],0,'ตารางแสดง 53.60 กม.'),q('➡️','ด้านฉะเชิงเทราถัดจากคลองบางพระคือ',['บางเตย','เปรง','คลองแขวงกลั่น'],0,'คลองบางพระ → บางเตย'),q('⬅️','ด้านกรุงเทพก่อนถึงคลองบางพระคือ',['คลองแขวงกลั่น','บางเตย','ชุมทางฉะเชิงเทรา'],0,'คลองแขวงกลั่นอยู่ก่อนคลองบางพระ')]},
-{id:22,w:5,i:'🧩',n:'เรียงสถานีใกล้เคียง',l:'kbp',t:'order',o:[o('เรียงจากฝั่งกรุงเทพไปฉะเชิงเทรา',['เปรง','คลองแขวงกลั่น','คลองบางพระ','บางเตย','ชุมทางฉะเชิงเทรา'],'ลำดับจาก SRT Timetable Matrix 2026')]},
-{id:23,w:5,i:'⏰',n:'อ่านตารางเวลา',l:'kbp',t:'time'},
-{id:24,w:5,i:'🧭',n:'เลือกขบวนจากสถานการณ์',l:'kbp',t:'plan'},
-{id:25,w:5,i:'🏁',n:'บอสสายตะวันออก KBP',l:'kbp',t:'boss',pool:[21,23,24],boss:1},
-
-{id:26,w:6,i:'🔄',n:'เปลี่ยนตั๋ว',l:'change',t:'quiz',q:[q('1️⃣','ก่อน 1 วัน ค่าธรรมเนียม',['50%','30%','20%'],0,'1 วัน = 50%'),q('2️⃣','ก่อน 2 วัน',['30%','50%','20%'],0,'2 วัน = 30%'),q('3️⃣','3 วันขึ้นไป',['20%','30%','50%'],0,'3 วันขึ้นไป = 20%'),q('⏰','แจ้งก่อนรถออกอย่างน้อย',['24 ชั่วโมง','3 ชั่วโมง','30 นาที'],0,'ไม่น้อยกว่า 24 ชั่วโมง')]},
-{id:27,w:6,i:'↩️',n:'คืนตั๋ว',l:'refund',t:'quiz',q:[q('⏱️','ตั๋วรายบุคคลขอคืนก่อนรถออกอย่างน้อย',['3 ชั่วโมง','30 นาที','24 ชั่วโมง'],0,'ไม่น้อยกว่า 3 ชั่วโมง'),q('💵','ค่าธรรมเนียมคืนขั้นต่ำ',['20 บาท','5 บาท','100 บาท'],0,'20 บาทต่อฉบับ'),q('📉','ตั๋วรายบุคคลที่เข้าเกณฑ์คืนหักไว้กี่เปอร์เซ็นต์',['70%','20%','10%'],0,'หน้า รฟท. ระบุ 70%'),q('🗓️','ตั๋วเดือนคืนได้ไหม',['ไม่ได้','ได้','ได้วันแรก'],0,'ตั๋วเดือนไม่คืนเงิน')]},
-{id:28,w:6,i:'⏳',n:'Waiting List',l:'wait',t:'quiz',q:[q('🎟️','ใช้กับขบวนแบบใด',['ขบวนที่ต้องสำรองที่นั่ง','รถสินค้า','รถธรรมดาทุกเที่ยว'],0,'ใช้กับขบวนสำรอง'),q('👤','ผู้ใช้ต้องเป็น',['สมาชิก D-Ticket ยืนยันตัวตน','ไม่ต้องสมัคร','เจ้าหน้าที่'],0,'ต้องเป็นสมาชิกยืนยันตัวตน'),q('📧','เมื่อมีที่นั่งว่างแจ้งทางไหน',['อีเมล','จดหมายเท่านั้น','ไม่แจ้ง'],0,'แจ้งทางอีเมล'),q('⏰','มีเวลาชำระหลังแจ้งกี่ชั่วโมง',['3','24','72'],0,'3 ชั่วโมง')]},
-{id:29,w:6,i:'🧠',n:'สถานการณ์จริง',l:'change',t:'quiz',q:[q('🪪','ตั๋วสำรองเป็นชื่อเพื่อน แต่เราจะไปแทน',['คืนเดิมและออกใหม่','ใช้แทนได้','ขีดแก้'],0,'ห้ามโอนผู้เดินทาง'),q('🐶','พาสุนัขเข้าโบกี้แอร์',['ไม่ได้','ได้เสมอ','ได้ถ้าอุ้ม'],0,'ห้ามสัตว์ทุกชนิดในรถปรับอากาศ'),q('📅','มีตั๋วเดือนแล้วอยากเปลี่ยนวัน',['เปลี่ยนไม่ได้','ฟรี','แก้เอง'],0,'ตั๋วเดือนเปลี่ยนไม่ได้'),q('🚏','ขึ้นจากป้ายหยุดรถไม่มีจุดขายตั๋ว',['แจ้งพนักงานบนขบวนและอยู่ในข้อยกเว้นบางกรณี','หลบตรวจ','ห้ามขึ้น'],0,'หน้า รฟท. ระบุเป็นข้อยกเว้นค่าธรรมเนียมบางกรณี')]},
-{id:30,w:6,i:'👑',n:'Grand Final',l:'wait',t:'final',boss:1}
+{id:1,i:'🚆',n:'โลก 1 • รู้จักรถไฟ',d:'จับคู่ตู้ จัดประเภท และประกอบความรู้พื้นฐาน'},
+{id:2,i:'🎫',n:'โลก 2 • ห้องจำหน่ายตั๋ว',d:'เคาน์เตอร์ D-Ticket Scanner และ Booking Meter'},
+{id:3,i:'💳',n:'โลก 3 • สิทธิและค่าโดยสาร',d:'คิวผู้โดยสาร เครื่องคิดค่าธรรมเนียม และตั๋วเดือน'},
+{id:4,i:'🛡️',n:'โลก 4 • สัมภาระ สัตว์ ความปลอดภัย',d:'แพ็กกระเป๋า Pet Boarding Hotspot และ Triage'},
+{id:5,i:'📍',n:'โลก 5 • คลองบางพระ Control Room',d:'Route Map ทิศทาง ตารางเวลา และ Next Train'},
+{id:6,i:'🧭',n:'โลก 6 • แก้ปัญหาการเดินทาง',d:'Fee Machine Refund Tree Waiting Inbox และ Journey Simulation'}
 ];
-function sh(a){a=[...a];for(let i=a.length-1;i;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function norm(items){return items.map(x=>{const c=x.a[x.c],a=sh(x.a);return{...x,a,c:a.indexOf(c)}})}
-function sv(){try{return JSON.parse(localStorage.getItem(KEY)||'null')||{name:'',p:{}}}catch{return{name:'',p:{}}}}function wr(s){localStorage.setItem(KEY,JSON.stringify(s))}
-function stars(n){return[0,1,2].map(i=>i<n?'⭐':'☆').join('')}function unlocked(id){if(id===1)return true;return(sv().p?.[id-1]?.st||0)>=2}
-function profile(){const s=sv(),r=Object.values(s.p||{});return{name:s.name,score:r.reduce((a,x)=>a+(x.sc||0),0),st:r.reduce((a,x)=>a+(x.st||0),0),pass:r.filter(x=>(x.st||0)>=2).length}}
-function show(id){if(cleaner){try{cleaner()}catch{}cleaner=null}$$('.screen').forEach(x=>x.classList.remove('on'));$('#'+id).classList.add('on');scrollTo(0,0)}
-function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1600)}
+
+const M=[
+{id:1,w:1,i:'🚃',n:'จัดตู้โดยสาร',sub:'Categorize Cards',type:'categorize'},
+{id:2,w:1,i:'🔗',n:'จับคู่คำย่อ',sub:'Memory Match',type:'matchCar'},
+{id:3,w:1,i:'🚆',n:'แยกประเภทขบวน',sub:'Card Sort',type:'trainSort'},
+{id:4,w:1,i:'🧩',n:'ประกอบข้อมูลตู้',sub:'Build-a-Car',type:'buildCar'},
+{id:5,w:1,i:'🏁',n:'Boss • จัดขบวนให้ผู้โดยสาร',sub:'Multi-stage Mission',type:'boss1',boss:1},
+
+{id:6,w:2,i:'🎟️',n:'เคาน์เตอร์ขายตั๋ว',sub:'Ticket Desk Simulator',type:'ticketDesk'},
+{id:7,w:2,i:'📱',n:'สร้างเส้นทาง D-Ticket',sub:'Flow Builder',type:'flow'},
+{id:8,w:2,i:'🪪',n:'เครื่องสแกนตัวตน',sub:'Identity Scanner',type:'scanner'},
+{id:9,w:2,i:'📏',n:'Booking Meter',sub:'Slider 1–30–90',type:'bookingMeter'},
+{id:10,w:2,i:'🏁',n:'Boss • ลูกค้าหน้าช่องขาย',sub:'Ticket Counter Mission',type:'boss2',boss:1},
+
+{id:11,w:3,i:'👥',n:'คิวสิทธิผู้โดยสาร',sub:'Serve the Queue',type:'rightsQueue'},
+{id:12,w:3,i:'💸',n:'เครื่องคิดค่าธรรมเนียม',sub:'Fee Keypad',type:'feeCalc'},
+{id:13,w:3,i:'🎓',n:'เตรียมหมู่คณะ',sub:'Checklist Builder',type:'groupCheck'},
+{id:14,w:3,i:'🗓️',n:'เลือกตั๋วเดือน',sub:'Pass Optimizer',type:'passCompare'},
+{id:15,w:3,i:'🏁',n:'Boss • ครอบครัวเดินทาง',sub:'Rights Journey',type:'boss3',boss:1},
+
+{id:16,w:4,i:'🧳',n:'แพ็กกระเป๋าขึ้นรถ',sub:'Packing Game',type:'packing'},
+{id:17,w:4,i:'🐶',n:'Pet Boarding',sub:'Choose Car + Setup',type:'pet'},
+{id:18,w:4,i:'🔎',n:'สแกนจุดเสี่ยง',sub:'Hotspot Scene',type:'hotspot'},
+{id:19,w:4,i:'🚨',n:'จัดลำดับเหตุฉุกเฉิน',sub:'Triage Board',type:'triage'},
+{id:20,w:4,i:'🏁',n:'Boss • ชานชาลาเร่งด่วน',sub:'Safety Multi-stage',type:'boss4',boss:1},
+
+{id:21,w:5,i:'🗺️',n:'ต่อแผนที่สถานี',sub:'Route Builder',type:'routeMap'},
+{id:22,w:5,i:'↔️',n:'ทิศกรุงเทพ–ตะวันออก',sub:'Direction Reflex',type:'direction'},
+{id:23,w:5,i:'⏰',n:'Timetable Race',sub:'Read Table Fast',type:'timeRace'},
+{id:24,w:5,i:'🚉',n:'Next Train',sub:'Planner Simulation',type:'nextTrain'},
+{id:25,w:5,i:'🏁',n:'Boss • KBP Control Room',sub:'Station Control Mission',type:'boss5',boss:1},
+
+{id:26,w:6,i:'🧮',n:'Change Fee Machine',sub:'20/30/50 Calculator',type:'changeCalc'},
+{id:27,w:6,i:'↩️',n:'Refund Decision Tree',sub:'Choose the Path',type:'refundTree'},
+{id:28,w:6,i:'📧',n:'Waiting List Inbox',sub:'Email Simulation',type:'waitingInbox'},
+{id:29,w:6,i:'❤️',n:'Journey Simulation',sub:'5-stage Real Trip',type:'journey'},
+{id:30,w:6,i:'👑',n:'Grand Final • Rail Master',sub:'Escape Room Finale',type:'final',boss:1}
+];
+
+const FACT={
+categorize:['ตู้โดยสารหลักมีชั้น 1 ชั้น 2 และชั้น 3','บนอ.ป. = ชั้น 1 นั่งและนอนปรับอากาศ','บนท.ป. = ชั้น 2 นั่งและนอนปรับอากาศ','บชส. = รถโบกี้ชั้น 3'],
+ticket:['ซื้อได้ที่สถานีทั่วประเทศ โทร 1690 และ D-Ticket','ตั๋วสำรองต้องมีชื่อผู้เดินทางและเลขบัตร/Passport','เปลี่ยนชื่อผู้เดินทางบนตั๋วสำรองไม่ได้ ต้องคืนเดิมและออกใหม่','เกณฑ์สำรอง 1–30–90 วันขึ้นกับสัดส่วนระยะทาง'],
+rights:['เด็กสูงเกิน 100–150 ซม. ลดค่าโดยสาร 50%','ผู้สูงอายุไทย 60+ ลด 50% ช่วง 1 มิ.ย.–30 ก.ย.','คนพิการไทยลดค่าโดยสาร 50% ผู้ติดตาม 1 คนลด 25%','ด่วนพิเศษ/ด่วน/เร็ว ไม่มีตั๋วบนรถ 250 บาท; ขบวนอื่น 100 บาท (เมื่อไม่เข้าเกณฑ์ยกเว้น)'],
+safety:['หัตถภาระควรไม่กีดขวางทางเดิน','สัตว์ทุกชนิดห้ามเข้าไปในรถปรับอากาศตามข้อมูล รฟท.','ขึ้นลงเมื่อรถหยุดนิ่ง','ไม่รับฝากสัมภาระจากคนแปลกหน้า และมองซ้ายขวาก่อนข้ามทางรถไฟ'],
+kbp:['คลองบางพระอยู่ระหว่างคลองแขวงกลั่นและบางเตยในลำดับสายตะวันออก','ตารางเกมใช้เวลา “ถึง/ออก” ที่คลองบางพระ','ขบวนไปกรุงเทพและออกจากกรุงเทพต้องดูทิศทางร่วมกับปลายทาง','เวลาจริงอาจเปลี่ยน ต้องตรวจล่าสุดก่อนเดินทาง'],
+service:['เปลี่ยนก่อน 1 วัน = 50%, 2 วัน = 30%, 3 วันขึ้นไป = 20%','เปลี่ยนการเดินทางต้องแจ้งล่วงหน้าไม่น้อยกว่า 24 ชั่วโมง','คืนตั๋วรายบุคคลก่อนรถออกอย่างน้อย 3 ชั่วโมง','Waiting List เมื่อได้รับอีเมลต้องออกตั๋วและชำระภายใน 3 ชั่วโมง']
+};
+
+function sv(){try{return JSON.parse(localStorage.getItem(KEY)||'null')||{name:'',p:{}}}catch{return{name:'',p:{}}}}
+function wr(s){localStorage.setItem(KEY,JSON.stringify(s))}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function beep(f=800){if(!soundOn)return;try{const a=window.__ac||(window.__ac=new(AudioContext||webkitAudioContext)()),o=a.createOscillator(),g=a.createGain();o.frequency.value=f;g.gain.value=.04;o.connect(g);g.connect(a.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.06);o.stop(a.currentTime+.06)}catch{}}
-function renderMap(){const s=sv();$('#worldmap').innerHTML=W.map(w=>`<section class="world"><div class="wh"><div class="wi">${w.i}</div><div><h2>${w.n}</h2><p>${w.d}</p></div></div><div class="levels">${MS.filter(x=>x.w===w.id).map(x=>{const u=unlocked(x.id),p=s.p?.[x.id]||{};return`<button class="level ${x.boss?'boss':''}" data-id="${x.id}" ${u?'':'disabled'}><span class="no">บท ${x.id}</span><div class="li">${x.i}</div><strong>${x.n}</strong><small>${LES[x.l].t}</small><div class="stars">${stars(p.st||0)}</div></button>`}).join('')}</div></section>`).join('');$$('.level').forEach(b=>b.onclick=()=>start(+b.dataset.id));const p=profile();$('#pn').textContent=p.name;$('#ps').textContent=p.score;$('#pst').textContent=p.st+'/90';$('#pp').textContent=p.pass+'/30'}
-function start(id){const x=MS.find(v=>v.id===id);if(!x||!unlocked(id))return toast('ต้องผ่านบทก่อนหน้าด้วยอย่างน้อย 2 ดาว');cur=x;$('#gt').textContent=`บท ${x.id}: ${x.n}`;$('#gs').textContent=x.n;show('game');lesson(x)}
-function lesson(x){const l=LES[x.l];$('#gc').innerHTML=`<div class="lesson"><div class="learn"><div style="font-size:45px">${l.i}</div><div class="ey">เรียนก่อนทำภารกิจ</div><h2>${esc(l.t)}</h2><div class="facts">${l.f.map(f=>`<div class="fact">${esc(f)}</div>`).join('')}</div><div class="src">แหล่ง: ${SRC[l.s][0]} • ตรวจ 16 ส.ค. 2569</div><button class="primary next" id="begin">พร้อมทำภารกิจ →</button></div></div>`;$('#begin').onclick=()=>run(x)}
-function metrics(t){return`<div class="metrics"><div class="metric"><small>คะแนน</small><b id="sc">0</b></div><div class="metric"><small>ถูก</small><b id="co">0</b></div><div class="metric"><small>ข้อ</small><b id="ix">1</b></div><div class="metric"><small>เวลา</small><b id="ti">${t}</b></div></div><div class="track"><div id="fill" class="fill"></div></div><div id="body" class="body"></div>`}
-function finish(sc,co,total){if(cleaner){cleaner();cleaner=null}const r=co/Math.max(1,total),st=r>=.86?3:r>=.65?2:r>0?1:0,s=sv(),old=s.p?.[cur.id]||{};s.p=s.p||{};s.p[cur.id]={sc:Math.max(old.sc||0,sc),st:Math.max(old.st||0,st)};wr(s);$('#ri').textContent=st===3?'🏆':st===2?'🌟':st?'🚆':'🔁';$('#rt').textContent=st===3?'เชี่ยวชาญ 3 ดาว':st===2?'ผ่านบทเรียน 2 ดาว':st?'ยังไม่ผ่านเกณฑ์':'ลองใหม่อีกครั้ง';$('#rs').textContent=stars(st);$('#rr').textContent=`ตอบถูก ${co}/${total} • ${sc} คะแนน${st<2?' • ต้องได้ 2 ดาวเพื่อปลดล็อกบทถัดไป':''}`;$('#rl').textContent='Rail Academy เน้นเข้าใจข้อมูลและนำไปใช้จริง ไม่ใช่ท่องตำแหน่งคำตอบ';$('#result').showModal()}
-function run(x){if(x.t==='quiz')quiz(norm(sh(x.q)));else if(x.t==='order')order(x.o);else if(x.t==='boss')quiz(pool(x.pool).slice(0,8));else if(x.t==='time')timeGame();else if(x.t==='plan')plan();else if(x.t==='final')quiz(sh(pool([1,3,6,8,9,11,12,14,16,17,18,19,21,26,27,28,29])).slice(0,15),90)}
-function quiz(items,limit=70){let i=0,sc=0,co=0,t=limit,lock=0,stop=0,timer;$('#gc').innerHTML=metrics(limit);const b=$('#body');function draw(){if(i>=items.length)return done();lock=0;const z=items[i];$('#ix').textContent=`${i+1}/${items.length}`;b.innerHTML=`<div class="prompt"><div class="e">${z.e}</div><h3>${esc(z.q)}</h3></div><div class="answers">${z.a.map((a,j)=>`<button class="answer" data-i="${j}">${esc(a)}</button>`).join('')}</div><div id="fb"></div>`;b.querySelectorAll('.answer').forEach(q=>q.onclick=()=>ans(+q.dataset.i))}function ans(v){if(lock)return;lock=1;const z=items[i],ok=v===z.c,bs=b.querySelectorAll('.answer');bs.forEach(x=>x.disabled=true);bs[z.c].classList.add('correct');if(ok){co++;sc+=150+t;beep()}else{bs[v]?.classList.add('wrong');beep(170)}$('#sc').textContent=sc;$('#co').textContent=co;$('#fb').innerHTML=`<div class="fb ${ok?'ok':'bad'}">${esc(z.x)}</div><button class="primary next" id="nq">ข้อต่อไป</button>`;$('#nq').onclick=()=>{i++;draw()}}function done(){if(stop)return;stop=1;clearInterval(timer);finish(sc,co,items.length)}timer=setInterval(()=>{t--;$('#ti').textContent=t;$('#fill').style.width=Math.max(0,t)/limit*100+'%';if(t<=0)done()},1000);draw();cleaner=()=>{stop=1;clearInterval(timer)}}
-function order(items){let sc=0,co=0,i=0,t=90,sel=[],timer,stop=0;$('#gc').innerHTML=metrics(90);const b=$('#body');function draw(){if(i>=items.length)return done();sel=[];const z=items[i],opts=sh(z.items);b.innerHTML=`<div class="prompt"><div class="e">🧩</div><h3>${esc(z.q)}</h3><p>แตะตามลำดับที่ถูกต้อง</p></div><div id="seq" style="margin:8px 0"></div><div class="order">${opts.map(a=>`<button data-v="${esc(a)}">${esc(a)}</button>`).join('')}</div><div id="fb"></div>`;b.querySelectorAll('.order button').forEach(x=>x.onclick=()=>{if(x.disabled)return;x.disabled=true;sel.push(x.dataset.v);$('#seq').textContent=sel.map((v,n)=>`${n+1}.${v}`).join(' → ');if(sel.length===z.items.length)check()})}function check(){const z=items[i],ok=z.items.every((v,n)=>v===sel[n]);if(ok){co++;sc+=400+t;$('#fb').innerHTML=`<div class="fb ok">${esc(z.x)}</div><button class="primary next" id="no">ต่อไป</button>`;$('#no').onclick=()=>{i++;draw()}}else{$('#fb').innerHTML='<div class="fb bad">ลำดับยังไม่ถูก</div><button class="secondary next" id="retry">ลองใหม่</button>';$('#retry').onclick=draw}$('#sc').textContent=sc;$('#co').textContent=co}function done(){if(stop)return;stop=1;clearInterval(timer);finish(sc,co,items.length)}timer=setInterval(()=>{t--;$('#ti').textContent=t;if(t<=0)done()},1000);draw();cleaner=()=>{stop=1;clearInterval(timer)}}
-function pool(ids){let a=[];ids.forEach(id=>{const x=MS.find(v=>v.id===id);if(x?.q)a.push(...x.q)});return norm(sh(a))}
-function table(rows){return`<div class="table"><table><tr><th>ขบวน</th><th>ประเภท</th><th>ทิศทาง</th><th>ถึง</th><th>ออก</th><th>ปลายทาง</th></tr>${rows.map(x=>`<tr><td>${x.no}</td><td>${x.kind}</td><td>${x.dir}</td><td>${x.arr}</td><td>${x.dep}</td><td>${x.dest}</td></tr>`).join('')}</table></div>`}
-function timeGame(){const rows=sh(TT).slice(0,8),qs=rows.slice(0,5).map(t=>{const a=sh([t.arr,...sh(TT.filter(x=>x.arr!==t.arr).map(x=>x.arr)).slice(0,2)]);return q('⏰',`ขบวน ${t.no} ถึงคลองบางพระเวลาใด`,a,a.indexOf(t.arr),`ถึง ${t.arr}`)});quizWithIntro(qs,75,table(rows))}
-function plan(){const qs=norm([q('🌅','ต้องการไปกรุงเทพและออกจากคลองบางพระก่อน 06:00',['384 ออก 05:30','372 ออก 06:30','388 ออก 07:12'],0,'ขบวน 384 ออก 05:30'),q('🌙','เที่ยวจากกรุงเทพที่มาถึงคลองบางพระช้าที่สุด',['383 ถึง 20:39','371 ถึง 19:10','391 ถึง 18:16'],0,'ขบวน 383'),q('🏙️','ต้องการไปกรุงเทพราว 14:00',['390 ออก 14:12','368 ออก 12:44','282 ออก 15:42'],0,'390 ใกล้ 14:00 ที่สุด'),q('🌊','จากกรุงเทพไปจุกเสม็ดใช้ขบวนปลายทางใด',['283','281','275'],0,'283 ปลายทางจุกเสม็ด')]);quizWithIntro(qs,80,table(TT))}
-function quizWithIntro(items,limit,intro){let i=0,sc=0,co=0,t=limit,timer,stop=0,lock=0;$('#gc').innerHTML=metrics(limit);const b=$('#body');function draw(){if(i>=items.length)return done();lock=0;const z=items[i];b.innerHTML=intro+`<div class="prompt"><div class="e">${z.e}</div><h3>${esc(z.q)}</h3></div><div class="answers">${z.a.map((a,j)=>`<button class="answer" data-i="${j}">${esc(a)}</button>`).join('')}</div><div id="fb"></div>`;b.querySelectorAll('.answer').forEach(x=>x.onclick=()=>ans(+x.dataset.i))}function ans(v){if(lock)return;lock=1;const z=items[i],ok=v===z.c,bs=b.querySelectorAll('.answer');bs.forEach(x=>x.disabled=true);bs[z.c].classList.add('correct');if(ok){co++;sc+=180+t;beep()}else{bs[v]?.classList.add('wrong');beep(170)}$('#sc').textContent=sc;$('#co').textContent=co;$('#fb').innerHTML=`<div class="fb ${ok?'ok':'bad'}">${esc(z.x)}</div><button class="primary next" id="nn">ต่อไป</button>`;$('#nn').onclick=()=>{i++;draw()}}function done(){if(stop)return;stop=1;clearInterval(timer);finish(sc,co,items.length)}timer=setInterval(()=>{t--;$('#ti').textContent=t;if(t<=0)done()},1000);draw();cleaner=()=>{stop=1;clearInterval(timer)}}
-function renderKnowledge(){$('#kc').innerHTML=Object.values(LES).map(l=>`<div class="k"><h3>${l.i} ${esc(l.t)}</h3><ul>${l.f.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>แหล่ง: ${SRC[l.s][0]}</p><a href="${SRC[l.s][1]}" target="_blank">เปิดแหล่งทางการ</a></div>`).join('')}
-function ensure(){const s=sv(),n=s.name||$('#name').value.trim();if(n.length<2){show('welcome');return toast('กรุณาใส่ชื่อเล่นก่อน')}s.name=n;wr(s);return true}
-function go(){if(!ensure())return;renderMap();show('map')}function rnd(){if(!ensure())return;const a=MS.filter(x=>unlocked(x.id));start(a[Math.floor(Math.random()*a.length)].id)}
-$('#form').onsubmit=e=>{e.preventDefault();const s=sv(),n=$('#name').value.trim();if(n.length<2)return toast('ชื่ออย่างน้อย 2 ตัวอักษร');s.name=n;wr(s);go()};$('#cont').onclick=go;$('#random').onclick=rnd;$('#know').onclick=()=>{prev='welcome';renderKnowledge();show('knowledge')};$('#kbtn').onclick=()=>{prev=document.querySelector('.screen.on')?.id||'welcome';renderKnowledge();show('knowledge')};$('#kb').onclick=()=>prev==='map'?(renderMap(),show('map')):show('welcome');$('#back').onclick=()=>{renderMap();show('map')};$('#rback').onclick=()=>{$('#result').close();renderMap();show('map')};$('#sound').onclick=()=>{soundOn=!soundOn;$('#sound').textContent=soundOn?'🔊':'🔇';$('#ns span').textContent=soundOn?'🔊':'🔇'};$('#ns').onclick=()=>$('#sound').click();$('#nh').onclick=()=>show('welcome');$('#nm').onclick=go;$('#nr').onclick=rnd;$('#nk').onclick=()=>{prev=document.querySelector('.screen.on')?.id||'welcome';renderKnowledge();show('knowledge')};
-const S=sv();if(S.name)$('#name').value=S.name;renderKnowledge();
+function sh(a){a=[...a];for(let i=a.length-1;i;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function stars(n){return[0,1,2].map(i=>i<n?'⭐':'☆').join('')}
+function profile(){const s=sv(),r=Object.values(s.p||{});return{name:s.name||'',score:r.reduce((a,x)=>a+(x.score||0),0),stars:r.reduce((a,x)=>a+(x.stars||0),0),passed:r.filter(x=>(x.stars||0)>=2).length}}
+function unlocked(id){if(id===1)return true;return(sv().p?.[id-1]?.stars||0)>=2}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1600)}
+function show(id){if(cleaner){try{cleaner()}catch{}cleaner=null}$$('.screen').forEach(x=>x.classList.remove('active'));$('#'+id).classList.add('active');scrollTo({top:0,behavior:'smooth'})}
+function beep(f=800){if(!soundOn)return;try{const a=window.__ac||(window.__ac=new(AudioContext||webkitAudioContext)()),o=a.createOscillator(),g=a.createGain();o.frequency.value=f;g.gain.value=.045;o.connect(g);g.connect(a.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.07);o.stop(a.currentTime+.07)}catch{}}
+function renderMap(){const s=sv();$('#worldmap').innerHTML=W.map(w=>`<section class="world"><div class="wh"><div class="wi">${w.i}</div><div><h2>${w.n}</h2><p>${w.d}</p></div></div><div class="levels">${M.filter(x=>x.w===w.id).map(x=>{const u=unlocked(x.id),p=s.p?.[x.id]||{};return`<button class="level ${x.boss?'boss':''}" data-id="${x.id}" ${u?'':'disabled'}><span class="num">ด่าน ${x.id}</span><div class="li">${x.i}</div><strong>${x.n}</strong><small>${x.sub}</small><div class="stars">${stars(p.stars||0)}</div></button>`}).join('')}</div></section>`).join('');$$('.level').forEach(b=>b.onclick=()=>start(+b.dataset.id));const p=profile();$('#pn').textContent=p.name;$('#ps').textContent=p.score;$('#pst').textContent=p.stars+'/90';$('#pp').textContent=p.passed+'/30'}
+function factsFor(x){if(x.w===1)return FACT.categorize;if(x.w===2)return FACT.ticket;if(x.w===3)return FACT.rights;if(x.w===4)return FACT.safety;if(x.w===5)return FACT.kbp;return FACT.service}
+function start(id){const x=M.find(v=>v.id===id);if(!x||!unlocked(id))return toast('ต้องผ่านด่านก่อนหน้าด้วยอย่างน้อย 2 ดาว');cur=x;$('#gt').textContent=`ด่าน ${x.id}: ${x.n}`;$('#gs').textContent=x.sub;show('game');$('#gc').innerHTML=`<div class="lesson"><div class="learn"><div style="font-size:44px">${x.i}</div><div class="ey">MISSION BRIEF</div><h2>${esc(x.n)}</h2><div class="facts">${factsFor(x).map(f=>`<div class="fact">${esc(f)}</div>`).join('')}</div><div class="src">อ่านสั้น ๆ แล้วลงมือเล่น — ด่านนี้ใช้ Gameplay แบบ ${esc(x.sub)}</div><button class="primary next" id="goMission">เริ่มภารกิจ →</button></div></div>`;$('#goMission').onclick=()=>run(x)}
+function shell(time=60){return`<div class="metrics"><div class="metric"><small>คะแนน</small><b id="score">0</b></div><div class="metric"><small>สำเร็จ</small><b id="correct">0</b></div><div class="metric"><small>เป้าหมาย</small><b id="goal">—</b></div><div class="metric"><small>เวลา</small><b id="time">${time}</b></div></div><div class="track"><div id="fill" class="fill"></div></div><div id="body" class="body"></div>`}
+function finish(score,correct,total,lesson){if(cleaner){cleaner();cleaner=null}const rate=correct/Math.max(1,total),st=rate>=.86?3:rate>=.65?2:correct>0?1:0,s=sv(),old=s.p?.[cur.id]||{};s.p=s.p||{};s.p[cur.id]={score:Math.max(old.score||0,score),stars:Math.max(old.stars||0,st)};wr(s);$('#ri').textContent=st===3?'🏆':st===2?'🌟':st?'🚆':'🔁';$('#rt').textContent=st===3?'เชี่ยวชาญ • 3 ดาว':st===2?'ผ่าน • 2 ดาว':st?'ยังไม่ผ่านเกณฑ์':'ลองใหม่';$('#rs').textContent=stars(st);$('#rr').textContent=`สำเร็จ ${correct}/${total} • ${score} คะแนน${st<2?' • ต้องได้ 2 ดาวเพื่อไปต่อ':''}`;$('#rl').textContent=lesson;$('#result').showModal()}
+function timerStart(sec,onEnd){let t=sec,stop=0;const iv=setInterval(()=>{t--;$('#time')&&($('#time').textContent=t);$('#fill')&&($('#fill').style.width=Math.max(0,t)/sec*100+'%');if(t<=0){clearInterval(iv);if(!stop)onEnd()}},1000);cleaner=()=>{stop=1;clearInterval(iv)};return()=>t}
+
+function run(x){
+ const f={categorize,matchCar,trainSort,buildCar,boss1,ticketDesk,flow,scanner,bookingMeter,boss2,rightsQueue,feeCalc,groupCheck,passCompare,boss3,packing,pet,hotspot,triage,boss4,routeMap,direction,timeRace,nextTrain,boss5,changeCalc,refundTree,waitingInbox,journey,final}[x.type];
+ f();
+}
+
+function categorize(){
+ $('#gc').innerHTML=shell(55);$('#goal').textContent='6 ใบ';const body=$('#body');
+ const cards=sh([{t:'บนอ.ป.',c:'ชั้น 1'},{t:'บนท.ป.',c:'ชั้น 2'},{t:'บชท.',c:'ชั้น 2'},{t:'บชส.',c:'ชั้น 3'},{t:'ตู้นอนชั้น 1 ปรับอากาศ',c:'ชั้น 1'},{t:'โบกี้ชั้น 3',c:'ชั้น 3'}]);
+ let i=0,ok=0,score=0;function draw(){if(i>=cards.length)return finish(score,ok,cards.length,'จัดประเภทจากความหมายของตู้ ไม่ใช่ท่องตัวอักษรอย่างเดียว');const z=cards[i];body.innerHTML=`<div class="prompt"><div class="emo">🚃</div><h3>${esc(z.t)}</h3><p>แตะชั้นโดยสารที่ตรง</p></div><div class="direction-pad"><button class="dirbtn left" data-v="ชั้น 1">ชั้น 1</button><button class="dirbtn right" data-v="ชั้น 2">ชั้น 2</button></div><button class="secondary next" data-v="ชั้น 3">ชั้น 3</button>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.c){ok++;score+=180;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(55,()=>finish(score,ok,cards.length,'หมดเวลา — ลองจัดตู้ใหม่อีกครั้ง'));
+}
+function matchCar(){
+ $('#gc').innerHTML=shell(60);$('#goal').textContent='4 คู่';const body=$('#body');
+ const items=sh([{a:'บนอ.ป.',b:'ชั้น 1 นั่ง/นอน ปรับอากาศ'},{a:'บนท.ป.',b:'ชั้น 2 นั่ง/นอน ปรับอากาศ'},{a:'บชท.',b:'โบกี้ชั้น 2'},{a:'บชส.',b:'โบกี้ชั้น 3'}]);let i=0,ok=0,score=0;
+ function draw(){if(i>=items.length)return finish(score,ok,items.length,'คำย่อถูกใช้เพื่อย่อประเภทตู้ แต่เวลาเดินทางควรอ่านรายละเอียดเต็มประกอบ');const z=items[i],opts=sh([z.b,...items.filter(x=>x.b!==z.b).map(x=>x.b).slice(0,2)]);body.innerHTML=`<div class="prompt"><div class="emo">🔗</div><h3>${z.a}</h3><p>จับคู่กับความหมายที่ถูก</p></div><div class="answers">${opts.map(v=>`<button class="answer" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.b){ok++;score+=220;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(60,()=>finish(score,ok,items.length,'หมดเวลา'));
+}
+function trainSort(){
+ $('#gc').innerHTML=shell(55);$('#goal').textContent='6 ใบ';const body=$('#body');
+ const cards=sh([{t:'รถด่วนพิเศษ',c:'สำรองที่นั่ง'},{t:'รถด่วน',c:'สำรองที่นั่ง'},{t:'รถเร็ว',c:'สำรองที่นั่ง'},{t:'รถธรรมดา',c:'ที่นั่งอิสระ'},{t:'รถชานเมือง',c:'ที่นั่งอิสระ'},{t:'รถท้องถิ่น',c:'ที่นั่งอิสระ'}]);let i=0,ok=0,score=0;
+ function draw(){if(i>=cards.length)return finish(score,ok,cards.length,'จุดสำคัญคือหลักการจำหน่ายตั๋วและการสำรองต่างกัน');const z=cards[i];body.innerHTML=`<div class="prompt"><div class="emo">🚆</div><h3>${z.t}</h3><p>จัดเข้ากลุ่ม</p></div><div class="direction-pad"><button class="dirbtn left" data-v="สำรองที่นั่ง">🎟️ สำรองที่นั่ง</button><button class="dirbtn right" data-v="ที่นั่งอิสระ">🪑 ที่นั่งอิสระ</button></div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.c){ok++;score+=180;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(55,()=>finish(score,ok,cards.length,'หมดเวลา'));
+}
+function buildCar(){
+ $('#gc').innerHTML=shell(70);$('#goal').textContent='3 ชุด';const body=$('#body');const rounds=[
+ {q:'สร้าง “บนอ.ป.”',need:['ชั้น 1','นั่งและนอน','ปรับอากาศ'],opts:['ชั้น 1','ชั้น 2','นั่งและนอน','ที่นั่งอย่างเดียว','ปรับอากาศ','พัดลม']},
+ {q:'สร้าง “บนท.ป.”',need:['ชั้น 2','นั่งและนอน','ปรับอากาศ'],opts:['ชั้น 1','ชั้น 2','นั่งและนอน','ปรับอากาศ','รถสินค้า','ชั้น 3']},
+ {q:'สร้าง “บชส.”',need:['ชั้น 3','โบกี้โดยสาร'],opts:['ชั้น 3','ชั้น 1','โบกี้โดยสาร','รถจักร','ปรับอากาศ']}
+ ];let r=0,ok=0,score=0,sel=[];
+ function draw(){if(r>=rounds.length)return finish(score,ok,rounds.length,'การประกอบคำช่วยให้เข้าใจว่าแต่ละคำย่อบอกชั้นและรูปแบบตู้');sel=[];const z=rounds[r];body.innerHTML=`<div class="prompt"><div class="emo">🧩</div><h3>${z.q}</h3><p>เลือกองค์ประกอบให้ครบ</p></div><div id="slots" class="slot-row"></div><div class="board">${sh(z.opts).map(v=>`<button class="card big-choice" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div><button class="primary next" id="checkBuild">ตรวจคำตอบ</button>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{b.classList.toggle('done');const v=b.dataset.v;if(sel.includes(v))sel=sel.filter(x=>x!==v);else sel.push(v);$('#slots').innerHTML=sel.map(x=>`<span class="slot">${esc(x)}</span>`).join('')});$('#checkBuild').onclick=()=>{const good=[...z.need].sort().join('|')===[...sel].sort().join('|');if(good){ok++;score+=300;beep()}else beep(170);r++;$('#correct').textContent=ok;$('#score').textContent=score;draw()}}draw();timerStart(70,()=>finish(score,ok,rounds.length,'หมดเวลา'));
+}
+function boss1(){multiStage([
+ {title:'เลือกตู้',text:'ผู้โดยสารอยากได้ชั้น 2 นั่งและนอนปรับอากาศ',opts:['บนท.ป.','บชส.','บนอ.ป.'],good:0},
+ {title:'เลือกกลุ่มขบวน',text:'รถเร็วควรอยู่กลุ่มใด',opts:['สำรองที่นั่ง','ที่นั่งอิสระ'],good:0},
+ {title:'เลือกการซื้อ',text:'รถธรรมดาในวันเดินทาง',opts:['ซื้อก่อนรถออกไม่เกิน 2 ชั่วโมงตามเกณฑ์','ต้องจอง 90 วัน'],good:0}
+ ],'Boss นี้ใช้โจทย์ต่อเนื่องจาก “ตู้ → ประเภทขบวน → วิธีซื้อ”');
+}
+function ticketDesk(){
+ $('#gc').innerHTML=shell(75);$('#goal').textContent='4 ลูกค้า';const body=$('#body');const people=[
+ {name:'มิ้นท์',ask:'อยากซื้อตั๋วที่สถานี',opts:['ดำเนินการที่ช่องจำหน่ายตั๋ว','บอกให้ซื้อจากร้านทั่วไป'],g:0},
+ {name:'โอม',ask:'อยากจองทางโทรศัพท์',opts:['โทร 1690','โทร 191'],g:0},
+ {name:'กาย',ask:'อยากจองออนไลน์',opts:['ใช้ D-Ticket','ใช้เว็บไม่ทราบแหล่ง'],g:0},
+ {name:'เมย์',ask:'เพิ่งซื้อตั๋วเสร็จ',opts:['ตรวจขบวน วัน ต้นทาง ปลายทาง เงินทอน','เดินออกทันทีไม่ต้องดู'],g:0}
+ ];let i=0,ok=0,score=0;
+ function draw(){if(i>=people.length)return finish(score,ok,people.length,'เคาน์เตอร์ที่ดีไม่ได้แค่ขาย แต่ต้องพาผู้โดยสารตรวจข้อมูลก่อนออกจากจุดขาย');const z=people[i];body.innerHTML=`<div class="ticket"><h3 style="color:var(--wine)">🎟️ ลูกค้า: ${z.name}</h3><div class="field"><small>ความต้องการ</small><b>${z.ask}</b></div></div><div class="answers">${z.opts.map((v,j)=>`<button class="answer" data-i="${j}">${v}</button>`).join('')}</div>`;body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>{if(+b.dataset.i===z.g){ok++;score+=250;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(75,()=>finish(score,ok,people.length,'หมดเวลา'));
+}
+function flow(){
+ $('#gc').innerHTML=shell(80);$('#goal').textContent='5 ขั้น';const body=$('#body');const need=['เข้าสู่ระบบ','เลือกต้นทาง–ปลายทาง–วัน','เลือกขบวนและตู้','กรอกข้อมูลผู้โดยสาร/เลือกที่นั่ง','ตรวจสรุปและชำระเงิน'],opts=sh(need);let sel=[],done=0,score=0;
+ body.innerHTML=`<div class="prompt"><div class="emo">📱</div><h3>สร้าง Flow D-Ticket</h3><p>แตะให้เรียงจากต้นจนจบ</p></div><div id="slots" class="slot-row"></div><div class="order-list">${opts.map(v=>`<button class="order-item" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div><button class="primary next" id="checkFlow">ตรวจ Flow</button>`;
+ body.querySelectorAll('.order-item').forEach(b=>b.onclick=()=>{if(b.classList.contains('used'))return;b.classList.add('used');sel.push(b.dataset.v);$('#slots').innerHTML=sel.map((x,i)=>`<span class="slot">${i+1}. ${esc(x)}</span>`).join('')});
+ $('#checkFlow').onclick=()=>{done=need.every((x,i)=>x===sel[i])?5:0;score=done?900:120;finish(score,done,5,'ลำดับ D-Ticket ช่วยป้องกันการเลือกเที่ยวหรือตัวตนผู้เดินทางผิด')};timerStart(80,()=>finish(score,done,5,'หมดเวลา'));
+}
+function scanner(){
+ $('#gc').innerHTML=shell(70);$('#goal').textContent='4 คน';const body=$('#body');const rounds=[
+ {p:'นาย กิตติ • 1234',t:'นาย กิตติ • 1234',g:'ผ่าน'},
+ {p:'น.ส. มีนา • 8842',t:'น.ส. มีนา • 8847',g:'ไม่ผ่าน'},
+ {p:'MR. JOHN • P998',t:'MR. JOHN • P998',g:'ผ่าน'},
+ {p:'น.ส. พิม • 4421',t:'น.ส. แพรว • 4421',g:'ไม่ผ่าน'}
+ ];let i=0,ok=0,score=0;
+ function draw(){if(i>=rounds.length)return finish(score,ok,rounds.length,'ตั๋วสำรองต้องตรวจทั้งชื่อและเลขเอกสาร ไม่ใช่ชื่ออย่างเดียว');const z=rounds[i];body.innerHTML=`<div class="scanner"><div class="person"><div style="font-size:40px">🧍</div><b>${z.p}</b></div><div class="scanline">↔️</div><div class="ticketmini"><div style="font-size:40px">🎫</div><b>${z.t}</b></div></div><div class="direction-pad"><button class="dirbtn left" data-v="ผ่าน">✅ ตรงกัน</button><button class="dirbtn right" data-v="ไม่ผ่าน">⛔ ไม่ตรง</button></div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.g){ok++;score+=260;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(70,()=>finish(score,ok,rounds.length,'หมดเวลา'));
+}
+function bookingMeter(){
+ $('#gc').innerHTML=shell(80);$('#goal').textContent='4 รอบ';const body=$('#body');const rounds=[{pct:20,g:'1 วัน'},{pct:25,g:'30 วัน'},{pct:59,g:'30 วัน'},{pct:60,g:'90 วัน'}];let i=0,ok=0,score=0;
+ function draw(){if(i>=rounds.length)return finish(score,ok,rounds.length,'จำ “จุดเปลี่ยน” 25% และ 60% จะใช้กฎ 1–30–90 ได้ง่ายกว่า');const z=rounds[i];body.innerHTML=`<div class="meter"><div style="text-align:center">สัดส่วนระยะทางผู้โดยสาร / ระยะทางขบวน</div><div class="meter-value">${z.pct}%</div><input type="range" min="0" max="100" value="${z.pct}" disabled></div><div class="answers">${['1 วัน','30 วัน','90 วัน'].map(v=>`<button class="answer" data-v="${v}">${v}</button>`).join('')}</div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.g){ok++;score+=250;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(80,()=>finish(score,ok,rounds.length,'หมดเวลา'));
+}
+function boss2(){multiStage([
+ {title:'รับลูกค้า',text:'ผู้โดยสารจะจองออนไลน์',opts:['D-Ticket','ร้านทั่วไป'],good:0},
+ {title:'ตรวจตัวตน',text:'ชื่อบนตั๋วไม่ตรงคนเดินทาง',opts:['คืนเดิมและออกใหม่','ขีดแก้'],good:0},
+ {title:'คำนวณช่วงจอง',text:'เดินทาง 60% ของระยะทางขบวน',opts:['90 วัน','30 วัน','1 วัน'],good:0}
+ ],'Boss เคาน์เตอร์จำลองให้ตัดสินใจตั้งแต่ช่องทางซื้อ → ตัวตน → ช่วงจอง');
+}
+function rightsQueue(){
+ $('#gc').innerHTML=shell(80);$('#goal').textContent='5 คน';const body=$('#body');const q=[
+ {e:'🧒',name:'เด็กสูง 120 ซม.',g:'50%'},{e:'👵',name:'ผู้สูงอายุไทย 65 ปี เดือน ก.ค.',g:'50%'},{e:'♿',name:'คนพิการสัญชาติไทย',g:'50%'},{e:'🤝',name:'ผู้ติดตามคนพิการ 1 คน',g:'25%'},{e:'👵',name:'ผู้สูงอายุไทย 65 ปี เดือน ธ.ค.',g:'ไม่มีสิทธิช่วงนี้'}
+ ];let i=0,ok=0,score=0;
+ function draw(){if(i>=q.length)return finish(score,ok,q.length,'สิทธิไม่ดูแค่อายุหรือกลุ่ม ต้องดูช่วงเวลาและประเภทส่วนลดด้วย');const z=q[i];body.innerHTML=`<div class="passenger"><div class="avatar">${z.e}</div><div><b>${z.name}</b><small>เลือกสิทธิที่ตรง</small></div><span>คิว ${i+1}/${q.length}</span></div><div class="answers">${['50%','25%','ไม่มีสิทธิช่วงนี้'].map(v=>`<button class="answer" data-v="${v}">${v}</button>`).join('')}</div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.g){ok++;score+=240;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(80,()=>finish(score,ok,q.length,'หมดเวลา'));
+}
+function feeCalc(){
+ $('#gc').innerHTML=shell(80);$('#goal').textContent='4 ครั้ง';const body=$('#body');const rounds=[{label:'รถด่วนพิเศษ',g:250},{label:'รถด่วน',g:250},{label:'รถเร็ว',g:250},{label:'รถธรรมดา',g:100}];let i=0,ok=0,score=0,input='';
+ function draw(){if(i>=rounds.length)return finish(score,ok,rounds.length,'ค่าธรรมเนียมบนรถแยกกลุ่ม 250 และ 100 บาทเมื่อไม่เข้าเกณฑ์ยกเว้น');const z=rounds[i];input='';body.innerHTML=`<div class="prompt"><div class="emo">💸</div><h3>${z.label}</h3><p>ไม่มีตั๋วและไม่เข้าเกณฑ์ยกเว้น — ใส่ค่าธรรมเนียม</p></div><div class="display" id="display">0</div><div class="keypad">${[1,2,3,4,5,6,7,8,9,'C',0,'OK'].map(v=>`<button data-v="${v}">${v}</button>`).join('')}</div>`;body.querySelectorAll('.keypad button').forEach(b=>b.onclick=()=>{const v=b.dataset.v;if(v==='C')input='';else if(v==='OK'){const n=Number(input||0);if(n===z.g){ok++;score+=280;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw();return}else input=(input+v).slice(0,4);$('#display').textContent=input||'0'})}draw();timerStart(80,()=>finish(score,ok,rounds.length,'หมดเวลา'));
+}
+function groupCheck(){
+ $('#gc').innerHTML=shell(85);$('#goal').textContent='Checklist';const body=$('#body');const opts=[
+ {t:'หนังสือรับรองจากสถานศึกษา',g:1},{t:'ต้นทาง–ปลายทางและวันเดินทาง',g:1},{t:'อาจารย์ควบคุม 1 คนต่อผู้เรียน 10 คน',g:1},{t:'รูปหมู่แทนเอกสารทั้งหมด',g:0},{t:'เที่ยวเดียวลดค่าโดยสาร 25%',g:1},{t:'ค่าธรรมเนียมเที่ยวเดียวคิดเต็ม',g:1}
+ ];let sel=new Set();
+ body.innerHTML=`<div class="prompt"><div class="emo">🎓</div><h3>เตรียมหมู่คณะนักเรียน</h3><p>เลือกทุกสิ่งที่ถูกต้อง</p></div><div class="answers">${sh(opts).map((x,i)=>`<button class="answer" data-t="${esc(x.t)}" data-g="${x.g}">${esc(x.t)}</button>`).join('')}</div><button class="primary next" id="checkGroup">ยืนยัน Checklist</button>`;
+ body.querySelectorAll('.answer').forEach(b=>b.onclick=()=>{b.classList.toggle('selected');if(sel.has(b.dataset.t))sel.delete(b.dataset.t);else sel.add(b.dataset.t)});
+ $('#checkGroup').onclick=()=>{const good=opts.filter(x=>x.g).map(x=>x.t),ok=good.every(x=>sel.has(x))&&[...sel].every(x=>good.includes(x));finish(ok?1200:350,ok?5:2,5,'หมู่คณะต้องเตรียมเอกสาร รายละเอียดการเดินทาง ผู้ควบคุม และเข้าใจส่วนลดให้ครบ')};timerStart(85,()=>finish(150,1,5,'หมดเวลา'));
+}
+function passCompare(){
+ $('#gc').innerHTML=shell(80);$('#goal').textContent='4 เคส';const body=$('#body');const r=[
+ {q:'ประชาชนทั่วไป เดินทางประจำ 1 เดือน',opts:['บัตร 1 เดือน คิด 24 วัน','บัตร 3 เดือน คิด 90 วัน','ไม่ต้องดูรูปแบบเดินทาง'],g:0},
+ {q:'ประชาชนทั่วไป เดินทางประจำ 3 เดือน',opts:['บัตร 3 เดือน คิด 72 วัน','บัตร 3 เดือนคิด 90 วัน','ตั๋วเดือนคืนเงินได้'],g:0},
+ {q:'ซื้อแล้วต้องเปลี่ยนวัน',opts:['ตั๋วเดือนไม่อนุญาตให้เปลี่ยน','เปลี่ยนได้ฟรี','แก้วันเอง'],g:0},
+ {q:'ซื้อแล้วไม่ใช้ อยากคืนเงิน',opts:['ตั๋วเดือนไม่คืนเงิน','คืนเต็ม','คืนเสมอ'],g:0}
+ ];let i=0,ok=0,score=0;function draw(){if(i>=r.length)return finish(score,ok,r.length,'ตั๋วเดือนเหมาะเมื่อรูปแบบเดินทางสม่ำเสมอ และมีข้อจำกัดเรื่องเปลี่ยน/คืน');const z=r[i];body.innerHTML=`<div class="prompt"><div class="emo">🗓️</div><h3>${z.q}</h3></div><div class="board">${z.opts.map((v,j)=>`<button class="card big-choice" data-i="${j}">${v}</button>`).join('')}</div>`;body.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{if(+b.dataset.i===z.g){ok++;score+=260;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(80,()=>finish(score,ok,r.length,'หมดเวลา'));
+}
+function boss3(){multiStage([
+ {title:'สิทธิ',text:'เด็กสูง 120 ซม.',opts:['ลดค่าโดยสาร 50%','ฟรี'],good:0},
+ {title:'ค่าธรรมเนียม',text:'รถเร็ว ไม่มีตั๋ว ไม่เข้าเกณฑ์ยกเว้น',opts:['250 บาท','100 บาท'],good:0},
+ {title:'ตั๋วเดือน',text:'ซื้อ 3 เดือนประชาชนทั่วไป คิดกี่วัน',opts:['72','90'],good:0},
+ {title:'การเปลี่ยน',text:'ตั๋วเดือนขอเปลี่ยนวัน',opts:['ไม่ได้','ได้ฟรี'],good:0}
+ ],'Boss นี้เป็นครอบครัวหนึ่งกลุ่ม ต้องจัดสิทธิ ค่าธรรมเนียม และตั๋วให้ครบ');
+}
+function packing(){
+ $('#gc').innerHTML=shell(70);$('#goal').textContent='6 ชิ้น';const body=$('#body');const items=[
+ {e:'🧳',t:'กระเป๋าวางชิดตัว',g:1},{e:'🎒',t:'กระเป๋าขวางทางเดิน',g:0},{e:'📦',t:'กล่องไม่มีเจ้าของ',g:0},{e:'👜',t:'กระเป๋าถือของตนเอง',g:1},{e:'🧴',t:'ของใช้ส่วนตัวปิดสนิท',g:1},{e:'🚪',t:'กระเป๋าขวางประตู',g:0}
+ ];let i=0,ok=0,score=0;
+ function draw(){if(i>=items.length)return finish(score,ok,items.length,'เกมแพ็กของเน้น “ไม่กีดขวาง + อยู่กับเจ้าของ + ไม่แตะของผิดปกติ”');const z=items[i];body.innerHTML=`<div class="pack-zone"><div class="items"><h4>ของชิ้นนี้</h4><div style="font-size:52px;text-align:center">${z.e}</div><b>${z.t}</b></div><div class="bag"><h4>ตัดสินใจ</h4><button class="primary next" data-v="1">ใส่/จัดไว้กับตัว ✅</button><button class="secondary next" data-v="0">ไม่ควรจัดแบบนี้ ⛔</button></div></div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(+b.dataset.v===z.g){ok++;score+=220;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(70,()=>finish(score,ok,items.length,'หมดเวลา'));
+}
+function pet(){
+ $('#gc').innerHTML=shell(70);$('#goal').textContent='3 ขั้น';const body=$('#body');const stages=[
+ {q:'สุนัข/แมวโดยทั่วไปควรเตรียมอย่างไร',opts:['ที่คุมขังมีฝาปิด','ปล่อยอิสระเสมอ'],g:0},
+ {q:'สุนัขไม่ดุร้าย',opts:['อาจไม่ต้องอยู่ในที่คุมขังตามเงื่อนไข','ต้องเข้าแอร์'],g:0},
+ {q:'เลือกตู้โดยสาร',opts:['ตู้ไม่ปรับอากาศตามเงื่อนไข','รถปรับอากาศ'],g:0}
+ ];let i=0,ok=0,score=0;function draw(){if(i>=stages.length)return finish(score,ok,stages.length,'ก่อนพาสัตว์เดินทาง ต้องดูทั้งการควบคุมสัตว์และชนิดตู้โดยสาร');const z=stages[i];body.innerHTML=`<div class="prompt"><div class="emo">🐶</div><h3>${z.q}</h3></div><div class="board">${z.opts.map((v,j)=>`<button class="card big-choice" data-i="${j}">${v}</button>`).join('')}</div>`;body.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{if(+b.dataset.i===z.g){ok++;score+=280;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(70,()=>finish(score,ok,stages.length,'หมดเวลา'));
+}
+function hotspot(){
+ $('#gc').innerHTML=shell(55);$('#goal').textContent='5 จุด';const body=$('#body');let found=0,score=0;
+ body.innerHTML=`<div class="scene"><div class="rail"></div>
+ <button class="hot" data-g="1" style="left:8%;top:56%">🏃</button><button class="hot" data-g="1" style="left:34%;top:50%">🎒</button><button class="hot" data-g="1" style="right:10%;top:44%">🚬</button><button class="hot" data-g="1" style="left:58%;top:60%">👦</button><button class="hot" data-g="1" style="left:18%;top:22%">📦</button><button class="hot" data-g="0" style="right:27%;top:20%">🧍</button><button class="hot" data-g="0" style="left:45%;top:23%">🗑️</button></div><div class="fb ok">ค้นหาจุดเสี่ยง 5 จุด — ไม่มีรายการเฉลยล่วงหน้า</div>`;
+ body.querySelectorAll('.hot').forEach(b=>b.onclick=()=>{if(b.classList.contains('hit'))return;if(b.dataset.g==='1'){b.classList.add('hit');found++;score+=180;beep();$('#correct').textContent=found;$('#score').textContent=score;if(found===5)finish(score,found,5,'การสแกนฉากจริงฝึกให้มองพฤติกรรมและสิ่งกีดขวาง ไม่ใช่จำข้อความ')}else{score=Math.max(0,score-50);$('#score').textContent=score;beep(170)}});timerStart(55,()=>finish(score,found,5,'หมดเวลา'));
+}
+function triage(){
+ $('#gc').innerHTML=shell(80);$('#goal').textContent='4 เหตุ';const body=$('#body');const need=['คนกำลังวิ่งตามรถที่เคลื่อน','ผู้โดยสารหน้ามืดใกล้ขอบชานชาลา','กระเป๋าขวางทางเดิน','ผู้โดยสารถามเวลา'];const opts=sh(need);let sel=[];
+ body.innerHTML=`<div class="prompt"><div class="emo">🚨</div><h3>เรียงจากเร่งด่วนที่สุด</h3><p>แตะตามลำดับ</p></div><div id="slots" class="slot-row"></div><div class="priority">${opts.map(v=>`<button class="prio" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div><button id="checkT" class="primary next">ยืนยันลำดับ</button>`;
+ body.querySelectorAll('.prio').forEach(b=>b.onclick=()=>{if(b.classList.contains('used'))return;b.classList.add('used');sel.push(b.dataset.v);$('#slots').innerHTML=sel.map((x,i)=>`<span class="slot">${i+1}. ${esc(x)}</span>`).join('')});$('#checkT').onclick=()=>{const ok=need.every((x,i)=>x===sel[i]);finish(ok?1200:300,ok?4:1,4,'หลัก Triage: อันตรายจากรถเคลื่อนและความเสี่ยงต่อชีวิตมาก่อนงานบริการทั่วไป')};timerStart(80,()=>finish(100,1,4,'หมดเวลา'));
+}
+function boss4(){multiStage([
+ {title:'สัมภาระ',text:'กระเป๋าขวางทางเดิน',opts:['จัดใหม่','ปล่อยไว้'],good:0},
+ {title:'สัตว์',text:'จะพาสุนัขเข้าโบกี้แอร์',opts:['ไม่ได้','ได้'],good:0},
+ {title:'ความปลอดภัย',text:'รถกำลังเคลื่อน',opts:['ห้ามขึ้นลง','รีบขึ้น'],good:0},
+ {title:'เหตุเร่งด่วน',text:'เด็กวิ่งใกล้ราง vs คนถามเวลา',opts:['ช่วยจัดการเด็กก่อน','ตอบเวลาให้เสร็จก่อน'],good:0}
+ ],'Boss ชานชาลาใช้หลายระบบในเหตุการณ์เดียว ไม่ใช่ข้อสอบยาว');
+}
+function routeMap(){
+ $('#gc').innerHTML=shell(75);$('#goal').textContent='5 สถานี';const body=$('#body');const need=['เปรง','คลองแขวงกลั่น','คลองบางพระ','บางเตย','ชุมทางฉะเชิงเทรา'],opts=sh(need);let sel=[];
+ body.innerHTML=`<div class="prompt"><div class="emo">🗺️</div><h3>ต่อเส้นทางจากกรุงเทพไปฉะเชิงเทรา</h3></div><div id="route" class="route-line"></div><div class="board">${opts.map(v=>`<button class="card big-choice" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div><button id="checkRoute" class="primary next">ตรวจเส้นทาง</button>`;
+ body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.classList.contains('done'))return;b.classList.add('done');sel.push(b.dataset.v);$('#route').innerHTML=sel.map((x,i)=>`${i?'<span class="arrow">→</span>':''}<span class="station active">${esc(x)}</span>`).join('')});$('#checkRoute').onclick=()=>{const ok=need.every((x,i)=>x===sel[i]);finish(ok?1300:350,ok?5:2,5,'การรู้สถานีใกล้เคียงช่วยตรวจว่ากำลังเดินทางไปถูกทิศ โดยไม่ต้องจำทั้งสาย')};timerStart(75,()=>finish(100,1,5,'หมดเวลา'));
+}
+function direction(){
+ $('#gc').innerHTML=shell(65);$('#goal').textContent='8 ขบวน';const body=$('#body');const rows=sh(TT).slice(0,8);let i=0,ok=0,score=0;
+ function draw(){if(i>=rows.length)return finish(score,ok,rows.length,'ดูต้นทาง–ปลายทางก่อนเลือกทิศ ไม่เดาจากเลขขบวน');const z=rows[i];body.innerHTML=`<div class="prompt"><div class="emo">🚆</div><h3>ขบวน ${z.no}</h3><p>${z.origin} → ${z.dest}</p></div><div class="direction-pad"><button class="dirbtn left" data-v="ไปกรุงเทพ">→ กรุงเทพ</button><button class="dirbtn right" data-v="ออกจากกรุงเทพ">← ตะวันออก</button></div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.dir){ok++;score+=190;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(65,()=>finish(score,ok,rows.length,'หมดเวลา'));
+}
+function table(rows){return`<div class="table"><table><tr><th>ขบวน</th><th>ทิศ</th><th>ถึง</th><th>ออก</th><th>ปลายทาง</th></tr>${rows.map(x=>`<tr><td>${x.no}</td><td>${x.dir}</td><td>${x.arr}</td><td>${x.dep}</td><td>${x.dest}</td></tr>`).join('')}</table></div>`}
+function timeRace(){
+ $('#gc').innerHTML=shell(70);$('#goal').textContent='5 คำตอบ';const body=$('#body');const rows=sh(TT).slice(0,8),qs=rows.slice(0,5);let i=0,ok=0,score=0;
+ function draw(){if(i>=qs.length)return finish(score,ok,qs.length,'ด่านนี้วัด “อ่านตารางให้ทัน” ไม่ใช่ท่องเวลา');const z=qs[i],opts=sh([z.arr,...sh(TT.filter(x=>x.arr!==z.arr).map(x=>x.arr)).slice(0,2)]);body.innerHTML=table(rows)+`<div class="prompt"><div class="emo">⏰</div><h3>ขบวน ${z.no} ถึงคลองบางพระกี่โมง</h3></div><div class="answers">${opts.map(v=>`<button class="answer" data-v="${v}">${v}</button>`).join('')}</div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.arr){ok++;score+=220;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(70,()=>finish(score,ok,qs.length,'หมดเวลา'));
+}
+function nextTrain(){
+ $('#gc').innerHTML=shell(85);$('#goal').textContent='4 เคส';const body=$('#body');const qs=[
+ {q:'ต้องการไปกรุงเทพก่อน 06:00',g:'384'},{q:'ต้องการไปจุกเสม็ดจากกรุงเทพ',g:'283'},{q:'ต้องการไปปราจีนบุรีจากกรุงเทพ',g:'371'},{q:'เที่ยวจากกรุงเทพมาคลองบางพระที่ช้าที่สุดในชุดนี้',g:'383'}
+ ];let i=0,ok=0,score=0;
+ function draw(){if(i>=qs.length)return finish(score,ok,qs.length,'เลือกขบวนจาก “ทิศ + เวลา + ปลายทาง” พร้อมกัน');const z=qs[i],good=TT.find(x=>x.no===z.g),distr=sh(TT.filter(x=>x.no!==z.g)).slice(0,3),opts=sh([good,...distr]);body.innerHTML=table(TT)+`<div class="prompt"><div class="emo">🚉</div><h3>${z.q}</h3></div><div class="board">${opts.map(v=>`<button class="card big-choice" data-v="${v.no}"><b>ขบวน ${v.no}</b><br><small>${v.dest} • ${v.dep}</small></button>`).join('')}</div>`;body.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{if(b.dataset.v===z.g){ok++;score+=300;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(85,()=>finish(score,ok,qs.length,'หมดเวลา'));
+}
+function boss5(){multiStage([
+ {title:'เส้นทาง',text:'จากคลองบางพระไปทางฉะเชิงเทรา สถานีถัดไป',opts:['บางเตย','คลองแขวงกลั่น'],good:0},
+ {title:'ทิศทาง',text:'กรุงเทพ → จุกเสม็ด',opts:['ออกจากกรุงเทพ','ไปกรุงเทพ'],good:0},
+ {title:'ตาราง',text:'ขบวน 383 ถึงคลองบางพระ',opts:['20:39','19:10'],good:0},
+ {title:'วางแผน',text:'ไปปราจีนบุรีจากกรุงเทพ',opts:['371','383'],good:0}
+ ],'Boss Control Room รวมแผนที่ ทิศทาง เวลา และปลายทางในเคสเดียว');
+}
+function changeCalc(){
+ $('#gc').innerHTML=shell(85);$('#goal').textContent='4 เคส';const body=$('#body');const r=[{d:'1 วัน',pct:50,price:240,g:120},{d:'2 วัน',pct:30,price:200,g:60},{d:'3 วันขึ้นไป',pct:20,price:500,g:100},{d:'3 วันขึ้นไป',pct:20,price:240,g:48}];let i=0,ok=0,score=0,input='';
+ function draw(){if(i>=r.length)return finish(score,ok,r.length,'Fee Machine เปลี่ยนกฎเปอร์เซ็นต์ให้เป็นการคำนวณจริง');const z=r[i];input='';body.innerHTML=`<div class="prompt"><div class="emo">🧮</div><h3>ตั๋ว ${z.price} บาท • เปลี่ยนก่อน ${z.d}</h3><p>อัตรา ${z.pct}% → ค่าธรรมเนียมเท่าไร</p></div><div class="display" id="display">0</div><div class="keypad">${[1,2,3,4,5,6,7,8,9,'C',0,'OK'].map(v=>`<button data-v="${v}">${v}</button>`).join('')}</div>`;body.querySelectorAll('.keypad button').forEach(b=>b.onclick=()=>{const v=b.dataset.v;if(v==='C')input='';else if(v==='OK'){if(Number(input)===z.g){ok++;score+=300;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw();return}else input=(input+v).slice(0,4);$('#display').textContent=input||'0'})}draw();timerStart(85,()=>finish(score,ok,r.length,'หมดเวลา'));
+}
+function refundTree(){
+ $('#gc').innerHTML=shell(80);$('#goal').textContent='4 เส้นทาง';const body=$('#body');const r=[
+ {q:'ตั๋วรายบุคคล เหลือ 5 ชั่วโมงก่อนรถออก',opts:['ไปขั้นตรวจเงื่อนไขคืนได้','คืนไม่ได้แน่นอน'],g:0},
+ {q:'ตั๋วรายบุคคล เหลือ 1 ชั่วโมง',opts:['ไม่เข้าเกณฑ์เวลา 3 ชั่วโมง','คืนได้ตามปกติ'],g:0},
+ {q:'ค่าธรรมเนียมคืนขั้นต่ำ',opts:['20 บาท/ฉบับ','5 บาท/ฉบับ'],g:0},
+ {q:'ตั๋วเดือนต้องการคืน',opts:['ไม่รับคืนเงิน','คืนได้เต็ม'],g:0}
+ ];let i=0,ok=0,score=0;function draw(){if(i>=r.length)return finish(score,ok,r.length,'Decision Tree ช่วยตัดสินจาก “ชนิดตั๋ว + เวลาคงเหลือ + ข้อยกเว้น”');const z=r[i];body.innerHTML=`<div class="prompt"><div class="emo">↩️</div><h3>${z.q}</h3></div><div class="direction-pad">${z.opts.map((v,j)=>`<button class="dirbtn ${j?'right':'left'}" data-i="${j}">${v}</button>`).join('')}</div>`;body.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{if(+b.dataset.i===z.g){ok++;score+=260;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(80,()=>finish(score,ok,r.length,'หมดเวลา'));
+}
+function waitingInbox(){
+ $('#gc').innerHTML=shell(70);$('#goal').textContent='3 อีเมล';const body=$('#body');const mails=[
+ {sub:'Waiting List: ยังไม่มีที่นั่งว่าง',text:'ระบบยังไม่จัดสรรที่นั่ง',opts:['รอตามลำดับ','โอนเงินทันทีให้บุคคลอื่น'],g:0},
+ {sub:'Waiting List: มีที่นั่งว่างแล้ว',text:'ระบบส่งรหัสการจองทางอีเมล',opts:['ออกตั๋วและชำระภายใน 3 ชั่วโมง','รอ 3 วัน'],g:0},
+ {sub:'สมาชิกยังไม่ยืนยันตัวตน',text:'ต้องการใช้ Waiting List',opts:['ยืนยันตัวตนใน D-Ticket ก่อน','ใช้ได้ทันทีไม่ต้องสมัคร'],g:0}
+ ];let i=0,ok=0,score=0;function draw(){if(i>=mails.length)return finish(score,ok,mails.length,'Waiting List เป็น “ระบบแจ้งสิทธิ” ไม่ใช่ตั๋วที่ออกให้ทันที');const z=mails[i];body.innerHTML=`<div class="inbox"><div class="mail"><div class="subject">📧 ${z.sub}</div><p>${z.text}</p><div class="time">Inbox Simulation</div></div></div><div class="answers">${z.opts.map((v,j)=>`<button class="answer" data-i="${j}">${v}</button>`).join('')}</div>`;body.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{if(+b.dataset.i===z.g){ok++;score+=300;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(70,()=>finish(score,ok,mails.length,'หมดเวลา'));
+}
+function journey(){
+ const stages=[
+ {t:'1. เลือกช่องทางซื้อ',q:'ต้องการจองล่วงหน้าออนไลน์',opts:['D-Ticket','ขึ้นรถก่อนค่อยซื้อ'],g:0},
+ {t:'2. ตรวจตัวตน',q:'ชื่อในตั๋วตรงบัตร',opts:['ผ่าน','ต้องคืน'],g:0},
+ {t:'3. เดินทางพร้อมสัตว์',q:'มีแมวในกรงและเลือกโบกี้แอร์',opts:['เปลี่ยนไปตู้ที่อนุญาต','เข้าแอร์ได้'],g:0},
+ {t:'4. มาถึงคลองบางพระ',q:'ต้องการไปกรุงเทพ',opts:['เลือกขบวนทิศไปกรุงเทพ','เลือกออกจากกรุงเทพ'],g:0},
+ {t:'5. บนชานชาลา',q:'รถยังเคลื่อน',opts:['รอหยุดนิ่ง','รีบขึ้น'],g:0}
+ ];multiStage(stages,'Journey Simulation เชื่อมความรู้จากหลายโลกเป็นการเดินทางหนึ่งเที่ยว');
+}
+function final(){
+ const stages=[
+ {title:'ด่านรหัส',text:'บนท.ป. คือ?',opts:['ชั้น 2 นั่ง/นอน ปรับอากาศ','ชั้น 3'],good:0},
+ {title:'ด่านตัวตน',text:'ตั๋วสำรองชื่อไม่ตรง',opts:['คืนเดิมและออกใหม่','ใช้แทน'],good:0},
+ {title:'ด่านสิทธิ',text:'ผู้ติดตามคนพิการ 1 คน',opts:['ลด 25%','ลด 50%'],good:0},
+ {title:'ด่านสัตว์',text:'สัตว์ในรถปรับอากาศ',opts:['ห้าม','ได้'],good:0},
+ {title:'ด่านเส้นทาง',text:'คลองบางพระ → ด้านฉะเชิงเทรา',opts:['บางเตย','คลองแขวงกลั่น'],good:0},
+ {title:'ด่านเปลี่ยนตั๋ว',text:'ก่อน 2 วัน',opts:['30%','50%'],good:0},
+ {title:'ด่าน Waiting List',text:'ได้อีเมลแล้วต้องชำระภายใน',opts:['3 ชั่วโมง','24 ชั่วโมง'],good:0}
+ ];multiStage(stages,'Grand Final เป็น Escape Room หลายประตู แต่ละประตูใช้ทักษะคนละแบบจากทั้งเกม');
+}
+
+function multiStage(stages,lesson){
+ $('#gc').innerHTML=shell(100);$('#goal').textContent=stages.length+' ขั้น';const body=$('#body');let i=0,ok=0,score=0;
+ function draw(){if(i>=stages.length)return finish(score,ok,stages.length,lesson);const z=stages[i],title=z.title||z.t||`ขั้น ${i+1}`;body.innerHTML=`<div class="timeline">${stages.map((s,n)=>`<div class="stage ${n<i?'done':n===i?'current':''}">${n<i?'✅ ':n===i?'▶️ ':'○ '}${esc(s.title||s.t||('ขั้น '+(n+1)))}</div>`).join('')}</div><div class="prompt"><div class="emo">🎯</div><h3>${esc(title)}</h3><p>${esc(z.text||z.q)}</p></div><div class="board">${z.opts.map((v,j)=>`<button class="card big-choice" data-i="${j}">${esc(v)}</button>`).join('')}</div>`;body.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{if(+b.dataset.i===(z.good??z.g)){ok++;score+=320;beep()}else beep(170);i++;$('#correct').textContent=ok;$('#score').textContent=score;draw()})}draw();timerStart(100,()=>finish(score,ok,stages.length,lesson));
+}
+
+function ensure(){const s=sv(),n=s.name||$('#name').value.trim();if(n.length<2){show('welcome');return toast('ใส่ชื่อเล่นก่อน')}s.name=n;wr(s);return true}
+function goMap(){if(!ensure())return;renderMap();show('map')}
+function randomMission(){if(!ensure())return;const a=M.filter(x=>unlocked(x.id));start(a[Math.floor(Math.random()*a.length)].id)}
+function nextMission(){if(!cur)return goMap();const n=cur.id<30?cur.id+1:30;if(unlocked(n))start(n);else toast('ด่านถัดไปยังไม่ปลดล็อก')}
+$('#form').onsubmit=e=>{e.preventDefault();const s=sv(),n=$('#name').value.trim().replace(/\s+/g,' ');if(n.length<2)return toast('ชื่ออย่างน้อย 2 ตัวอักษร');s.name=n;wr(s);goMap()}
+$('#cont').onclick=goMap;$('#random').onclick=randomMission;$('#reset').onclick=()=>{localStorage.removeItem(KEY);$('#name').value='';toast('ล้างความคืบหน้าแล้ว')};$('#back').onclick=goMap;$('#rback').onclick=()=>{$('#result').close();goMap()};$('#sound').onclick=()=>{soundOn=!soundOn;$('#sound').textContent=soundOn?'🔊':'🔇';$('#ns span').textContent=soundOn?'🔊':'🔇'};$('#ns').onclick=()=>$('#sound').click();$('#nh').onclick=()=>show('welcome');$('#nm').onclick=goMap;$('#nr').onclick=randomMission;$('#nnext').onclick=nextMission;
+const S=sv();if(S.name)$('#name').value=S.name;
 </script>
-</body></html>
+</body>
+</html>
